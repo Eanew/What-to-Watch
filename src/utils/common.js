@@ -16,6 +16,7 @@ export const Regular = {
   FIRST_NUMBER: /\d+/,
   EMPTY_SPACE: /\s+/g,
   EMPTY_SPACE_IN_EDGES: /^\s+|\s+(?!.)/g,
+  WORD_SEPARATION: /(\s|:\s|:)+/g,
 };
 
 export const isEscEvent = (evt, action) => {
@@ -34,5 +35,5 @@ export const swapActiveElements = (container, target, activeElementClass) => {
 export const setAttributeString = (defaultString) => {
   return defaultString.toLowerCase()
     .replace(Regular.EMPTY_SPACE_IN_EDGES, ``)
-    .replace(Regular.EMPTY_SPACE, Regular.DASH);
+    .replace(Regular.WORD_SEPARATION, Regular.DASH);
 };
