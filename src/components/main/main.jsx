@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import {setAttributeString} from "../../utils/common.js";
+import {toKebabCase} from "../../utils/common.js";
 
 export const Main = (props) => {
   const {promoName, promoGenre, promoRelease, filmsTitles} = props;
-  const dashedPromoName = setAttributeString(promoName);
+  const dashedPromoName = toKebabCase(promoName);
   const promoImage = `img/bg-${dashedPromoName}.jpg`;
   const promoPoster = `img/${dashedPromoName}-poster.jpg`;
   const posterImageAlt = `${promoName} poster`;
