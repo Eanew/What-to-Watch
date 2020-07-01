@@ -27,26 +27,33 @@ const GenresNavigation = {
   THRILLERS: `Thrillers`,
 };
 
-export const Main = (props) => {
+const Main = (props) => {
   const {
     promoName,
     promoGenre,
     promoRelease,
     filmsTitles,
+    onHeaderClick,
   } = props;
 
   return (
     <React.Fragment>
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src={`img/bg-${toKebabCase(promoName)}.jpg`} alt={promoName} />
+          <img
+            src={`img/bg-${toKebabCase(promoName)}.jpg`}
+            alt={promoName}
+          />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
 
         <header className="page-header movie-card__head">
           <div className="logo">
-            <a className="logo__link">
+            <a
+              onClick={onHeaderClick}
+              className="logo__link"
+            >
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
@@ -63,11 +70,20 @@ export const Main = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src={`img/${toKebabCase(promoName)}-poster.jpg`} alt={`${promoName} poster`} width="218" height="327" />
+              <img
+                src={`img/${toKebabCase(promoName)}-poster.jpg`}
+                alt={`${promoName} poster`}
+                width="218" height="327"
+              />
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{promoName}</h2>
+              <h2
+                onClick={onHeaderClick}
+                className="movie-card__title"
+              >
+                {promoName}
+              </h2>
               <p className="movie-card__meta">
                 <span className="movie-card__genre">{promoGenre}</span>
                 <span className="movie-card__year">{promoRelease}</span>
@@ -98,8 +114,17 @@ export const Main = (props) => {
 
           <ul className="catalog__genres-list">
             {Object.values(GenresNavigation).map((it, i) => (
-              <li key={it + i} className="catalog__genres-item catalog__genres-item--active">
-                <a href="#" className="catalog__genres-link">{it}</a>
+              <li
+                key={it + i}
+                className={`catalog__genres-item${i === 0 ? ` catalog__genres-item--active` : ``}`}
+              >
+                <a
+                  onClick={onHeaderClick}
+                  href="#"
+                  className="catalog__genres-link"
+                >
+                  {it}
+                </a>
               </li>
             ))}
           </ul>
@@ -108,10 +133,20 @@ export const Main = (props) => {
             {filmsTitles.map((it, i) => (
               <article key={it + i} className="small-movie-card catalog__movies-card">
                 <div className="small-movie-card__image">
-                  <img src={`img/${toKebabCase(it)}.jpg`} alt={it} width="280" height="175" />
+                  <img
+                    src={`img/${toKebabCase(it)}.jpg`}
+                    alt={it}
+                    width="280" height="175"
+                  />
                 </div>
                 <h3 className="small-movie-card__title">
-                  <a className="small-movie-card__link" href="movie-page.html">{it}</a>
+                  <a
+                    onClick={onHeaderClick}
+                    className="small-movie-card__link"
+                    href="movie-page.html"
+                  >
+                    {it}
+                  </a>
                 </h3>
               </article>
             ))}
@@ -145,4 +180,7 @@ Main.propTypes = {
   promoGenre: PropTypes.oneOf(APPROVED_GENRES).isRequired,
   promoRelease: PropTypes.string.isRequired,
   filmsTitles: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onHeaderClick: PropTypes.func.isRequired,
 };
+
+export default Main;

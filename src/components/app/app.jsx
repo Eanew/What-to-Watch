@@ -1,8 +1,10 @@
 import React from "react";
 
-import {Main} from "../main/main.jsx";
+import Main from "../main/main.jsx";
 
-export const App = (props) => {
+const headerClickHandler = () => {};
+
+const App = (props) => {
   const {
     promoName,
     promoGenre,
@@ -15,7 +17,10 @@ export const App = (props) => {
     promoGenre={promoGenre}
     promoRelease={promoRelease}
     filmsTitles={filmsTitles}
+    onHeaderClick={headerClickHandler}
   />;
 };
 
 App.propTypes = Main.propTypes;
+
+export default App;
