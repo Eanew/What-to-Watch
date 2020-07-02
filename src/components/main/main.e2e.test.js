@@ -36,45 +36,23 @@ const filmsTitles = [
   `Midnight Special`];
 
 describe(`Headers`, () => {
-  const headerClickHandler = jest.fn();
-  let clicksCount = 0;
+  it(`Should be pressed`, () => {
+    const headerClickHandler = jest.fn();
 
-  const main = shallow(<Main
-    promoName={promo.name}
-    promoGenre={promo.genre}
-    promoRelease={promo.release}
-    filmsTitles={filmsTitles}
-    onHeaderClick={headerClickHandler}
-  />);
+    const main = shallow(<Main
+      promoName={promo.name}
+      promoGenre={promo.genre}
+      promoRelease={promo.release}
+      filmsTitles={filmsTitles}
+      onHeaderClick={headerClickHandler}
+    />);
 
-  const siteTitles = main.find(`.logo__link`);
-  const promoTitle = main.find(`.movie-card__title`);
-  const genresLinks = main.find(`.catalog__genres-link`);
-  const moviesLinks = main.find(`.small-movie-card__link`);
+    const moviesTitles = main.find(`.small-movie-card__link`);
 
-  siteTitles.forEach((title, i) => {
-    it(`Should site title${i} be pressed`, () => {
+    moviesTitles.forEach((title) => {
       title.simulate(`click`);
-      expect(headerClickHandler.mock.calls.length).toBe(++clicksCount);
     });
-  });
 
-  it(`Should promo title be pressed`, () => {
-    promoTitle.simulate(`click`);
-    expect(headerClickHandler.mock.calls.length).toBe(++clicksCount);
-  });
-
-  genresLinks.forEach((genre) => {
-    it(`Should ${genre.textContent} genre link be pressed`, () => {
-      genre.simulate(`click`);
-      expect(headerClickHandler.mock.calls.length).toBe(++clicksCount);
-    });
-  });
-
-  moviesLinks.forEach((movie) => {
-    it(`Should ${movie.textContent} movie link be pressed`, () => {
-      movie.simulate(`click`);
-      expect(headerClickHandler.mock.calls.length).toBe(++clicksCount);
-    });
+    expect(headerClickHandler.mock.calls.length).toBe(moviesTitles.length);
   });
 });
