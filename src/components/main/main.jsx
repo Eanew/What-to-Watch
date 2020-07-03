@@ -29,11 +29,9 @@ const GenresNavigation = {
 
 const Main = (props) => {
   const {
-    promoName,
-    promoGenre,
-    promoRelease,
+    promo,
     filmsTitles,
-    onHeaderClick,
+    onFilmTitleClick,
   } = props;
 
   return (
@@ -41,8 +39,8 @@ const Main = (props) => {
       <section className="movie-card">
         <div className="movie-card__bg">
           <img
-            src={`img/bg-${toKebabCase(promoName)}.jpg`}
-            alt={promoName}
+            src={`img/bg-${toKebabCase(promo.name)}.jpg`}
+            alt={promo.name}
           />
         </div>
 
@@ -51,7 +49,6 @@ const Main = (props) => {
         <header className="page-header movie-card__head">
           <div className="logo">
             <a
-              onClick={onHeaderClick}
               className="logo__link"
             >
               <span className="logo__letter logo__letter--1">W</span>
@@ -71,22 +68,21 @@ const Main = (props) => {
           <div className="movie-card__info">
             <div className="movie-card__poster">
               <img
-                src={`img/${toKebabCase(promoName)}-poster.jpg`}
-                alt={`${promoName} poster`}
+                src={`img/${toKebabCase(promo.name)}-poster.jpg`}
+                alt={`${promo.name} poster`}
                 width="218" height="327"
               />
             </div>
 
             <div className="movie-card__desc">
               <h2
-                onClick={onHeaderClick}
                 className="movie-card__title"
               >
-                {promoName}
+                {promo.name}
               </h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{promoGenre}</span>
-                <span className="movie-card__year">{promoRelease}</span>
+                <span className="movie-card__genre">{promo.genre}</span>
+                <span className="movie-card__year">{promo.release}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -119,7 +115,6 @@ const Main = (props) => {
                 className={`catalog__genres-item${i === 0 ? ` catalog__genres-item--active` : ``}`}
               >
                 <a
-                  onClick={onHeaderClick}
                   href="#"
                   className="catalog__genres-link"
                 >
@@ -141,7 +136,7 @@ const Main = (props) => {
                 </div>
                 <h3 className="small-movie-card__title">
                   <a
-                    onClick={onHeaderClick}
+                    onClick={onFilmTitleClick}
                     className="small-movie-card__link"
                     href="movie-page.html"
                   >
@@ -176,11 +171,13 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  promoName: PropTypes.string.isRequired,
-  promoGenre: PropTypes.oneOf(APPROVED_GENRES).isRequired,
-  promoRelease: PropTypes.string.isRequired,
+  promo: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    genre: PropTypes.oneOf(APPROVED_GENRES).isRequired,
+    release: PropTypes.string.isRequired,
+  }).isRequired,
   filmsTitles: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onHeaderClick: PropTypes.func.isRequired,
+  onFilmTitleClick: PropTypes.func.isRequired,
 };
 
 export default Main;

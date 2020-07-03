@@ -2,22 +2,17 @@ import React from "react";
 
 import Main from "../main/main.jsx";
 
-const headerClickHandler = () => {};
-
 const App = (props) => {
   const {
-    promoName,
-    promoGenre,
-    promoRelease,
+    promo,
     filmsTitles,
+    onFilmTitleClick,
   } = props;
 
   return <Main
-    promoName={promoName}
-    promoGenre={promoGenre}
-    promoRelease={promoRelease}
+    promo={promo}
     filmsTitles={filmsTitles}
-    onHeaderClick={headerClickHandler}
+    onFilmTitleClick={onFilmTitleClick}
   />;
 };
 

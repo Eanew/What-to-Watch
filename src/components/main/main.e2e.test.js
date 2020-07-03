@@ -16,35 +16,16 @@ const promo = {
 const filmsTitles = [
   `Fantastic Beasts: The Crimes of Grindelwald`,
   `Bohemian Rhapsody`,
-  `Macbeth`,
-  `Aviator`,
-  `We need to talk about Kevin`,
-  `What We Do in the Shadows`,
-  `Revenant`,
-  `Johnny English`,
-  `Shutter Island`,
-  `Pulp Fiction`,
-  `No Country for Old Men`,
-  `Snatch`,
-  `Moonrise Kingdom`,
-  `Seven Years in Tibet`,
-  `Midnight Special`,
-  `War of the Worlds`,
-  `Dardjeeling Limited`,
-  `Orlando`,
-  `Mindhunter`,
-  `Midnight Special`];
+  `Macbeth`];
 
-describe(`Headers`, () => {
+describe(`Films titles`, () => {
   it(`Should be pressed`, () => {
-    const headerClickHandler = jest.fn();
+    const filmTitleClickHandler = jest.fn();
 
     const main = shallow(<Main
-      promoName={promo.name}
-      promoGenre={promo.genre}
-      promoRelease={promo.release}
+      promo={promo}
       filmsTitles={filmsTitles}
-      onHeaderClick={headerClickHandler}
+      onFilmTitleClick={filmTitleClickHandler}
     />);
 
     const moviesTitles = main.find(`.small-movie-card__link`);
@@ -53,6 +34,6 @@ describe(`Headers`, () => {
       title.simulate(`click`);
     });
 
-    expect(headerClickHandler).toHaveBeenCalledTimes(moviesTitles.length);
+    expect(filmTitleClickHandler).toHaveBeenCalledTimes(moviesTitles.length);
   });
 });
