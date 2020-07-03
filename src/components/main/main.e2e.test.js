@@ -53,6 +53,6 @@ describe(`Headers`, () => {
       title.simulate(`click`);
     });
 
-    expect(headerClickHandler.mock.calls.length).toBe(moviesTitles.length);
+    expect(headerClickHandler).toHaveBeenCalledTimes(moviesTitles.length);
   });
 });
