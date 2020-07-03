@@ -1,16 +1,21 @@
 import React from "react";
 
-import {Main} from "../main/main.jsx";
+import Main from "../main/main.jsx";
 
-export const App = (props) => {
-  const {promoName, promoGenre, promoRelease, filmsTitles} = props;
+const App = (props) => {
+  const {
+    promo,
+    filmsTitles,
+    onFilmTitleClick,
+  } = props;
 
   return <Main
-    promoName={promoName}
-    promoGenre={promoGenre}
-    promoRelease={promoRelease}
+    promo={promo}
     filmsTitles={filmsTitles}
+    onFilmTitleClick={onFilmTitleClick}
   />;
 };
 
 App.propTypes = Main.propTypes;
+
+export default App;
