@@ -126,7 +126,10 @@ const Main = (props) => {
 
           <div className="catalog__movies-list">
             {filmsTitles.map((it, i) => (
-              <article key={it + i} className="small-movie-card catalog__movies-card">
+              <article
+                key={it + i}
+                className="small-movie-card catalog__movies-card"
+              >
                 <div className="small-movie-card__image">
                   <img
                     src={`img/${toKebabCase(it)}.jpg`}
