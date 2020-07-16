@@ -4,7 +4,7 @@ import pt from "prop-types";
 import {toKebabCase} from "../../utils/common.js";
 import {APPROVED_GENRES} from "../../utils/const.js";
 
-import FilmCard from "../film-card/film-card.jsx";
+import Films from "../films/films.jsx";
 
 const GenresNavigation = {
   ALL: `All genres`,
@@ -116,15 +116,10 @@ const Main = (props) => {
             ))}
           </ul>
 
-          <div className="catalog__movies-list">
-            {films.map((film) => (
-              <FilmCard
-                key={film.id}
-                film={film}
-                filmsHandlers={filmsHandlers}
-              />
-            ))}
-          </div>
+          <Films
+            films={films}
+            filmsHandlers={filmsHandlers}
+          />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -156,9 +151,9 @@ Main.propTypes = {
     release: pt.string.isRequired,
   }).isRequired,
 
-  films: pt.arrayOf(FilmCard.propTypes.film).isRequired,
+  films: Films.propTypes.films,
 
-  filmsHandlers: FilmCard.propTypes.filmsHandlers,
+  filmsHandlers: Films.propTypes.filmsHandlers,
 };
 
 export default Main;
