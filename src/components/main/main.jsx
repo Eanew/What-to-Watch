@@ -23,7 +23,7 @@ const Main = (props) => {
   const {
     promo,
     films,
-    filmsHandlers,
+    onFilmCardClick,
   } = props;
 
   return (
@@ -118,7 +118,7 @@ const Main = (props) => {
 
           <Films
             films={films}
-            filmsHandlers={filmsHandlers}
+            onFilmCardClick={onFilmCardClick}
           />
 
           <div className="catalog__more">
@@ -152,8 +152,7 @@ Main.propTypes = {
   }).isRequired,
 
   films: Films.propTypes.films,
-
-  filmsHandlers: Films.propTypes.filmsHandlers,
+  onFilmCardClick: Films.propTypes.onFilmCardClick,
 };
 
 export default Main;

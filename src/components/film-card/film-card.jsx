@@ -6,7 +6,8 @@ import {APPROVED_GENRES} from "../../utils/const.js";
 const FilmCard = (props) => {
   const {
     film,
-    filmsHandlers,
+    onPreviewHover,
+    onFilmCardClick,
   } = props;
 
   const {
@@ -15,20 +16,21 @@ const FilmCard = (props) => {
     src,
   } = film;
 
-  const [
-    onPreviewHover,
-    onFilmCardClick,
-  ] = filmsHandlers;
+  const handlePreviewHover = () => {
+    onPreviewHover(film);
+  };
 
   return (
     <article
       key={id}
       className="small-movie-card catalog__movies-card"
     >
-      <div className="small-movie-card__image">
+      <div
+        onMouseOver={handlePreviewHover}
+        onClick={onFilmCardClick}
+        className="small-movie-card__image"
+      >
         <img
-          onMouseOver={onPreviewHover}
-          onClick={onFilmCardClick}
           src={src}
           alt={title}
           width="280" height="175"
@@ -54,7 +56,8 @@ FilmCard.propTypes = {
     title: pt.string.isRequired,
     src: pt.string.isRequired,
   }).isRequired,
-  filmsHandlers: pt.arrayOf(pt.func.isRequired).isRequired,
+  onPreviewHover: pt.func.isRequired,
+  onFilmCardClick: pt.func.isRequired,
 };
 
 export default FilmCard;

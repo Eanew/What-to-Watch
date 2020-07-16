@@ -3,6 +3,13 @@ import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Main from "./main.jsx";
 
+import {toKebabCase} from "../../utils/common.js";
+
+const APPROVED_GENRES = [
+  `Comedy`,
+  `Crime`,
+  `Documentary`];
+
 Enzyme.configure({
   adapter: new Adapter(),
 });
@@ -20,12 +27,17 @@ const filmsTitles = [
 
 describe(`Films titles`, () => {
   it(`Should be pressed`, () => {
-    const filmTitleClickHandler = jest.fn();
+    const handleFilmCardClick = jest.fn();
 
     const main = shallow(<Main
       promo={promo}
-      filmsTitles={filmsTitles}
-      onFilmTitleClick={filmTitleClickHandler}
+      films={filmsTitles.map((filmTitle, i) => ({
+        id: `${i + 1}`,
+        genre: APPROVED_GENRES[i],
+        title: filmTitle,
+        src: `img/${toKebabCase(filmTitle)}.jpg`,
+      }))}
+      onFilmCardClick={handleFilmCardClick}
     />);
 
     const moviesTitles = main.find(`.small-movie-card__link`);
@@ -34,6 +46,6 @@ describe(`Films titles`, () => {
       title.simulate(`click`);
     });
 
-    expect(filmTitleClickHandler).toHaveBeenCalledTimes(moviesTitles.length);
+    expect(handleFilmCardClick).toHaveBeenCalledTimes(moviesTitles.length);
   });
 });

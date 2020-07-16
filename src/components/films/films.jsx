@@ -8,32 +8,35 @@ export default class Films extends React.PureComponent {
     super(props);
 
     this.state = {
-      hoveredCardId: null,
+      hoveredCard: null,
     };
 
     this._handleCardHover = this._handleCardHover.bind(this);
   }
 
   render() {
+    const {films, onFilmCardClick} = this.props;
+
     return (
       <div className="catalog__movies-list">
-        {this.props.films.map((film) => (
+        {films.map((film) => (
           <FilmCard
             key={film.id}
             film={film}
-            filmsHandlers={this.props.filmsHandlers}
+            onPreviewHover={this._handleCardHover}
+            onFilmCardClick={onFilmCardClick}
           />
         ))}
       </div>
     );
   }
 
-  _handleCardHover(id) {
-    this.setState({hoveredCardId: id});
+  _handleCardHover(filmCard) {
+    this.setState({hoveredCard: filmCard});
   }
 }
 
 Films.propTypes = {
   films: pt.arrayOf(FilmCard.propTypes.film).isRequired,
-  filmsHandlers: FilmCard.propTypes.filmsHandlers,
+  onFilmCardClick: FilmCard.propTypes.onFilmCardClick,
 };

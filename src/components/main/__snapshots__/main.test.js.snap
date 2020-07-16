@@ -89,7 +89,7 @@ Array [
             <span
               className="movie-card__genre"
             >
-              Comedy
+              Drama
             </span>
             <span
               className="movie-card__year"
@@ -262,6 +262,8 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
+            onMouseOver={[Function]}
           >
             <img
               alt="Fantastic Beasts: The Crimes of Grindelwald"
@@ -287,6 +289,8 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
+            onMouseOver={[Function]}
           >
             <img
               alt="Bohemian Rhapsody"
@@ -312,6 +316,8 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
+            onMouseOver={[Function]}
           >
             <img
               alt="Macbeth"

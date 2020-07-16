@@ -6,13 +6,13 @@ const App = (props) => {
   const {
     promo,
     films,
-    filmsHandlers,
+    onFilmCardClick,
   } = props;
 
   return <Main
     promo={promo}
     films={films}
-    filmsHandlers={filmsHandlers}
+    onFilmCardClick={onFilmCardClick}
   />;
 };
 
