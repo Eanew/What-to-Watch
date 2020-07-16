@@ -1,18 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
+import pt from "prop-types";
 
 import {toKebabCase} from "../../utils/common.js";
+import {APPROVED_GENRES} from "../../utils/const.js";
 
-const APPROVED_GENRES = [
-  `Comedy`,
-  `Crime`,
-  `Documentary`,
-  `Drama`,
-  `Horror`,
-  `Kids & Family`,
-  `Romance`,
-  `Sci-Fi`,
-  `Thriller`];
+import FilmCard from "../film-card/film-card.jsx";
 
 const GenresNavigation = {
   ALL: `All genres`,
@@ -30,8 +22,8 @@ const GenresNavigation = {
 const Main = (props) => {
   const {
     promo,
-    filmsTitles,
-    onFilmTitleClick,
+    films,
+    filmsHandlers,
   } = props;
 
   return (
@@ -125,28 +117,12 @@ const Main = (props) => {
           </ul>
 
           <div className="catalog__movies-list">
-            {filmsTitles.map((it, i) => (
-              <article
-                key={it + i}
-                className="small-movie-card catalog__movies-card"
-              >
-                <div className="small-movie-card__image">
-                  <img
-                    src={`img/${toKebabCase(it)}.jpg`}
-                    alt={it}
-                    width="280" height="175"
-                  />
-                </div>
-                <h3 className="small-movie-card__title">
-                  <a
-                    onClick={onFilmTitleClick}
-                    className="small-movie-card__link"
-                    href="movie-page.html"
-                  >
-                    {it}
-                  </a>
-                </h3>
-              </article>
+            {films.map((film) => (
+              <FilmCard
+                key={film.id}
+                film={film}
+                filmsHandlers={filmsHandlers}
+              />
             ))}
           </div>
 
@@ -174,13 +150,15 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  promo: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    genre: PropTypes.oneOf(APPROVED_GENRES).isRequired,
-    release: PropTypes.string.isRequired,
+  promo: pt.shape({
+    name: pt.string.isRequired,
+    genre: pt.oneOf(APPROVED_GENRES).isRequired,
+    release: pt.string.isRequired,
   }).isRequired,
-  filmsTitles: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onFilmTitleClick: PropTypes.func.isRequired,
+
+  films: pt.arrayOf(FilmCard.propTypes.film).isRequired,
+
+  filmsHandlers: FilmCard.propTypes.filmsHandlers,
 };
 
 export default Main;

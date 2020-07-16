@@ -43,7 +43,7 @@ const generateFilms = () => {
     const filmTitle = getUniqueRandomItem(filmsTitles);
 
     films.push({
-      id: i + 1,
+      id: `${i + 1}`,
       genre: APPROVED_GENRES[Math.floor(Math.random() * APPROVED_GENRES.length)],
       title: filmTitle,
       src: `img/${toKebabCase(filmTitle)}.jpg`,
