@@ -5,14 +5,14 @@ import Main from "../main/main.jsx";
 const App = (props) => {
   const {
     promo,
-    filmsTitles,
-    onFilmTitleClick,
+    films,
+    onFilmCardClick,
   } = props;
 
   return <Main
     promo={promo}
-    filmsTitles={filmsTitles}
-    onFilmTitleClick={onFilmTitleClick}
+    films={films}
+    onFilmCardClick={onFilmCardClick}
   />;
 };
 
