@@ -1,7 +1,6 @@
+import {FILMS_TO_DISPLAY} from "../config.js";
 import {toKebabCase} from "../utils/common.js";
-import {getUniqueRandomItem} from "../utils/mock.js";
-
-const FILMS_TO_DISPLAY = 8;
+import {getRandomItems} from "../utils/mock.js";
 
 const APPROVED_GENRES = [
   `Comedy`,
@@ -36,20 +35,11 @@ const filmsTitles = [
   `Mindhunter`,
   `Midnight Special`];
 
-const generateFilms = () => {
-  const films = [];
-
-  for (let i = 0; i < FILMS_TO_DISPLAY; i++) {
-    const filmTitle = getUniqueRandomItem(filmsTitles);
-
-    films.push({
-      id: `${i + 1}`,
-      genre: APPROVED_GENRES[Math.floor(Math.random() * APPROVED_GENRES.length)],
-      title: filmTitle,
-      src: `img/${toKebabCase(filmTitle)}.jpg`,
-    });
-  }
-  return films;
-};
+const generateFilms = () => getRandomItems(filmsTitles, FILMS_TO_DISPLAY).map((filmTitle, i) => ({
+  id: filmTitle + i,
+  genre: APPROVED_GENRES[Math.floor(Math.random() * APPROVED_GENRES.length)],
+  title: filmTitle,
+  src: `img/${toKebabCase(filmTitle)}.jpg`,
+}));
 
 export default generateFilms();

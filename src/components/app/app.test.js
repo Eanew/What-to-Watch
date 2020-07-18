@@ -25,7 +25,7 @@ it(`Should AppComponent render correctly`, () => {
     .create(<App
       promo={promo}
       films={filmsTitles.map((filmTitle, i) => ({
-        id: `${i + 1}`,
+        id: filmTitle + i,
         genre: APPROVED_GENRES[i],
         title: filmTitle,
         src: `img/${toKebabCase(filmTitle)}.jpg`,
