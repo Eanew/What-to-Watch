@@ -1,3 +1,8 @@
+export const Screen = {
+  MAIN: `main`,
+  DETAILS: `details`,
+};
+
 export const APPROVED_GENRES = [
   `Comedy`,
   `Crime`,
