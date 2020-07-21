@@ -20,7 +20,8 @@ const FilmCard = (props) => {
     onPreviewHover(film);
   };
 
-  const handleFilmCardClick = () => {
+  const handleFilmCardClick = (evt) => {
+    evt.preventDefault();
     onFilmCardClick(film);
   };
 

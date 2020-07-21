@@ -13,8 +13,11 @@ Enzyme.configure({
 const filmsTitles = [`Fantastic Beasts: The Crimes of Grindelwald`];
 
 describe(`Film card`, () => {
-  it(`Should preview hover returns film card data`, () => {
+  it(`Should preview handlers returns film card data`, () => {
     const handlePreviewHover = jest.fn();
+    const handleFilmCardClick = jest.fn();
+    const preventDefault = jest.fn();
+
     const film = {
       id: `1`,
       filmTitle: filmsTitles[0],
@@ -29,12 +32,17 @@ describe(`Film card`, () => {
     const filmCard = shallow(<FilmCard
       film={film}
       onPreviewHover={handlePreviewHover}
-      onFilmCardClick={() => {}}
+      onFilmCardClick={handleFilmCardClick}
     />);
 
     const preview = filmCard.find(`.small-movie-card__image`);
+
     preview.simulate(`mouseover`);
+    preview.simulate(`click`, {
+      preventDefault,
+    });
 
     expect(handlePreviewHover).toHaveBeenCalledWith(film);
+    expect(handleFilmCardClick).toHaveBeenCalledWith(film);
   });
 });
