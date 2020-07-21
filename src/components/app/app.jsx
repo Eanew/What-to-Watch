@@ -39,24 +39,25 @@ class App extends React.PureComponent {
 
     const {screen} = this.state;
 
-    if (screen === Screen.MAIN) {
-      return <Main
-        promo={promo}
-        films={films}
-        onFilmCardClick={() => {
-          onFilmCardClick();
-          this.setState({
-            screen: Screen.DETAILS,
-          });
-        }}
-      />;
-    }
+    switch (screen) {
+      case Screen.MAIN:
+        return <Main
+          promo={promo}
+          films={films}
+          onFilmCardClick={() => {
+            onFilmCardClick();
+            this.setState({
+              screen: Screen.DETAILS,
+            });
+          }}
+        />;
 
-    if (screen === Screen.DETAILS) {
-      return <Details />;
-    }
+      case Screen.DETAILS:
+        return <Details />;
 
-    return null;
+      default:
+        return null;
+    }
   }
 }
 
