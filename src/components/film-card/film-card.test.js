@@ -3,8 +3,8 @@ import renderer from "react-test-renderer";
 import FilmCard from "./film-card.jsx";
 
 import {toKebabCase} from "../../utils/common.js";
+import {APPROVED_GENRES} from "../../utils/const.js";
 
-const APPROVED_GENRES = [`Comedy`];
 const filmsTitles = [`Fantastic Beasts: The Crimes of Grindelwald`];
 
 it(`Should FilmCardComponent render correctly`, () => {
@@ -12,9 +12,13 @@ it(`Should FilmCardComponent render correctly`, () => {
     .create(<FilmCard
       film={{
         id: `1`,
+        filmTitle: filmsTitles[0],
         genre: APPROVED_GENRES[0],
-        title: filmsTitles[0],
-        src: `img/${toKebabCase(filmsTitles[0])}.jpg`,
+        images: {
+          preview: `img/${toKebabCase(filmsTitles[0])}.jpg`,
+          background: `img/bg-${toKebabCase(filmsTitles[0])}.jpg`,
+          poster: `img/${toKebabCase(filmsTitles[0])}-poster.jpg`,
+        },
       }}
       onPreviewHover={() => {}}
       onFilmCardClick={() => {}}

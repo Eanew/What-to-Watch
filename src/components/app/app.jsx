@@ -12,7 +12,7 @@ export default class App extends React.PureComponent {
 
     this.state = {
       screen: Screen.MAIN,
-      detailsData: null,
+      currentFilm: null,
     };
   }
 
@@ -37,27 +37,29 @@ export default class App extends React.PureComponent {
     const {
       promo,
       films,
-      onFilmCardClick,
     } = this.props;
 
-    const {screen} = this.state;
+    const {
+      screen,
+      currentFilm,
+    } = this.state;
 
     switch (screen) {
       case Screen.MAIN:
         return <Main
           promo={promo}
           films={films}
-          onFilmCardClick={() => {
-            onFilmCardClick();
+          onFilmCardClick={(film) => {
             this.setState({
               screen: Screen.DETAILS,
+              currentFilm: film,
             });
           }}
         />;
 
       case Screen.DETAILS:
         return <Details
-          film={this.props.films[0]}
+          film={currentFilm}
         />;
 
       default:
@@ -66,4 +68,7 @@ export default class App extends React.PureComponent {
   }
 }
 
-App.propTypes = Main.propTypes;
+App.propTypes = {
+  promo: Main.propTypes.promo,
+  films: Main.propTypes.films,
+};

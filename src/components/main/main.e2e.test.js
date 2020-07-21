@@ -4,11 +4,7 @@ import Adapter from "enzyme-adapter-react-16";
 import Main from "./main.jsx";
 
 import {toKebabCase} from "../../utils/common.js";
-
-const APPROVED_GENRES = [
-  `Comedy`,
-  `Crime`,
-  `Documentary`];
+import {APPROVED_GENRES} from "../../utils/const.js";
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -32,10 +28,15 @@ describe(`Films titles`, () => {
     const main = shallow(<Main
       promo={promo}
       films={filmsTitles.map((filmTitle, i) => ({
-        id: `${i + 1}`,
+        id: filmTitle + i,
+        filmTitle,
+        release: 1972 + i,
         genre: APPROVED_GENRES[i],
-        title: filmTitle,
-        src: `img/${toKebabCase(filmTitle)}.jpg`,
+        images: {
+          preview: `img/${toKebabCase(filmTitle)}.jpg`,
+          background: `img/bg-${toKebabCase(filmTitle)}.jpg`,
+          poster: `img/${toKebabCase(filmTitle)}-poster.jpg`,
+        },
       }))}
       onFilmCardClick={handleFilmCardClick}
     />);

@@ -26,11 +26,15 @@ it(`Should AppComponent render correctly`, () => {
       promo={promo}
       films={filmsTitles.map((filmTitle, i) => ({
         id: filmTitle + i,
+        filmTitle,
+        release: 1972 + i,
         genre: APPROVED_GENRES[i],
-        title: filmTitle,
-        src: `img/${toKebabCase(filmTitle)}.jpg`,
+        images: {
+          preview: `img/${toKebabCase(filmTitle)}.jpg`,
+          background: `img/bg-${toKebabCase(filmTitle)}.jpg`,
+          poster: `img/${toKebabCase(filmTitle)}-poster.jpg`,
+        },
       }))}
-      onFilmCardClick={() => {}}
     />).toJSON();
 
   expect(tree).toMatchSnapshot();

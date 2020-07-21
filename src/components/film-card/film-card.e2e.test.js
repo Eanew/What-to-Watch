@@ -4,22 +4,26 @@ import Adapter from "enzyme-adapter-react-16";
 import FilmCard from "./film-card.jsx";
 
 import {toKebabCase} from "../../utils/common.js";
-
-const APPROVED_GENRES = [`Comedy`];
-const filmsTitles = [`Fantastic Beasts: The Crimes of Grindelwald`];
+import {APPROVED_GENRES} from "../../utils/const.js";
 
 Enzyme.configure({
   adapter: new Adapter(),
 });
 
+const filmsTitles = [`Fantastic Beasts: The Crimes of Grindelwald`];
+
 describe(`Film card`, () => {
-  it(`Should preview be hovered`, () => {
+  it(`Should preview hover returns film card data`, () => {
     const handlePreviewHover = jest.fn();
     const film = {
       id: `1`,
+      filmTitle: filmsTitles[0],
       genre: APPROVED_GENRES[0],
-      title: filmsTitles[0],
-      src: `img/${toKebabCase(filmsTitles[0])}.jpg`,
+      images: {
+        preview: `img/${toKebabCase(filmsTitles[0])}.jpg`,
+        background: `img/bg-${toKebabCase(filmsTitles[0])}.jpg`,
+        poster: `img/${toKebabCase(filmsTitles[0])}-poster.jpg`,
+      },
     };
 
     const filmCard = shallow(<FilmCard

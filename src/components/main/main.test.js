@@ -3,11 +3,7 @@ import renderer from "react-test-renderer";
 import Main from "./main.jsx";
 
 import {toKebabCase} from "../../utils/common.js";
-
-const APPROVED_GENRES = [
-  `Comedy`,
-  `Crime`,
-  `Documentary`];
+import {APPROVED_GENRES} from "../../utils/const.js";
 
 const promo = {
   name: `The Grand Budapest Hotel`,
@@ -25,10 +21,15 @@ it(`Should MainComponent render correctly`, () => {
     .create(<Main
       promo={promo}
       films={filmsTitles.map((filmTitle, i) => ({
-        id: `${i + 1}`,
+        id: filmTitle + i,
+        filmTitle,
+        release: 1972 + i,
         genre: APPROVED_GENRES[i],
-        title: filmTitle,
-        src: `img/${toKebabCase(filmTitle)}.jpg`,
+        images: {
+          preview: `img/${toKebabCase(filmTitle)}.jpg`,
+          background: `img/bg-${toKebabCase(filmTitle)}.jpg`,
+          poster: `img/${toKebabCase(filmTitle)}-poster.jpg`,
+        },
       }))}
       onFilmCardClick={() => {}}
     />).toJSON();

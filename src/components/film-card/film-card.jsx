@@ -20,6 +20,10 @@ const FilmCard = (props) => {
     onPreviewHover(film);
   };
 
+  const handleFilmCardClick = () => {
+    onFilmCardClick(film);
+  };
+
   return (
     <article
       key={id}
@@ -27,7 +31,7 @@ const FilmCard = (props) => {
     >
       <div
         onMouseOver={handlePreviewHover}
-        onClick={onFilmCardClick}
+        onClick={handleFilmCardClick}
         className="small-movie-card__image"
       >
         <img
@@ -38,7 +42,7 @@ const FilmCard = (props) => {
       </div>
       <h3 className="small-movie-card__title">
         <a
-          onClick={onFilmCardClick}
+          onClick={handleFilmCardClick}
           className="small-movie-card__link"
           href="movie-page.html"
         >
