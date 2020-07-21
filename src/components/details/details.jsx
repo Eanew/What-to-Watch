@@ -2,6 +2,7 @@ import React from "react";
 import pt from "prop-types";
 
 import {APPROVED_GENRES} from "../../utils/const.js";
+import {getFilmRank} from "../../utils/film.js";
 
 export default class Details extends React.PureComponent {
   constructor(props) {
@@ -13,18 +14,21 @@ export default class Details extends React.PureComponent {
   render() {
     const {
       filmTitle,
-      poster,
-      background,
-      genre,
       release,
-    } = this.props.header;
-
-    const {
+      genre,
       rating,
+      images,
       description,
       director,
       starring,
-    } = this.props.overview;
+    } = this.props.film;
+
+    const {
+      background,
+      poster,
+    } = images;
+
+    const rank = getFilmRank(rating.value);
 
     return (
       <React.Fragment>
@@ -143,11 +147,15 @@ export default class Details extends React.PureComponent {
                 </nav>
 
                 <div className="movie-rating">
-                  <div className="movie-rating__score">{rating.value}</div>
+                  <div className="movie-rating__score">
+                    {rating.value}
+                  </div>
                   <p className="movie-rating__meta">
-                    <span className="movie-rating__level">Very good</span>
+                    <span className="movie-rating__level">
+                      {rank}
+                    </span>
                     <span className="movie-rating__count">
-                      {`${rating.amountRatings} ratings`}
+                      {`${rating.votes} ratings`}
                     </span>
                   </p>
                 </div>
@@ -177,18 +185,21 @@ export default class Details extends React.PureComponent {
 }
 
 Details.propTypes = {
-  header: pt.shape({
+  film: pt.shape({
+    id: pt.string.isRequired,
     filmTitle: pt.string.isRequired,
-    poster: pt.string.isRequired,
-    background: pt.string.isRequired,
+    release: pt.number.isRequired,
     genre: pt.oneOf(APPROVED_GENRES).isRequired,
-    release: pt.string.isRequired,
-  }).isRequired,
 
-  overview: pt.shape({
     rating: pt.shape({
       value: pt.string.isRequired,
-      amountRatings: pt.string.isRequired,
+      votes: pt.string.isRequired,
+    }).isRequired,
+
+    images: pt.shape({
+      preview: pt.string.isRequired,
+      background: pt.string.isRequired,
+      poster: pt.string.isRequired,
     }).isRequired,
 
     description: pt.arrayOf(pt.string).isRequired,

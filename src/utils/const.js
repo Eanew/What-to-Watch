@@ -13,3 +13,11 @@ export const APPROVED_GENRES = [
   `Romance`,
   `Sci-Fi`,
   `Thriller`];
+
+export const Rating = {
+  'Awesome': 10,
+  'Very good': 8,
+  'Good': 5,
+  'Normal': 3,
+  'Bad': 0,
+};

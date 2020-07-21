@@ -21,3 +21,13 @@ export const toKebabCase = (defaultString) => defaultString
   .toLowerCase()
   .trim()
   .replace(Regular.WORD_SEPARATION, Letter.DASH);
+
+export const splitNumber = (defaultNumber, partsLength = 3) => {
+  const invertedNumber = [...defaultNumber.toString()].reverse().join(``);
+  let number = ``;
+
+  for (let i = 0; i < invertedNumber.length; i += partsLength) {
+    number += invertedNumber.slice(i, i + partsLength) + ` `;
+  }
+  return [...number].reverse().join(``).trim();
+};

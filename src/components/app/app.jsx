@@ -6,12 +6,13 @@ import {Screen} from "../../utils/const.js";
 import Main from "../main/main.jsx";
 import Details from "../details/details.jsx";
 
-class App extends React.PureComponent {
+export default class App extends React.PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
       screen: Screen.MAIN,
+      detailsData: null,
     };
   }
 
@@ -23,7 +24,9 @@ class App extends React.PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/details">
-            <Details />
+            <Details
+              film={this.props.films[0]}
+            />
           </Route>
         </Switch>
       </BrowserRouter>
@@ -53,7 +56,9 @@ class App extends React.PureComponent {
         />;
 
       case Screen.DETAILS:
-        return <Details />;
+        return <Details
+          film={this.props.films[0]}
+        />;
 
       default:
         return null;
@@ -62,5 +67,3 @@ class App extends React.PureComponent {
 }
 
 App.propTypes = Main.propTypes;
-
-export default App;

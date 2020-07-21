@@ -12,8 +12,8 @@ const FilmCard = (props) => {
 
   const {
     id,
-    title,
-    src,
+    filmTitle,
+    images,
   } = film;
 
   const handlePreviewHover = () => {
@@ -31,8 +31,8 @@ const FilmCard = (props) => {
         className="small-movie-card__image"
       >
         <img
-          src={src}
-          alt={title}
+          src={images.preview}
+          alt={filmTitle}
           width="280" height="175"
         />
       </div>
@@ -42,7 +42,7 @@ const FilmCard = (props) => {
           className="small-movie-card__link"
           href="movie-page.html"
         >
-          {title}
+          {filmTitle}
         </a>
       </h3>
     </article>
@@ -52,10 +52,26 @@ const FilmCard = (props) => {
 FilmCard.propTypes = {
   film: pt.shape({
     id: pt.string.isRequired,
+    filmTitle: pt.string.isRequired,
+    release: pt.number.isRequired,
     genre: pt.oneOf(APPROVED_GENRES).isRequired,
-    title: pt.string.isRequired,
-    src: pt.string.isRequired,
+
+    rating: pt.shape({
+      value: pt.string.isRequired,
+      votes: pt.string.isRequired,
+    }).isRequired,
+
+    images: pt.shape({
+      preview: pt.string.isRequired,
+      background: pt.string.isRequired,
+      poster: pt.string.isRequired,
+    }).isRequired,
+
+    description: pt.arrayOf(pt.string).isRequired,
+    director: pt.string.isRequired,
+    starring: pt.arrayOf(pt.string).isRequired,
   }).isRequired,
+
   onPreviewHover: pt.func.isRequired,
   onFilmCardClick: pt.func.isRequired,
 };
