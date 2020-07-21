@@ -36,13 +36,18 @@ describe(`Film card`, () => {
     />);
 
     const preview = filmCard.find(`.small-movie-card__image`);
+    const title = filmCard.find(`.small-movie-card__link`);
 
     preview.simulate(`mouseover`);
     preview.simulate(`click`, {
       preventDefault,
     });
+    title.simulate(`click`, {
+      preventDefault,
+    });
 
     expect(handlePreviewHover).toHaveBeenCalledWith(film);
     expect(handleFilmCardClick).toHaveBeenCalledWith(film);
+    expect(handleFilmCardClick).toHaveBeenCalledTimes(2);
   });
 });
