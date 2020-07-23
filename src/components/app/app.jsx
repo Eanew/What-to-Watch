@@ -46,21 +46,25 @@ export default class App extends React.PureComponent {
 
     switch (screen) {
       case Screen.MAIN:
-        return <Main
-          promo={promo}
-          films={films}
-          onFilmCardClick={(film) => {
-            this.setState({
-              screen: Screen.DETAILS,
-              currentFilm: film,
-            });
-          }}
-        />;
+        return (
+          <Main
+            promo={promo}
+            films={films}
+            onFilmCardClick={(film) => {
+              this.setState({
+                screen: Screen.DETAILS,
+                currentFilm: film,
+              });
+            }}
+          />
+        );
 
       case Screen.DETAILS:
-        return <Details
-          film={currentFilm}
-        />;
+        return (
+          <Details
+            film={currentFilm}
+          />
+        );
 
       default:
         return null;

@@ -12,7 +12,7 @@ export const Regular = {
 };
 
 export const Key = {
-  SPACE: Letter.SPACE,
+  SPACE: `Space`,
   ESC: `Escape`,
   ENTER: `Enter`,
 };

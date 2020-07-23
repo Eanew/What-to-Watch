@@ -45,7 +45,7 @@ const generateFilms = () => getRandomItems(filmsTitles, FILMS_TO_DISPLAY).map((f
     `Gustave prides himself on providing first-class service to the hotel&rsquo;s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave&rsquo;s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`
   ],
   director: `Wes Andreson`,
-  starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+  starring: getRandomItems([`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]).slice(getRandomCount(0, 3)),
 }));
 
 export default generateFilms();
