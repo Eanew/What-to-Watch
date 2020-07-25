@@ -18,7 +18,7 @@ it(`Should FilmsComponent render correctly`, () => {
         filmTitle,
         release: 1972 + i,
         genre: APPROVED_GENRES[i],
-        images: {
+        image: {
           preview: `img/${toKebabCase(filmTitle)}.jpg`,
           background: `img/bg-${toKebabCase(filmTitle)}.jpg`,
           poster: `img/${toKebabCase(filmTitle)}-poster.jpg`,

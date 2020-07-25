@@ -2,23 +2,20 @@ import React from "react";
 import pt from "prop-types";
 
 import {APPROVED_GENRES} from "../../utils/const.js";
+import FilmPreview from "../film-preview/film-preview.jsx";
 
 const FilmCard = (props) => {
   const {
     film,
-    onPreviewHover,
     onFilmCardClick,
   } = props;
 
   const {
     id,
     filmTitle,
-    images,
+    image,
+    movie,
   } = film;
-
-  const handlePreviewHover = () => {
-    onPreviewHover(film);
-  };
 
   const handleFilmCardClick = (evt) => {
     evt.preventDefault();
@@ -30,17 +27,12 @@ const FilmCard = (props) => {
       key={id}
       className="small-movie-card catalog__movies-card"
     >
-      <div
-        onMouseOver={handlePreviewHover}
-        onClick={handleFilmCardClick}
-        className="small-movie-card__image"
-      >
-        <img
-          src={images.preview}
-          alt={filmTitle}
-          width="280" height="175"
-        />
-      </div>
+      <FilmPreview
+        filmTitle={filmTitle}
+        image={image}
+        movie={movie}
+        onClick={onFilmCardClick}
+      />
       <h3 className="small-movie-card__title">
         <a
           onClick={handleFilmCardClick}
@@ -66,18 +58,13 @@ FilmCard.propTypes = {
       votes: pt.string.isRequired,
     }).isRequired,
 
-    images: pt.shape({
-      preview: pt.string.isRequired,
-      background: pt.string.isRequired,
-      poster: pt.string.isRequired,
-    }).isRequired,
-
+    image: FilmPreview.propTypes.image,
+    movie: FilmPreview.propTypes.movie,
     description: pt.arrayOf(pt.string).isRequired,
     director: pt.string.isRequired,
     starring: pt.arrayOf(pt.string).isRequired,
   }).isRequired,
 
-  onPreviewHover: pt.func.isRequired,
   onFilmCardClick: pt.func.isRequired,
 };
 

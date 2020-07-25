@@ -3,6 +3,11 @@ export const Screen = {
   DETAILS: `details`,
 };
 
+export const PreviewSize = {
+  WIDTH: `280`,
+  HEIGHT: `175`,
+};
+
 export const APPROVED_GENRES = [
   `Comedy`,
   `Crime`,

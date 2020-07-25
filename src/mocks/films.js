@@ -1,4 +1,4 @@
-import {FILMS_TO_DISPLAY} from "../config.js";
+import {FILMS_DISPLAY_STEP} from "../config.js";
 import {APPROVED_GENRES} from "../utils/const.js";
 import {toKebabCase, splitNumber} from "../utils/common.js";
 import {getRandomCount, getRandomItems} from "../utils/mock.js";
@@ -25,7 +25,7 @@ const filmsTitles = [
   `Mindhunter`,
   `Midnight Special`];
 
-const generateFilms = () => getRandomItems(filmsTitles, FILMS_TO_DISPLAY).map((filmTitle, i) => ({
+const generateFilms = () => getRandomItems(filmsTitles, FILMS_DISPLAY_STEP).map((filmTitle, i) => ({
   id: filmTitle + i,
   filmTitle,
   release: getRandomCount(1950, 2020),
@@ -34,13 +34,13 @@ const generateFilms = () => getRandomItems(filmsTitles, FILMS_TO_DISPLAY).map((f
     value: (getRandomCount(0, 100) / 10).toString().replace(`.`, `,`),
     votes: splitNumber(getRandomCount(1, 2000)),
   },
-  images: {
+  image: {
     preview: `img/${toKebabCase(filmTitle)}.jpg`,
     background: `img/bg-${toKebabCase(filmTitle)}.jpg`,
     poster: `img/${toKebabCase(filmTitle)}-poster.jpg`,
   },
-  movies: {
-    preview: [`https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`, `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv`, `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`][getRandomCount(0, 2)],
+  movie: {
+    preview: [`https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`, `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv`, `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`][0],
     full: ``,
   },
   description: [

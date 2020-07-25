@@ -1,1 +1,3 @@
-export const FILMS_TO_DISPLAY = 8;
+export const FILMS_DISPLAY_STEP = 8;
+
+export const PREVIEW_PLAY_TIMEOUT = 1000;

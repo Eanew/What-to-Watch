@@ -3,40 +3,25 @@ import pt from "prop-types";
 
 import FilmCard from "../film-card/film-card.jsx";
 
-export default class Films extends React.PureComponent {
-  constructor(props) {
-    super(props);
+const Films = (props) => {
+  const {films, onFilmCardClick} = props;
 
-    this.state = {
-      hoveredCard: null,
-    };
-
-    this._handleCardHover = this._handleCardHover.bind(this);
-  }
-
-  render() {
-    const {films, onFilmCardClick} = this.props;
-
-    return (
-      <div className="catalog__movies-list">
-        {films.map((film) => (
-          <FilmCard
-            key={film.id}
-            film={film}
-            onPreviewHover={this._handleCardHover}
-            onFilmCardClick={onFilmCardClick}
-          />
-        ))}
-      </div>
-    );
-  }
-
-  _handleCardHover(filmCard) {
-    this.setState({hoveredCard: filmCard});
-  }
-}
+  return (
+    <div className="catalog__movies-list">
+      {films.map((film) => (
+        <FilmCard
+          key={film.filmTitle + film.id}
+          film={film}
+          onFilmCardClick={onFilmCardClick}
+        />
+      ))}
+    </div>
+  );
+};
 
 Films.propTypes = {
   films: pt.arrayOf(FilmCard.propTypes.film).isRequired,
   onFilmCardClick: FilmCard.propTypes.onFilmCardClick,
 };
+
+export default Films;
