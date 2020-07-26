@@ -14,9 +14,8 @@ export default class FilmPreview extends React.PureComponent {
       isHovered: false,
       isTimeoutPassed: false,
       isCanPlay: false,
+      isPlayerAlreadyMounted: false,
     };
-
-    this._isPlayerShown = false;
 
     this._handleMouseEnter = this._handleMouseEnter.bind(this);
     this._handleMouseLeave = this._handleMouseLeave.bind(this);
@@ -31,14 +30,14 @@ export default class FilmPreview extends React.PureComponent {
       onClick,
     } = this.props;
 
-    const {isHovered, isTimeoutPassed, isCanPlay} = this.state;
+    const {
+      isHovered,
+      isTimeoutPassed,
+      isCanPlay,
+      isPlayerAlreadyMounted
+    } = this.state;
 
-    let isPlaying = false;
-
-    if (isHovered && isTimeoutPassed && isCanPlay) {
-      isPlaying = true;
-      this._isPlayerShown = true;
-    }
+    const isPlaying = (isHovered && isTimeoutPassed && isCanPlay);
 
     return (
       <div
@@ -47,7 +46,15 @@ export default class FilmPreview extends React.PureComponent {
         onMouseLeave={this._handleMouseLeave}
         onClick={onClick}
       >
-        {(isHovered || this._isPlayerShown) && (
+        <img
+          src={image.preview}
+          alt={filmTitle}
+          width={PreviewSize.WIDTH}
+          height={PreviewSize.HEIGHT}
+          className={isPlaying ? `visually-hidden` : ``}
+        />
+
+        {(isHovered || isPlayerAlreadyMounted) && (
           <PreviewVideoPlayer
             isPlaying={isPlaying}
             image={image}
@@ -57,14 +64,6 @@ export default class FilmPreview extends React.PureComponent {
             onCanPlay={this._handleCanPlay}
           />
         )}
-        {!this._isPlayerShown && (
-          <img
-            src={image.preview}
-            alt={filmTitle}
-            width={PreviewSize.WIDTH}
-            height={PreviewSize.HEIGHT}
-          />
-        )}
       </div>
     );
   }
@@ -72,6 +71,7 @@ export default class FilmPreview extends React.PureComponent {
   _handleMouseEnter() {
     this.setState({
       isHovered: true,
+      isPlayerAlreadyMounted: true,
     });
 
     this._playTimeoutId = window.setTimeout(() => {
