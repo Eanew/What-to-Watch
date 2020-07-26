@@ -17,7 +17,7 @@ export default class Details extends React.PureComponent {
       release,
       genre,
       rating,
-      images,
+      image,
       description,
       director,
       starring,
@@ -26,7 +26,7 @@ export default class Details extends React.PureComponent {
     const {
       background,
       poster,
-    } = images;
+    } = image;
 
     const rank = getFilmRank(rating.value);
 
@@ -196,7 +196,7 @@ Details.propTypes = {
       votes: pt.string.isRequired,
     }).isRequired,
 
-    images: pt.shape({
+    image: pt.shape({
       preview: pt.string.isRequired,
       background: pt.string.isRequired,
       poster: pt.string.isRequired,

@@ -11,10 +11,12 @@ export default class FilmPreview extends React.PureComponent {
 
     this.state = {
       isHovered: false,
+      isPlaying: false,
     };
 
     this._handleMouseEnter = this._handleMouseEnter.bind(this);
     this._handleMouseLeave = this._handleMouseLeave.bind(this);
+    this._handlePlayStart = this._handlePlayStart.bind(this);
   }
 
   render() {
@@ -25,33 +27,32 @@ export default class FilmPreview extends React.PureComponent {
       onClick,
     } = this.props;
 
-    const {
-      isHovered,
-    } = this.state;
+    const {isHovered, isPlaying} = this.state;
 
     return (
       <div
+        className="small-movie-card__image"
         onMouseEnter={this._handleMouseEnter}
         onMouseLeave={this._handleMouseLeave}
         onClick={onClick}
-        className="small-movie-card__image"
       >
-        {isHovered
-          ? <PreviewVideoPlayer
+        {isHovered && (
+          <PreviewVideoPlayer
             image={image}
             movie={movie}
             width={PreviewSize.WIDTH}
             height={PreviewSize.HEIGHT}
-            onMouseLeave={this._handleMouseLeave}
+            onPlayStart={this._handlePlayStart}
           />
-
-          : <img
+        )}
+        {!isPlaying && (
+          <img
             src={image.preview}
             alt={filmTitle}
             width={PreviewSize.WIDTH}
             height={PreviewSize.HEIGHT}
           />
-        }
+        )}
       </div>
     );
   }
@@ -65,6 +66,13 @@ export default class FilmPreview extends React.PureComponent {
   _handleMouseLeave() {
     this.setState({
       isHovered: false,
+      isPlaying: false,
+    });
+  }
+
+  _handlePlayStart() {
+    this.setState({
+      isPlaying: true,
     });
   }
 }

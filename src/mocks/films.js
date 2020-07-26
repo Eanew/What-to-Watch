@@ -40,8 +40,8 @@ const generateFilms = () => getRandomItems(filmsTitles, FILMS_DISPLAY_STEP).map(
     poster: `img/${toKebabCase(filmTitle)}-poster.jpg`,
   },
   movie: {
-    preview: [`https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`, `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv`, `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`][0],
-    full: ``,
+    preview: [`https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`][0],
+    full: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   description: [
     `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave&rsquo;s friend and protege.`,

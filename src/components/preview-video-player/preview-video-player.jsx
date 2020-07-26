@@ -10,8 +10,8 @@ export default class PreviewVideoPlayer extends React.PureComponent {
     this._videoRef = React.createRef();
 
     this.state = {
+      isTimeoutPassed: false,
       isCanPlay: false,
-      isPlaying: false,
     };
   }
 
@@ -31,46 +31,47 @@ export default class PreviewVideoPlayer extends React.PureComponent {
     video.height = height;
     video.muted = true;
 
-    video.oncanplay = (() => {
+    video.oncanplay = () => {
       this.setState({
         isCanPlay: true,
       });
-    });
+    };
 
     this._playTimeoutId = window.setTimeout(() => {
-      this.setState((prevState) => ({
-        isPlaying: prevState.isCanPlay,
-      }));
+      this.setState({
+        isTimeoutPassed: true,
+      });
     }, PREVIEW_PLAY_TIMEOUT);
   }
 
   componentDidUpdate() {
     const video = this._videoRef.current;
+    const {onPlayStart} = this.props;
+    const {isTimeoutPassed, isCanPlay} = this.state;
 
-    if (this.state.isPlaying) {
+    if (isTimeoutPassed && isCanPlay) {
       video.play();
+      onPlayStart();
     }
   }
 
   componentWillUnmount() {
-    window.clearTimeout(this._playTimeoutId);
-
     const video = this._videoRef.current;
 
-    video.canplay = null;
+    video.oncanplay = null;
     video.src = ``;
     video.poster = ``;
+
+    window.clearTimeout(this._playTimeoutId);
   }
 
   render() {
-    const {
-      onMouseLeave,
-    } = this.props;
+    const {isTimeoutPassed, isCanPlay} = this.state;
 
     return (
       <video
         ref={this._videoRef}
-        onMouseLeave={onMouseLeave}
+        className={(isTimeoutPassed && isCanPlay) ? `` : `visually-hidden`}
       >
       </video>
     );
@@ -91,5 +92,5 @@ PreviewVideoPlayer.propTypes = {
 
   width: pt.string.isRequired,
   height: pt.string.isRequired,
-  onMouseLeave: pt.func.isRequired,
+  onPlayStart: pt.func.isRequired,
 };

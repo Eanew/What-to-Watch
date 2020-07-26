@@ -31,7 +31,7 @@ const FilmCard = (props) => {
         filmTitle={filmTitle}
         image={image}
         movie={movie}
-        onClick={onFilmCardClick}
+        onClick={handleFilmCardClick}
       />
       <h3 className="small-movie-card__title">
         <a
