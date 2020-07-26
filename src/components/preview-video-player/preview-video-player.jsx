@@ -1,8 +1,6 @@
 import React from "react";
 import pt from "prop-types";
 
-import {PREVIEW_PLAY_TIMEOUT} from "../../config.js";
-
 export default class PreviewVideoPlayer extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -10,9 +8,10 @@ export default class PreviewVideoPlayer extends React.PureComponent {
     this._videoRef = React.createRef();
 
     this.state = {
-      isTimeoutPassed: false,
-      isCanPlay: false,
+      isPlaying: this.props.isPlaying,
     };
+
+    this._isHidden = true;
   }
 
   componentDidMount() {
@@ -21,6 +20,7 @@ export default class PreviewVideoPlayer extends React.PureComponent {
       movie,
       width,
       height,
+      onCanPlay,
     } = this.props;
 
     const video = this._videoRef.current;
@@ -30,28 +30,18 @@ export default class PreviewVideoPlayer extends React.PureComponent {
     video.width = width;
     video.height = height;
     video.muted = true;
-
-    video.oncanplay = () => {
-      this.setState({
-        isCanPlay: true,
-      });
-    };
-
-    this._playTimeoutId = window.setTimeout(() => {
-      this.setState({
-        isTimeoutPassed: true,
-      });
-    }, PREVIEW_PLAY_TIMEOUT);
+    video.loop = true;
+    video.oncanplay = onCanPlay;
   }
 
   componentDidUpdate() {
     const video = this._videoRef.current;
-    const {onPlayStart} = this.props;
-    const {isTimeoutPassed, isCanPlay} = this.state;
 
-    if (isTimeoutPassed && isCanPlay) {
+    if (this.props.isPlaying) {
       video.play();
-      onPlayStart();
+    } else {
+      // video.pause();
+      video.load();
     }
   }
 
@@ -61,17 +51,17 @@ export default class PreviewVideoPlayer extends React.PureComponent {
     video.oncanplay = null;
     video.src = ``;
     video.poster = ``;
-
-    window.clearTimeout(this._playTimeoutId);
   }
 
   render() {
-    const {isTimeoutPassed, isCanPlay} = this.state;
+    if (this.props.isPlaying) {
+      this._isHidden = false;
+    }
 
     return (
       <video
         ref={this._videoRef}
-        className={(isTimeoutPassed && isCanPlay) ? `` : `visually-hidden`}
+        className={this._isHidden ? `visually-hidden` : ``}
       >
       </video>
     );
@@ -79,6 +69,8 @@ export default class PreviewVideoPlayer extends React.PureComponent {
 }
 
 PreviewVideoPlayer.propTypes = {
+  isPlaying: pt.bool.isRequired,
+
   image: pt.shape({
     preview: pt.string.isRequired,
     background: pt.string.isRequired,
@@ -92,5 +84,5 @@ PreviewVideoPlayer.propTypes = {
 
   width: pt.string.isRequired,
   height: pt.string.isRequired,
-  onPlayStart: pt.func.isRequired,
+  onCanPlay: pt.func.isRequired,
 };

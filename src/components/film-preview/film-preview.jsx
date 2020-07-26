@@ -2,6 +2,7 @@ import React from "react";
 import pt from "prop-types";
 
 import {PreviewSize} from "../../utils/const.js";
+import {PREVIEW_PLAY_TIMEOUT} from "../../config.js";
 
 import PreviewVideoPlayer from "../preview-video-player/preview-video-player.jsx";
 
@@ -11,12 +12,15 @@ export default class FilmPreview extends React.PureComponent {
 
     this.state = {
       isHovered: false,
-      isPlaying: false,
+      isTimeoutPassed: false,
+      isCanPlay: false,
     };
+
+    this._isPlayerShown = false;
 
     this._handleMouseEnter = this._handleMouseEnter.bind(this);
     this._handleMouseLeave = this._handleMouseLeave.bind(this);
-    this._handlePlayStart = this._handlePlayStart.bind(this);
+    this._handleCanPlay = this._handleCanPlay.bind(this);
   }
 
   render() {
@@ -27,7 +31,14 @@ export default class FilmPreview extends React.PureComponent {
       onClick,
     } = this.props;
 
-    const {isHovered, isPlaying} = this.state;
+    const {isHovered, isTimeoutPassed, isCanPlay} = this.state;
+
+    let isPlaying = false;
+
+    if (isHovered && isTimeoutPassed && isCanPlay) {
+      isPlaying = true;
+      this._isPlayerShown = true;
+    }
 
     return (
       <div
@@ -36,16 +47,17 @@ export default class FilmPreview extends React.PureComponent {
         onMouseLeave={this._handleMouseLeave}
         onClick={onClick}
       >
-        {isHovered && (
+        {(isHovered || this._isPlayerShown) && (
           <PreviewVideoPlayer
+            isPlaying={isPlaying}
             image={image}
             movie={movie}
             width={PreviewSize.WIDTH}
             height={PreviewSize.HEIGHT}
-            onPlayStart={this._handlePlayStart}
+            onCanPlay={this._handleCanPlay}
           />
         )}
-        {!isPlaying && (
+        {!this._isPlayerShown && (
           <img
             src={image.preview}
             alt={filmTitle}
@@ -61,18 +73,26 @@ export default class FilmPreview extends React.PureComponent {
     this.setState({
       isHovered: true,
     });
+
+    this._playTimeoutId = window.setTimeout(() => {
+      this.setState({
+        isTimeoutPassed: true,
+      });
+    }, PREVIEW_PLAY_TIMEOUT);
   }
 
   _handleMouseLeave() {
     this.setState({
       isHovered: false,
-      isPlaying: false,
+      isTimeoutPassed: false,
     });
+
+    window.clearTimeout(this._playTimeoutId);
   }
 
-  _handlePlayStart() {
+  _handleCanPlay() {
     this.setState({
-      isPlaying: true,
+      isCanPlay: true,
     });
   }
 }
