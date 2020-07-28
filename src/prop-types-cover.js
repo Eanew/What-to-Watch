@@ -41,6 +41,8 @@ export const films = pt.arrayOf(film).isRequired;
 
 export const currentTab = pt.oneOf(Object.values(Tab)).isRequired;
 
+export const string = pt.string.isRequired;
+export const number = pt.number.isRequired;
 export const bool = pt.bool.isRequired;
 export const func = pt.func.isRequired;
 
@@ -51,6 +53,8 @@ export default {
   film,
   films,
   currentTab,
+  string,
+  number,
   bool,
   func,
 };

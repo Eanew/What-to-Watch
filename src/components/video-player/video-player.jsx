@@ -2,7 +2,7 @@ import React from "react";
 
 import pt from "../../prop-types-cover.js";
 
-export default class PreviewVideoPlayer extends React.PureComponent {
+export default class VideoPlayer extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -51,8 +51,8 @@ export default class PreviewVideoPlayer extends React.PureComponent {
   }
 }
 
-PreviewVideoPlayer.propTypes = {
+VideoPlayer.propTypes = {
   isPlaying: pt.bool,
-  src: pt.image.preview,
-  poster: pt.movie.preview,
+  src: pt.string,
+  poster: pt.string,
 };
