@@ -1,8 +1,8 @@
 import React from "react";
-import pt from "prop-types";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 
-import Main from "../main/main.jsx";
+import pt from "../../prop-types-cover.js";
+
 import Details from "../details/details.jsx";
 import withReviews from "../../hocs/with-reviews.jsx";
 
@@ -33,10 +33,10 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  promo: Main.propTypes.promo,
-  films: Main.propTypes.films,
-  renderApp: pt.func.isRequired,
-  onFilmCardClick: Main.propTypes.onFilmCardClick,
+  promo: pt.promo,
+  films: pt.films,
+  renderApp: pt.func,
+  onFilmCardClick: pt.func,
 };
 
 export default App;

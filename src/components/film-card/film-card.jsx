@@ -1,7 +1,6 @@
 import React from "react";
-import pt from "prop-types";
 
-import {APPROVED_GENRES} from "../../utils/const.js";
+import pt from "../../prop-types-cover.js";
 
 const FilmCard = (props) => {
   const {
@@ -43,37 +42,11 @@ const FilmCard = (props) => {
 };
 
 FilmCard.propTypes = {
-  film: pt.shape({
-    id: pt.string.isRequired,
-    filmTitle: pt.string.isRequired,
-    release: pt.number.isRequired,
-    genre: pt.oneOf(APPROVED_GENRES).isRequired,
-
-    rating: pt.shape({
-      value: pt.string.isRequired,
-      votes: pt.string.isRequired,
-    }).isRequired,
-
-    image: pt.shape({
-      preview: pt.string.isRequired,
-      background: pt.string.isRequired,
-      poster: pt.string.isRequired,
-    }).isRequired,
-
-    movie: pt.shape({
-      preview: pt.string.isRequired,
-      full: pt.string.isRequired,
-    }).isRequired,
-
-    description: pt.arrayOf(pt.string).isRequired,
-    director: pt.string.isRequired,
-    starring: pt.arrayOf(pt.string).isRequired,
-  }).isRequired,
-
-  onMouseEnter: pt.func.isRequired,
-  onMouseLeave: pt.func.isRequired,
-  onFilmCardClick: pt.func.isRequired,
-  renderPlayer: pt.func.isRequired,
+  film: pt.film,
+  onMouseEnter: pt.func,
+  onMouseLeave: pt.func,
+  onFilmCardClick: pt.func,
+  renderPlayer: pt.func,
 };
 
 export default FilmCard;

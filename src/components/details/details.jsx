@@ -1,8 +1,6 @@
 import React from "react";
-import pt from "prop-types";
 
-import {APPROVED_GENRES} from "../../utils/const.js";
-import {Tab} from "../../utils/const.js";
+import pt from "../../prop-types-cover.js";
 
 const Details = (props) => {
   const {
@@ -144,30 +142,9 @@ const Details = (props) => {
 };
 
 Details.propTypes = {
-  film: pt.shape({
-    id: pt.string.isRequired,
-    filmTitle: pt.string.isRequired,
-    release: pt.number.isRequired,
-    genre: pt.oneOf(APPROVED_GENRES).isRequired,
-
-    rating: pt.shape({
-      value: pt.string.isRequired,
-      votes: pt.string.isRequired,
-    }).isRequired,
-
-    image: pt.shape({
-      preview: pt.string.isRequired,
-      background: pt.string.isRequired,
-      poster: pt.string.isRequired,
-    }).isRequired,
-
-    description: pt.arrayOf(pt.string).isRequired,
-    director: pt.string.isRequired,
-    starring: pt.arrayOf(pt.string).isRequired,
-  }).isRequired,
-
-  currentTab: pt.oneOf(Object.values(Tab)).isRequired,
-  renderTab: pt.func.isRequired,
+  film: pt.film,
+  currentTab: pt.currentTab,
+  renderTab: pt.func,
 };
 
 export default Details;

@@ -1,5 +1,6 @@
 import React from "react";
-import pt from "prop-types";
+
+import pt from "../../prop-types-cover.js";
 
 import FilmCard from "../film-card/film-card.jsx";
 import withVideoPreview from "../../hocs/with-video-preview.js";
@@ -23,8 +24,8 @@ const Films = (props) => {
 };
 
 Films.propTypes = {
-  films: pt.arrayOf(FilmCard.propTypes.film).isRequired,
-  onFilmCardClick: FilmCard.propTypes.onFilmCardClick,
+  films: pt.films,
+  onFilmCardClick: pt.func,
 };
 
 export default Films;

@@ -1,8 +1,8 @@
 import React from "react";
-import pt from "prop-types";
+
+import pt from "../../prop-types-cover.js";
 
 import {toKebabCase} from "../../utils/common.js";
-import {APPROVED_GENRES} from "../../utils/const.js";
 
 import Films from "../films/films.jsx";
 
@@ -145,14 +145,9 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  promo: pt.shape({
-    name: pt.string.isRequired,
-    genre: pt.oneOf(APPROVED_GENRES).isRequired,
-    release: pt.string.isRequired,
-  }).isRequired,
-
-  films: Films.propTypes.films,
-  onFilmCardClick: Films.propTypes.onFilmCardClick,
+  promo: pt.promo,
+  films: pt.films,
+  onFilmCardClick: pt.func,
 };
 
 export default Main;
