@@ -1,7 +1,10 @@
 import React from "react";
 import pt from "prop-types";
 
+import withVideoPreview from "../../hocs/with-video-preview.js";
 import FilmCard from "../film-card/film-card.jsx";
+
+const FilmCardWrapped = withVideoPreview(FilmCard);
 
 const Films = (props) => {
   const {films, onFilmCardClick} = props;
@@ -9,7 +12,7 @@ const Films = (props) => {
   return (
     <div className="catalog__movies-list">
       {films.map((film) => (
-        <FilmCard
+        <FilmCardWrapped
           key={film.filmTitle + film.id}
           film={film}
           onFilmCardClick={onFilmCardClick}

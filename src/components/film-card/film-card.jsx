@@ -2,43 +2,39 @@ import React from "react";
 import pt from "prop-types";
 
 import {APPROVED_GENRES} from "../../utils/const.js";
-import FilmPreview from "../film-preview/film-preview.jsx";
 
 const FilmCard = (props) => {
   const {
     film,
     onFilmCardClick,
+    onMouseEnter,
+    onMouseLeave,
+    renderPlayer,
   } = props;
 
   const {
-    id,
     filmTitle,
     image,
     movie,
   } = film;
 
-  const handleFilmCardClick = (evt) => {
-    evt.preventDefault();
+  const handleFilmCardClick = () => {
     onFilmCardClick(film);
   };
 
   return (
     <article
-      key={id}
       className="small-movie-card catalog__movies-card"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      onClick={handleFilmCardClick}
     >
-      <FilmPreview
-        filmTitle={filmTitle}
-        image={image}
-        movie={movie}
-        onClick={handleFilmCardClick}
-      />
+      <div className="small-movie-card__image">
+        {renderPlayer(movie.preview, image.preview)}
+      </div>
+
       <h3 className="small-movie-card__title">
-        <a
-          onClick={handleFilmCardClick}
-          className="small-movie-card__link"
-          href="movie-page.html"
-        >
+        <a className="small-movie-card__link">
           {filmTitle}
         </a>
       </h3>
@@ -58,14 +54,26 @@ FilmCard.propTypes = {
       votes: pt.string.isRequired,
     }).isRequired,
 
-    image: FilmPreview.propTypes.image,
-    movie: FilmPreview.propTypes.movie,
+    image: pt.shape({
+      preview: pt.string.isRequired,
+      background: pt.string.isRequired,
+      poster: pt.string.isRequired,
+    }).isRequired,
+
+    movie: pt.shape({
+      preview: pt.string.isRequired,
+      full: pt.string.isRequired,
+    }).isRequired,
+
     description: pt.arrayOf(pt.string).isRequired,
     director: pt.string.isRequired,
     starring: pt.arrayOf(pt.string).isRequired,
   }).isRequired,
 
+  onMouseEnter: pt.func.isRequired,
+  onMouseLeave: pt.func.isRequired,
   onFilmCardClick: pt.func.isRequired,
+  renderPlayer: pt.func.isRequired,
 };
 
 export default FilmCard;

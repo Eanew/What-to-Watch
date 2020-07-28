@@ -40,7 +40,7 @@ const generateFilms = () => getRandomItems(filmsTitles, FILMS_DISPLAY_STEP).map(
     poster: `img/${toKebabCase(filmTitle)}-poster.jpg`,
   },
   movie: {
-    preview: [`https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`][0],
+    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     full: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   description: [
