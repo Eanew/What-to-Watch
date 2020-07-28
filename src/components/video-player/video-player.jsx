@@ -11,30 +11,33 @@ export default class VideoPlayer extends React.PureComponent {
     this.state = {
       isPlaying: this.props.isPlaying,
     };
+
+    this._handleVideoPlay = this._handleVideoPlay.bind(this);
+    this._handleVideoEmptied = this._handleVideoEmptied.bind(this);
   }
 
-  componentDidMount() {
+  render() {
     const {
       src,
       poster,
     } = this.props;
 
-    const video = this._videoRef.current;
-
-    video.src = src;
-    video.poster = poster;
-    video.controls = false;
-    video.autoPlay = false;
-    video.muted = true;
-    video.loop = true;
-
-    video.onplay = this.setState({
-      isPlaying: true,
-    });
-
-    video.emptied = this.setState({
-      isPlaying: false,
-    });
+    return (
+      <video
+        width="280"
+        height="175"
+        ref={this._videoRef}
+        poster={poster}
+        controls={false}
+        autoPlay={false}
+        muted={true}
+        loop={true}
+        onPlay={this._handleVideoPlay}
+        onEmptied={this._handleVideoEmptied}
+      >
+        <source src={src} type="video/mp4" />
+      </video>
+    );
   }
 
   componentDidUpdate() {
@@ -56,16 +59,16 @@ export default class VideoPlayer extends React.PureComponent {
     video.poster = ``;
   }
 
-  render() {
-    return (
-      <video
-        ref={this._videoRef}
-        width="280"
-        height="175"
-      >
-        <source src={this.props.src} type="video/mp4" />
-      </video>
-    );
+  _handleVideoPlay() {
+    this.setState({
+      isPlaying: true,
+    });
+  }
+
+  _handleVideoEmptied() {
+    this.setState({
+      isPlaying: false,
+    });
   }
 }
 
