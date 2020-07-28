@@ -2,12 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import App from "./components/app/app.jsx";
+import withFilmPopup from "./hocs/with-film-popup.js";
+
+const AppWrapped = withFilmPopup(App);
 
 import films from "./mocks/films.js";
 import promo from "./mocks/promo.js";
 
 ReactDOM.render(
-    <App
+    <AppWrapped
       promo={promo}
       films={films}
     />,

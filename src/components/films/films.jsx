@@ -1,8 +1,8 @@
 import React from "react";
 import pt from "prop-types";
 
-import withVideoPreview from "../../hocs/with-video-preview.js";
 import FilmCard from "../film-card/film-card.jsx";
+import withVideoPreview from "../../hocs/with-video-preview.js";
 
 const FilmCardWrapped = withVideoPreview(FilmCard);
 

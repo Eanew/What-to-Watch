@@ -1,78 +1,39 @@
 import React from "react";
+import pt from "prop-types";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
-
-import {Screen} from "../../utils/const.js";
 
 import Main from "../main/main.jsx";
 import Details from "../details/details.jsx";
 
-export default class App extends React.PureComponent {
-  constructor(props) {
-    super(props);
+const App = (props) => {
+  const {
+    promo,
+    films,
+    renderApp,
+    onFilmCardClick,
+  } = props;
 
-    this.state = {
-      screen: Screen.MAIN,
-      currentFilm: null,
-    };
-  }
-
-  render() {
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            {this._renderApp()}
-          </Route>
-          <Route exact path="/details">
-            <Details
-              film={this.props.films[0]}
-            />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    );
-  }
-
-  _renderApp() {
-    const {
-      promo,
-      films,
-    } = this.props;
-
-    const {
-      screen,
-      currentFilm,
-    } = this.state;
-
-    switch (screen) {
-      case Screen.MAIN:
-        return (
-          <Main
-            promo={promo}
-            films={films}
-            onFilmCardClick={(film) => {
-              this.setState({
-                screen: Screen.DETAILS,
-                currentFilm: film,
-              });
-            }}
-          />
-        );
-
-      case Screen.DETAILS:
-        return (
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          {renderApp(promo, films, onFilmCardClick)}
+        </Route>
+        <Route exact path="/details">
           <Details
-            film={currentFilm}
+            film={films[0]}
           />
-        );
-
-      default:
-        return null;
-    }
-  }
-}
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  );
+};
 
 App.propTypes = {
   promo: Main.propTypes.promo,
   films: Main.propTypes.films,
+  renderApp: pt.func.isRequired,
+  onFilmCardClick: Main.propTypes.onFilmCardClick,
 };
+
+export default App;
