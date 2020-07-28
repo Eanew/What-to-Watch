@@ -1,6 +1,12 @@
 export const Screen = {
-  MAIN: `main`,
-  DETAILS: `details`,
+  MAIN: `Main`,
+  DETAILS: `Details`,
+};
+
+export const Tab = {
+  OVERVIEW: `Overview`,
+  DETAILS: `Details`,
+  REVIEWS: `Reviews`,
 };
 
 export const APPROVED_GENRES = [

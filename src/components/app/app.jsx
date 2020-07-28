@@ -4,6 +4,9 @@ import {Switch, Route, BrowserRouter} from "react-router-dom";
 
 import Main from "../main/main.jsx";
 import Details from "../details/details.jsx";
+import withReviews from "../../hocs/with-reviews.jsx";
+
+const DetailsWrapped = withReviews(Details);
 
 const App = (props) => {
   const {
@@ -20,7 +23,7 @@ const App = (props) => {
           {renderApp(promo, films, onFilmCardClick)}
         </Route>
         <Route exact path="/details">
-          <Details
+          <DetailsWrapped
             film={films[0]}
           />
         </Route>
