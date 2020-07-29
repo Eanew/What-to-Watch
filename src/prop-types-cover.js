@@ -19,19 +19,20 @@ export const movie = pt.shape({
   full: pt.string.isRequired,
 }).isRequired;
 
+export const rating = pt.shape({
+  value: pt.number.isRequired,
+  votesCount: pt.number.isRequired,
+}).isRequired;
+
 export const film = pt.shape({
   image,
   movie,
+  rating,
   id: pt.string.isRequired,
   filmTitle: pt.string.isRequired,
   release: pt.number.isRequired,
+  runtime: pt.number.isRequired,
   genre: pt.oneOf(APPROVED_GENRES).isRequired,
-
-  rating: pt.shape({
-    value: pt.number.isRequired,
-    votesCount: pt.number.isRequired,
-  }).isRequired,
-
   description: pt.arrayOf(pt.string).isRequired,
   director: pt.string.isRequired,
   starring: pt.arrayOf(pt.string).isRequired,
@@ -50,9 +51,11 @@ export default {
   promo,
   image,
   movie,
+  rating,
   film,
   films,
   currentTab,
+
   string,
   number,
   bool,

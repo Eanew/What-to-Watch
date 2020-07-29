@@ -1,3 +1,5 @@
+export const HOUR_IN_MINUTES = 60;
+
 export const Letter = {
   SPACE: ` `,
   COMMA: `,`,

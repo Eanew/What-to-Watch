@@ -21,6 +21,7 @@ describe(`Film card`, () => {
     id: filmTitle + 1,
     filmTitle,
     release: 2011,
+    runtime: 143,
     genre: APPROVED_GENRES[0],
 
     rating: {

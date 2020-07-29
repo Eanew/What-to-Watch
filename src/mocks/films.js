@@ -29,6 +29,7 @@ const generateFilms = () => getRandomItems(filmsTitles, FILMS_DISPLAY_STEP).map(
   id: filmTitle + i,
   filmTitle,
   release: getRandomCount(1950, 2020),
+  runtime: getRandomCount(30, 160),
   genre: getRandomItems(APPROVED_GENRES, 1)[0],
   rating: {
     value: getRandomCount(0, 100) / 10,

@@ -32,11 +32,12 @@ describe(`Main component`, () => {
           id: filmTitle + i,
           filmTitle,
           release: 2011 + i,
+          runtime: 30 + i * 60,
           genre: APPROVED_GENRES[i],
 
           rating: {
             value: 3.4 + i,
-            votesCount: 153 * i,
+            votesCount: 153 + i * 421,
           },
 
           image: {
