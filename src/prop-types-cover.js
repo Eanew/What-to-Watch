@@ -25,10 +25,11 @@ export const rating = pt.shape({
 }).isRequired;
 
 export const film = pt.shape({
-  image,
-  movie,
-  rating,
-  id: pt.string.isRequired,
+  id: pt.oneOfType([
+    pt.string,
+    pt.number
+  ]).isRequired,
+
   filmTitle: pt.string.isRequired,
   release: pt.number.isRequired,
   runtime: pt.number.isRequired,
@@ -36,9 +37,27 @@ export const film = pt.shape({
   description: pt.arrayOf(pt.string).isRequired,
   director: pt.string.isRequired,
   starring: pt.arrayOf(pt.string).isRequired,
+  isFavorite: pt.bool.isRequired,
+
+  image,
+  movie,
+  rating,
 }).isRequired;
 
 export const films = pt.arrayOf(film).isRequired;
+
+export const comment = pt.shape({
+  id: pt.oneOfType([
+    pt.string,
+    pt.number
+  ]).isRequired,
+
+  userName: pt.string.isRequired,
+  rating: pt.number.isRequired,
+  comment: pt.string.isRequired,
+});
+
+export const comments = pt.arrayOf(comment).isRequired;
 
 export const currentTab = pt.oneOf(Object.values(Tab)).isRequired;
 
@@ -54,6 +73,8 @@ export default {
   rating,
   film,
   films,
+  comment,
+  comments,
   currentTab,
 
   string,

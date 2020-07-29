@@ -51,6 +51,7 @@ const generateFilms = () => getRandomItems(filmsTitles, FILMS_DISPLAY_STEP).map(
   ],
   director: `Wes Andreson`,
   starring: getRandomItems([`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`], getRandomCount(1, 4)),
+  isFavorite: getRandomItems([true, false], 1),
 }));
 
 export default generateFilms();

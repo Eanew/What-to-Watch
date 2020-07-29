@@ -25,9 +25,9 @@ const Details = (props) => {
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Starring</strong>
           <span className="movie-card__details-value">
-            {starring.map((it, i) => (i !== starring.length - 1)
-              ? <React.Fragment>{`${it}, `}<br /></React.Fragment>
-              : <React.Fragment>{it}</React.Fragment>
+            {starring.map((actor, i) => (i !== starring.length - 1)
+              ? <React.Fragment>{`${actor}, `}<br /></React.Fragment>
+              : actor
             )}
           </span>
         </p>

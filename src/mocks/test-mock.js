@@ -6,6 +6,12 @@ const filmsTitles = [
   `Bohemian Rhapsody`,
   `Macbeth`];
 
+const usersNames = [
+  `Viktor Savinov`,
+  `Alexandra Pushina`,
+  `Julia Kim`,
+  `Anton Timoshenkov`];
+
 export const promo = {
   filmTitle: filmsTitles[0],
   genre: APPROVED_GENRES[0],
@@ -42,6 +48,7 @@ export const film = {
 
   director: `Wes Andreson`,
   starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+  isFavorite: false,
 };
 
 export const films = filmsTitles.map((title, i) => ({
@@ -74,4 +81,21 @@ export const films = filmsTitles.map((title, i) => ({
 
   director: `Wes Andreson`,
   starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+  isFavorite: i % 2,
+}));
+
+export const comment = {
+  id: `comment1`,
+  userName: usersNames[0],
+  rating: 6.3,
+  comment: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+  date: `2019-05-08T14:13:56.569Z`,
+};
+
+export const comments = usersNames.map((name, i) => ({
+  id: `comment${i + 1}`,
+  userName: name,
+  rating: 3.2 + i,
+  comment: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+  date: `2019-05-08T14:13:56.569Z`,
 }));
