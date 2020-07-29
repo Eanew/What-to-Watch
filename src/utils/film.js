@@ -7,7 +7,7 @@ export const getRatingLevel = (score) => {
     10: `Awesome`,
   };
 
-  const levelStep = Object.keys(RatingMatch).find((step) => score >= step);
+  const levelStep = Object.keys(RatingMatch).reverse().find((step) => step <= score);
 
   return RatingMatch[levelStep];
 };
