@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should DetailsComponent render correctly 1`] = `
+exports[`Should MoviePageComponent render correctly 1`] = `
 Array [
   <div
     className="visually-hidden"

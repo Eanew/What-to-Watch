@@ -9,7 +9,7 @@ exports[`Should VideoPlayerComponent render correctly 1`] = `
   muted={true}
   onEmptied={[Function]}
   onPlay={[Function]}
-  poster="img/midnight-special.jpg"
+  poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
   width="280"
 >
   <source
