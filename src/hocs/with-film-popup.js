@@ -3,10 +3,10 @@ import React from "react";
 import {Screen} from "../utils/const.js";
 
 import Main from "../components/main/main.jsx";
-import Details from "../components/details/details.jsx";
+import MoviePage from "../components/movie-page/movie-page.jsx";
 import withReviews from "./with-reviews.jsx";
 
-const DetailsWrapped = withReviews(Details);
+const MoviePageWrapped = withReviews(MoviePage);
 
 const withFilmPopup = (Component) => {
   return class WithFilmPopup extends React.PureComponent {
@@ -50,7 +50,7 @@ const withFilmPopup = (Component) => {
 
         case Screen.DETAILS:
           return (
-            <DetailsWrapped
+            <MoviePageWrapped
               film={currentFilm}
             />
           );

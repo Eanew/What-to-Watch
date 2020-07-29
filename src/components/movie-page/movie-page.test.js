@@ -1,15 +1,15 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Details from "./details.jsx";
+import MoviePage from "./movie-page.jsx";
 
 import {APPROVED_GENRES, Tab} from "../../utils/const.js";
 import {toKebabCase} from "../../utils/common.js";
 
-it(`Should DetailsComponent render correctly`, () => {
+it(`Should MoviePageComponent render correctly`, () => {
   const filmTitle = `Fantastic Beasts: The Crimes of Grindelwald`;
 
   const tree = renderer.create(
-      <Details
+      <MoviePage
         film={{
           id: filmTitle + 1,
           filmTitle,

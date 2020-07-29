@@ -2,7 +2,7 @@ import React from "react";
 
 import pt from "../../prop-types-cover.js";
 
-const Details = (props) => {
+const MoviePage = (props) => {
   const {
     film,
     currentTab,
@@ -141,10 +141,10 @@ const Details = (props) => {
   );
 };
 
-Details.propTypes = {
+MoviePage.propTypes = {
   film: pt.film,
   currentTab: pt.currentTab,
   renderTab: pt.func,
 };
 
-export default Details;
+export default MoviePage;

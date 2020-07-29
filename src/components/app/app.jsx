@@ -3,10 +3,10 @@ import {Switch, Route, BrowserRouter} from "react-router-dom";
 
 import pt from "../../prop-types-cover.js";
 
-import Details from "../details/details.jsx";
+import MoviePage from "../movie-page/movie-page.jsx";
 import withReviews from "../../hocs/with-reviews.jsx";
 
-const DetailsWrapped = withReviews(Details);
+const MoviePageWrapped = withReviews(MoviePage);
 
 const App = (props) => {
   const {
@@ -23,7 +23,7 @@ const App = (props) => {
           {renderApp(promo, films, onFilmCardClick)}
         </Route>
         <Route exact path="/details">
-          <DetailsWrapped
+          <MoviePageWrapped
             film={films[0]}
           />
         </Route>
