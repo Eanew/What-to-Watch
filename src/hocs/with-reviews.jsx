@@ -1,7 +1,7 @@
 import React from "react";
 
 import {Tab} from "../utils/const.js";
-import {getFilmRank} from "../utils/film.js";
+import {getRatingLevel} from "../utils/film.js";
 
 const withReviews = (Component) => {
   return class WithReviews extends React.PureComponent {
@@ -35,20 +35,21 @@ const withReviews = (Component) => {
 
       switch (tab) {
         case Tab.OVERVIEW:
-          const rank = getFilmRank(rating.value);
+          const ratingLevel = getRatingLevel(rating.value);
+          const ratingScore = rating.value.toString().replace(`.`, `,`);
 
           return (
             <React.Fragment>
               <div className="movie-rating">
                 <div className="movie-rating__score">
-                  {rating.value}
+                  {ratingScore}
                 </div>
                 <p className="movie-rating__meta">
                   <span className="movie-rating__level">
-                    {rank}
+                    {ratingLevel}
                   </span>
                   <span className="movie-rating__count">
-                    {`${rating.votes} ratings`}
+                    {`${rating.votesCount} ratings`}
                   </span>
                 </p>
               </div>

@@ -31,8 +31,8 @@ const Main = (props) => {
       <section className="movie-card">
         <div className="movie-card__bg">
           <img
-            src={`img/bg-${toKebabCase(promo.name)}.jpg`}
-            alt={promo.name}
+            src={`img/bg-${toKebabCase(promo.filmTitle)}.jpg`}
+            alt={promo.filmTitle}
           />
         </div>
 
@@ -60,8 +60,8 @@ const Main = (props) => {
           <div className="movie-card__info">
             <div className="movie-card__poster">
               <img
-                src={`img/${toKebabCase(promo.name)}-poster.jpg`}
-                alt={`${promo.name} poster`}
+                src={`img/${toKebabCase(promo.filmTitle)}-poster.jpg`}
+                alt={`${promo.filmTitle} poster`}
                 width="218" height="327"
               />
             </div>
@@ -70,7 +70,7 @@ const Main = (props) => {
               <h2
                 className="movie-card__title"
               >
-                {promo.name}
+                {promo.filmTitle}
               </h2>
               <p className="movie-card__meta">
                 <span className="movie-card__genre">{promo.genre}</span>

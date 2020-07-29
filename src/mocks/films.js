@@ -1,6 +1,6 @@
 import {FILMS_DISPLAY_STEP} from "../config.js";
 import {APPROVED_GENRES} from "../utils/const.js";
-import {toKebabCase, splitNumber} from "../utils/common.js";
+import {toKebabCase} from "../utils/common.js";
 import {getRandomCount, getRandomItems} from "../utils/mock.js";
 
 const filmsTitles = [
@@ -29,10 +29,10 @@ const generateFilms = () => getRandomItems(filmsTitles, FILMS_DISPLAY_STEP).map(
   id: filmTitle + i,
   filmTitle,
   release: getRandomCount(1950, 2020),
-  genre: APPROVED_GENRES[Math.floor(Math.random() * APPROVED_GENRES.length)],
+  genre: getRandomItems(APPROVED_GENRES)[0],
   rating: {
-    value: (getRandomCount(0, 100) / 10).toString().replace(`.`, `,`),
-    votes: splitNumber(getRandomCount(1, 2000)),
+    value: getRandomCount(0, 100) / 10,
+    votes: getRandomCount(1, 2000),
   },
   image: {
     preview: `img/${toKebabCase(filmTitle)}.jpg`,
@@ -49,7 +49,7 @@ const generateFilms = () => getRandomItems(filmsTitles, FILMS_DISPLAY_STEP).map(
     `Gustave prides himself on providing first-class service to the hotel&rsquo;s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave&rsquo;s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`
   ],
   director: `Wes Andreson`,
-  starring: getRandomItems([`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]).slice(getRandomCount(0, 3)),
+  starring: getRandomItems([`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`], getRandomCount(1, 4)),
 }));
 
 export default generateFilms();

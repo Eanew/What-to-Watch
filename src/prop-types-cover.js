@@ -3,9 +3,9 @@ import pt from "prop-types";
 import {APPROVED_GENRES, Tab} from "./utils/const.js";
 
 export const promo = pt.shape({
-  name: pt.string.isRequired,
+  filmTitle: pt.string.isRequired,
   genre: pt.oneOf(APPROVED_GENRES).isRequired,
-  release: pt.string.isRequired,
+  release: pt.number.isRequired,
 }).isRequired;
 
 export const image = pt.shape({
@@ -28,8 +28,8 @@ export const film = pt.shape({
   genre: pt.oneOf(APPROVED_GENRES).isRequired,
 
   rating: pt.shape({
-    value: pt.string.isRequired,
-    votes: pt.string.isRequired,
+    value: pt.number.isRequired,
+    votesCount: pt.number.isRequired,
   }).isRequired,
 
   description: pt.arrayOf(pt.string).isRequired,
