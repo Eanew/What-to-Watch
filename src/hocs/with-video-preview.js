@@ -29,6 +29,10 @@ const withVideoPreview = (Component) => {
       );
     }
 
+    componentWillUnmount() {
+      window.clearTimeout(this._playTimeoutId);
+    }
+
     _handleMouseEnter() {
       this._playTimeoutId = window.setTimeout(() => {
         this.setState({
