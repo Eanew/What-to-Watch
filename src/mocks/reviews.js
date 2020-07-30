@@ -6,7 +6,7 @@ const usersNames = [
   `Julia Kim`,
   `Anton Timoshenkov`];
 
-const generateComments = getRandomItems(usersNames).map((name, i) => ({
+const generateReviews = getRandomItems(usersNames).map((name, i) => ({
   id: `comment${i + 1}`,
   userName: name,
   rating: getRandomCount(0, 100) / 10,
@@ -14,4 +14,4 @@ const generateComments = getRandomItems(usersNames).map((name, i) => ({
   date: `${getRandomCount(2004, 2019)}-0${getRandomCount(1, 9)}-${getRandomCount(0, 2)}8T14:13:56.569Z`,
 }));
 
-export default generateComments();
+export default generateReviews();

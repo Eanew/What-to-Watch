@@ -34,7 +34,7 @@ export const film = pt.shape({
   release: pt.number.isRequired,
   runtime: pt.number.isRequired,
   genre: pt.oneOf(APPROVED_GENRES).isRequired,
-  description: pt.arrayOf(pt.string).isRequired,
+  description: pt.string.isRequired,
   director: pt.string.isRequired,
   starring: pt.arrayOf(pt.string).isRequired,
   isFavorite: pt.bool.isRequired,
@@ -46,7 +46,7 @@ export const film = pt.shape({
 
 export const films = pt.arrayOf(film).isRequired;
 
-export const comment = pt.shape({
+export const review = pt.shape({
   id: pt.oneOfType([
     pt.string,
     pt.number
@@ -57,7 +57,7 @@ export const comment = pt.shape({
   comment: pt.string.isRequired,
 });
 
-export const comments = pt.arrayOf(comment).isRequired;
+export const reviews = pt.arrayOf(review).isRequired;
 
 export const currentTab = pt.oneOf(Object.values(Tab)).isRequired;
 
@@ -73,8 +73,8 @@ export default {
   rating,
   film,
   films,
-  comment,
-  comments,
+  review,
+  reviews,
   currentTab,
 
   string,

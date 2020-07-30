@@ -3,6 +3,7 @@ import React from "react";
 import pt from "../../prop-types-cover.js";
 
 import {getRatingLevel} from "../../utils/film.js";
+import {getRatingScore} from "../../utils/normalize.js";
 
 const Overview = (props) => {
   const {
@@ -13,7 +14,7 @@ const Overview = (props) => {
   } = props;
 
   const ratingLevel = getRatingLevel(rating.value);
-  const ratingScore = rating.value.toString().replace(`.`, `,`);
+  const ratingScore = getRatingScore(rating.value);
 
   return (
     <React.Fragment>
@@ -32,11 +33,9 @@ const Overview = (props) => {
       </div>
 
       <div className="movie-card__text">
-        {description.map((paragraph, i) => (
-          <p key={`paragraph ${i + 1}`}>
-            {paragraph}
-          </p>
-        ))}
+        <p>
+          {description}
+        </p>
 
         <p className="movie-card__director">
           <strong>Director: {director}</strong>

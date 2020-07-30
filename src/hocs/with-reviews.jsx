@@ -55,11 +55,9 @@ const withReviews = (Component) => {
               </div>
 
               <div className="movie-card__text">
-                {description.map((paragraph, i) => (
-                  <p key={`paragraph ${i + 1}`}>
-                    {paragraph}
-                  </p>
-                ))}
+                <p>
+                  {description}
+                </p>
 
                 <p className="movie-card__director">
                   <strong>Director: {director}</strong>
