@@ -50,6 +50,8 @@ const withMoviePage = (Component) => {
             <MoviePage
               film={currentFilm}
               reviews={reviews}
+              films={films}
+              onFilmCardClick={onFilmCardClick}
             />
           );
 

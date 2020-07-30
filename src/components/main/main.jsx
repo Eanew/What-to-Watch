@@ -2,6 +2,7 @@ import React from "react";
 
 import pt from "../../prop-types-cover.js";
 
+import {MAIN_FILMS_DISPLAY_STEP} from "../../config.js";
 import {toKebabCase} from "../../utils/common.js";
 
 import Films from "../films/films.jsx";
@@ -117,7 +118,7 @@ const Main = (props) => {
           </ul>
 
           <Films
-            films={films}
+            films={films.slice(0, MAIN_FILMS_DISPLAY_STEP)}
             onFilmCardClick={onFilmCardClick}
           />
 

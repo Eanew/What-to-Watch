@@ -1,4 +1,3 @@
-import {FILMS_DISPLAY_STEP} from "../config.js";
 import {APPROVED_GENRES} from "../utils/const.js";
 import {toKebabCase} from "../utils/common.js";
 import {getRandomCount, getRandomItems} from "../utils/mock.js";
@@ -25,7 +24,7 @@ const filmsTitles = [
   `Mindhunter`,
   `Midnight Special`];
 
-const generateFilms = () => getRandomItems(filmsTitles, FILMS_DISPLAY_STEP).map((filmTitle, i) => ({
+const generateFilms = () => getRandomItems(filmsTitles, getRandomCount(3, filmsTitles.length)).map((filmTitle, i) => ({
   id: filmTitle + i,
   filmTitle,
   release: getRandomCount(1950, 2020),
@@ -48,7 +47,7 @@ const generateFilms = () => getRandomItems(filmsTitles, FILMS_DISPLAY_STEP).map(
 
   director: `Wes Andreson`,
   starring: getRandomItems([`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`], getRandomCount(1, 4)),
-  isFavorite: getRandomItems([true, false], 1)[0],
+  isFavorite: getRandomItems([true, false])[0],
 }));
 
 export default generateFilms();

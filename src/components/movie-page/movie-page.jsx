@@ -2,6 +2,9 @@ import React from "react";
 
 import pt from "../../prop-types-cover.js";
 
+import {MOVIE_PAGE_FILMS_DISPLAY_STEP} from "../../config.js";
+
+import Films from "../films/films.jsx";
 import TabsNavigation from "../tabs-navigation/tabs-navigation.jsx";
 import withTabs from "../../hocs/with-tabs.js";
 
@@ -11,6 +14,8 @@ const MoviePage = (props) => {
   const {
     film,
     reviews,
+    films,
+    onFilmCardClick,
   } = props;
 
   const {
@@ -19,6 +24,9 @@ const MoviePage = (props) => {
     genre,
     image,
   } = film;
+
+  const similarFilms = films.sort((first, second) => second.rating.value - first.rating.value)
+    .filter((movie) => movie.genre === film.genre).slice(0, MOVIE_PAGE_FILMS_DISPLAY_STEP);
 
   return (
     <React.Fragment>
@@ -132,6 +140,31 @@ const MoviePage = (props) => {
           </div>
         </div>
       </section>
+
+      <div className="page-content">
+        <section className="catalog catalog--like-this">
+          <h2 className="catalog__title">More like this</h2>
+
+          <Films
+            films={similarFilms}
+            onFilmCardClick={onFilmCardClick}
+          />
+        </section>
+
+        <footer className="page-footer">
+          <div className="logo">
+            <a href="main.html" className="logo__link logo__link--light">
+              <span className="logo__letter logo__letter--1">W</span>
+              <span className="logo__letter logo__letter--2">T</span>
+              <span className="logo__letter logo__letter--3">W</span>
+            </a>
+          </div>
+
+          <div className="copyright">
+            <p>© 2019 What to watch Ltd.</p>
+          </div>
+        </footer>
+      </div>
     </React.Fragment>
   );
 };
@@ -139,6 +172,8 @@ const MoviePage = (props) => {
 MoviePage.propTypes = {
   film: pt.film,
   reviews: pt.reviews,
+  films: pt.films,
+  onFilmCardClick: pt.func,
 };
 
 export default MoviePage;

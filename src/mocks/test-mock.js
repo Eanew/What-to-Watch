@@ -75,7 +75,7 @@ export const films = filmsTitles.map((title, i) => ({
 
   director: `Wes Andreson`,
   starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
-  isFavorite: i % 2,
+  isFavorite: (i % 2) ? true : false,
 }));
 
 export const review = {

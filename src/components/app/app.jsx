@@ -24,6 +24,8 @@ const App = (props) => {
           <MoviePage
             film={films[0]}
             reviews={reviews}
+            films={films}
+            onFilmCardClick={onFilmCardClick}
           />
         </Route>
       </Switch>

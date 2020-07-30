@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should TabsComponent render Reviews 1`] = `
+exports[`Should TabsNavigationComponent render Reviews 1`] = `
 Array [
   <nav
     className="movie-nav movie-card__nav"
