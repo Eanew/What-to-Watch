@@ -4,9 +4,9 @@ export const Screen = {
 };
 
 export const Tab = {
-  OVERVIEW: `Overview`,
-  DETAILS: `Details`,
-  REVIEWS: `Reviews`,
+  OVERVIEW: `overview`,
+  DETAILS: `details`,
+  REVIEWS: `reviews`,
 };
 
 export const APPROVED_GENRES = [

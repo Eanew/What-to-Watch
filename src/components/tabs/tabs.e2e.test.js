@@ -29,7 +29,7 @@ describe(`Tabs`, () => {
         preventDefault,
         target: {
           dataset: {
-            tab: Object.values(Tab)[i].toLowerCase(),
+            tab: Object.values(Tab)[i],
           },
         },
       });
@@ -37,8 +37,8 @@ describe(`Tabs`, () => {
 
     expect(preventDefault).toHaveBeenCalledTimes(tabsLinks.length);
 
-    expect(handleTabClick.mock.calls[0][0]).toBe(Tab.OVERVIEW.toLowerCase());
-    expect(handleTabClick.mock.calls[1][0]).toBe(Tab.DETAILS.toLowerCase());
-    expect(handleTabClick.mock.calls[2][0]).toBe(Tab.REVIEWS.toLowerCase());
+    expect(handleTabClick.mock.calls[0][0]).toBe(Tab.OVERVIEW);
+    expect(handleTabClick.mock.calls[1][0]).toBe(Tab.DETAILS);
+    expect(handleTabClick.mock.calls[2][0]).toBe(Tab.REVIEWS);
   });
 });

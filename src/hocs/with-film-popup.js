@@ -4,9 +4,9 @@ import {Screen} from "../utils/const.js";
 
 import Main from "../components/main/main.jsx";
 import MoviePage from "../components/movie-page/movie-page.jsx";
-import withReviews from "./with-reviews.jsx";
+import withTabs from "./with-tabs.js";
 
-const MoviePageWrapped = withReviews(MoviePage);
+const MoviePageWrapped = withTabs(MoviePage);
 
 const withFilmPopup = (Component) => {
   return class WithFilmPopup extends React.PureComponent {
@@ -32,7 +32,7 @@ const withFilmPopup = (Component) => {
       );
     }
 
-    _renderApp(promo, films, onFilmCardClick) {
+    _renderApp(promo, films, reviews, onFilmCardClick) {
       const {
         screen,
         currentFilm,
@@ -52,6 +52,7 @@ const withFilmPopup = (Component) => {
           return (
             <MoviePageWrapped
               film={currentFilm}
+              reviews={reviews}
             />
           );
 

@@ -3,6 +3,7 @@ import React from "react";
 import pt from "../../prop-types-cover.js";
 
 import {Tab} from "../../utils/const.js";
+import {toCapitalWord} from "../../utils/common.js";
 
 const Tabs = (props) => {
   const {
@@ -20,18 +21,18 @@ const Tabs = (props) => {
     <React.Fragment>
       <nav className="movie-nav movie-card__nav">
         <ul className="movie-nav__list">
-          {Object.values(Tab).map((tab) => (
+          {Object.values(Tab).map((tabName) => (
             <li
-              key={`tab-${tab}`}
-              className={`movie-nav__item${tab === currentTab ? ` movie-nav__item--active` : ``}`}
+              key={`tab-${tabName}`}
+              className={`movie-nav__item${tabName === currentTab ? ` movie-nav__item--active` : ``}`}
             >
               <a
                 href="#"
                 className="movie-nav__link"
-                data-tab={tab.toLowerCase()}
+                data-tab={tabName}
                 onClick={handleTabClick}
               >
-                {tab}
+                {toCapitalWord(tabName)}
               </a>
             </li>
           ))}

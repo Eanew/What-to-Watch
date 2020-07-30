@@ -6,7 +6,7 @@ const usersNames = [
   `Julia Kim`,
   `Anton Timoshenkov`];
 
-const generateReviews = getRandomItems(usersNames).map((name, i) => ({
+const generateReviews = () => getRandomItems(usersNames).map((name, i) => ({
   id: `comment${i + 1}`,
   userName: name,
   rating: getRandomCount(0, 100) / 10,
