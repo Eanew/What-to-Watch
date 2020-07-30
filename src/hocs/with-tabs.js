@@ -24,7 +24,6 @@ const withTabs = (Component) => {
     render() {
       return (
         <Component
-          {...this.props}
           currentTab={this.state.currentTab}
           renderTab={this._renderTab}
           onTabClick={this._handleTabClick}

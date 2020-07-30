@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import App from "./components/app/app.jsx";
-import withFilmPopup from "./hocs/with-film-popup.js";
+import withMoviePage from "./hocs/with-movie-page.js";
 
-const AppWrapped = withFilmPopup(App);
+const AppWrapped = withMoviePage(App);
 
 import films from "./mocks/films.js";
 import promo from "./mocks/promo.js";

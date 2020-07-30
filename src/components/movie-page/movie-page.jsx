@@ -2,14 +2,15 @@ import React from "react";
 
 import pt from "../../prop-types-cover.js";
 
-import Tabs from "../tabs/tabs.jsx";
+import TabsNavigation from "../tabs-navigation/tabs-navigation.jsx";
+import withTabs from "../../hocs/with-tabs.js";
+
+const TabsNavigationWrapped = withTabs(TabsNavigation);
 
 const MoviePage = (props) => {
   const {
     film,
-    currentTab,
-    renderTab,
-    onTabClick,
+    reviews,
   } = props;
 
   const {
@@ -122,10 +123,9 @@ const MoviePage = (props) => {
 
             <div className="movie-card__desc">
 
-              <Tabs
-                currentTab={currentTab}
-                renderTab={renderTab}
-                onTabClick={onTabClick}
+              <TabsNavigationWrapped
+                film={film}
+                reviews={reviews}
               />
 
             </div>
@@ -138,9 +138,7 @@ const MoviePage = (props) => {
 
 MoviePage.propTypes = {
   film: pt.film,
-  currentTab: pt.currentTab,
-  renderTab: pt.func,
-  onTabClick: pt.func,
+  reviews: pt.reviews,
 };
 
 export default MoviePage;

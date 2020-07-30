@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Tabs from "./tabs.jsx";
+import TabsNavigation from "./tabs-navigation.jsx";
 
 import {Tab} from "../../utils/const.js";
 
@@ -8,7 +8,7 @@ import {reviews} from "../../mocks/test-mock.js";
 
 import Reviews from "../reviews/reviews.jsx";
 
-it(`Should TabsComponent render Reviews`, () => {
+it(`Should TabsNavigationComponent render Reviews`, () => {
   const renderTab = (tab) => tab === Tab.REVIEWS && (
     <Reviews
       reviews={reviews}
@@ -16,7 +16,7 @@ it(`Should TabsComponent render Reviews`, () => {
   );
 
   const tree = renderer.create(
-      <Tabs
+      <TabsNavigation
         currentTab={Tab.REVIEWS}
         renderTab={renderTab}
         onTabClick={() => {}}

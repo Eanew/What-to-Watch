@@ -4,12 +4,9 @@ import {Screen} from "../utils/const.js";
 
 import Main from "../components/main/main.jsx";
 import MoviePage from "../components/movie-page/movie-page.jsx";
-import withTabs from "./with-tabs.js";
 
-const MoviePageWrapped = withTabs(MoviePage);
-
-const withFilmPopup = (Component) => {
-  return class WithFilmPopup extends React.PureComponent {
+const withMoviePage = (Component) => {
+  return class WithMoviePage extends React.PureComponent {
     constructor(props) {
       super(props);
 
@@ -50,7 +47,7 @@ const withFilmPopup = (Component) => {
 
         case Screen.DETAILS:
           return (
-            <MoviePageWrapped
+            <MoviePage
               film={currentFilm}
               reviews={reviews}
             />
@@ -70,4 +67,4 @@ const withFilmPopup = (Component) => {
   };
 };
 
-export default withFilmPopup;
+export default withMoviePage;
