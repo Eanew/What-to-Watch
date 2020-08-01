@@ -2,7 +2,7 @@ import React from "react";
 
 import pt from "../../prop-types-cover.js";
 
-import {MAIN_FILMS_DISPLAY_STEP} from "../../config.js";
+import {MAIN_PAGE_FILMS_DISPLAY_STEP} from "../../config.js";
 import {toKebabCase} from "../../utils/common.js";
 
 import Films from "../films/films.jsx";
@@ -27,7 +27,7 @@ const Main = (props) => {
     onFilmCardClick,
   } = props;
 
-  const filmsToDisplay = films.slice(0, MAIN_FILMS_DISPLAY_STEP);
+  const filmsToDisplay = films.slice(0, MAIN_PAGE_FILMS_DISPLAY_STEP);
 
   return (
     <React.Fragment>

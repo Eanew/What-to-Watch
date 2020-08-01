@@ -2,7 +2,7 @@ import React from "react";
 
 import pt from "../../prop-types-cover.js";
 
-import {MOVIE_PAGE_FILMS_DISPLAY_STEP} from "../../config.js";
+import {MOVIE_PAGE_FILMS_TO_DISPLAY} from "../../config.js";
 
 import Films from "../films/films.jsx";
 import TabsNavigation from "../tabs-navigation/tabs-navigation.jsx";
@@ -26,7 +26,7 @@ const MoviePage = (props) => {
   } = film;
 
   const similarFilms = films.sort((first, second) => second.rating.value - first.rating.value)
-    .filter((movie) => movie.genre === film.genre).slice(0, MOVIE_PAGE_FILMS_DISPLAY_STEP);
+    .filter((movie) => movie.genre === film.genre).slice(0, MOVIE_PAGE_FILMS_TO_DISPLAY);
 
   return (
     <React.Fragment>
