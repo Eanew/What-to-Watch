@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should VideoPlayerComponent render correctly 1`] = `
+<video
+  autoPlay={false}
+  controls={false}
+  height="175"
+  loop={true}
+  muted={true}
+  onEmptied={[Function]}
+  onPlay={[Function]}
+  poster="img/midnight-special.jpg"
+  width="280"
+>
+  <source
+    src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+    type="video/mp4"
+  />
+</video>
+`;

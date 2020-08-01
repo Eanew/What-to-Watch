@@ -1,8 +1,8 @@
 import React from "react";
-import pt from "prop-types";
+
+import pt from "../../prop-types-cover.js";
 
 import {toKebabCase} from "../../utils/common.js";
-import {APPROVED_GENRES} from "../../utils/const.js";
 
 import Films from "../films/films.jsx";
 
@@ -31,8 +31,8 @@ const Main = (props) => {
       <section className="movie-card">
         <div className="movie-card__bg">
           <img
-            src={`img/bg-${toKebabCase(promo.name)}.jpg`}
-            alt={promo.name}
+            src={`img/bg-${toKebabCase(promo.filmTitle)}.jpg`}
+            alt={promo.filmTitle}
           />
         </div>
 
@@ -60,8 +60,8 @@ const Main = (props) => {
           <div className="movie-card__info">
             <div className="movie-card__poster">
               <img
-                src={`img/${toKebabCase(promo.name)}-poster.jpg`}
-                alt={`${promo.name} poster`}
+                src={`img/${toKebabCase(promo.filmTitle)}-poster.jpg`}
+                alt={`${promo.filmTitle} poster`}
                 width="218" height="327"
               />
             </div>
@@ -70,7 +70,7 @@ const Main = (props) => {
               <h2
                 className="movie-card__title"
               >
-                {promo.name}
+                {promo.filmTitle}
               </h2>
               <p className="movie-card__meta">
                 <span className="movie-card__genre">{promo.genre}</span>
@@ -145,14 +145,9 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  promo: pt.shape({
-    name: pt.string.isRequired,
-    genre: pt.oneOf(APPROVED_GENRES).isRequired,
-    release: pt.string.isRequired,
-  }).isRequired,
-
-  films: Films.propTypes.films,
-  onFilmCardClick: Films.propTypes.onFilmCardClick,
+  promo: pt.promo,
+  films: pt.films,
+  onFilmCardClick: pt.func,
 };
 
 export default Main;

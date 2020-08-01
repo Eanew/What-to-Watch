@@ -1,5 +1,5 @@
 export default {
-  name: `The Grand Budapest Hotel`,
+  filmTitle: `The Grand Budapest Hotel`,
   genre: `Drama`,
-  release: `2014`,
+  release: 2014,
 };

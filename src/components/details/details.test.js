@@ -1,27 +1,24 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Films from "./films.jsx";
+import Details from "./details.jsx";
 
+import {APPROVED_GENRES, Tab} from "../../utils/const.js";
 import {toKebabCase} from "../../utils/common.js";
-import {APPROVED_GENRES} from "../../utils/const.js";
 
-it(`Should FilmsComponent render correctly`, () => {
-  const filmsTitles = [
-    `Fantastic Beasts: The Crimes of Grindelwald`,
-    `Bohemian Rhapsody`,
-    `Macbeth`];
+it(`Should DetailsComponent render correctly`, () => {
+  const filmTitle = `Fantastic Beasts: The Crimes of Grindelwald`;
 
   const tree = renderer.create(
-      <Films
-        films={filmsTitles.map((filmTitle, i) => ({
-          id: filmTitle + i,
+      <Details
+        film={{
+          id: filmTitle + 1,
           filmTitle,
-          release: 2011 + i,
-          genre: APPROVED_GENRES[i],
+          release: 2011,
+          genre: APPROVED_GENRES[0],
 
           rating: {
-            value: 3.4 + i,
-            votesCount: 153 * i,
+            value: 6.3,
+            votesCount: 2134,
           },
 
           image: {
@@ -41,9 +38,10 @@ it(`Should FilmsComponent render correctly`, () => {
             `Gustave prides himself on providing first-class service to the hotel&rsquo;s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave&rsquo;s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`],
 
           director: `Wes Andreson`,
-          starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`][i],
-        }))}
-        onFilmCardClick={() => {}}
+          starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+        }}
+        currentTab={Tab.OVERVIEW}
+        renderTab={() => {}}
       />
   ).toJSON();
 

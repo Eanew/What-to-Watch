@@ -259,26 +259,35 @@ Array [
       >
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
           <div
             className="small-movie-card__image"
-            onClick={[Function]}
-            onMouseOver={[Function]}
           >
-            <img
-              alt="Fantastic Beasts: The Crimes of Grindelwald"
+            <video
+              autoPlay={false}
+              controls={false}
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              loop={true}
+              muted={true}
+              onEmptied={[Function]}
+              onPlay={[Function]}
+              poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
-            />
+            >
+              <source
+                src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+                type="video/mp4"
+              />
+            </video>
           </div>
           <h3
             className="small-movie-card__title"
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
-              onClick={[Function]}
             >
               Fantastic Beasts: The Crimes of Grindelwald
             </a>
@@ -286,26 +295,35 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
           <div
             className="small-movie-card__image"
-            onClick={[Function]}
-            onMouseOver={[Function]}
           >
-            <img
-              alt="Bohemian Rhapsody"
+            <video
+              autoPlay={false}
+              controls={false}
               height="175"
-              src="img/bohemian-rhapsody.jpg"
+              loop={true}
+              muted={true}
+              onEmptied={[Function]}
+              onPlay={[Function]}
+              poster="img/bohemian-rhapsody.jpg"
               width="280"
-            />
+            >
+              <source
+                src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+                type="video/mp4"
+              />
+            </video>
           </div>
           <h3
             className="small-movie-card__title"
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
-              onClick={[Function]}
             >
               Bohemian Rhapsody
             </a>
@@ -313,26 +331,35 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
           <div
             className="small-movie-card__image"
-            onClick={[Function]}
-            onMouseOver={[Function]}
           >
-            <img
-              alt="Macbeth"
+            <video
+              autoPlay={false}
+              controls={false}
               height="175"
-              src="img/macbeth.jpg"
+              loop={true}
+              muted={true}
+              onEmptied={[Function]}
+              onPlay={[Function]}
+              poster="img/macbeth.jpg"
               width="280"
-            />
+            >
+              <source
+                src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+                type="video/mp4"
+              />
+            </video>
           </div>
           <h3
             className="small-movie-card__title"
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
-              onClick={[Function]}
             >
               Macbeth
             </a>
