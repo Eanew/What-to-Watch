@@ -33,3 +33,5 @@ export const toDateTimeAttribute = (iso) => {
 
   return `${date.getFullYear()}-${toTwoDigit(date.getMonth() + 1)}-${toTwoDigit(date.getDate())}`;
 };
+
+export const extend = (a, b) => Object.assign({}, a, b);

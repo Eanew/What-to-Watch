@@ -45,7 +45,7 @@ const withMoviePage = (Component) => {
             />
           );
 
-        case Screen.DETAILS:
+        case Screen.MOVIE_PAGE:
           return (
             <MoviePage
               film={currentFilm}
@@ -62,7 +62,7 @@ const withMoviePage = (Component) => {
 
     _handleFilmCardClick(film) {
       this.setState({
-        screen: Screen.DETAILS,
+        screen: Screen.MOVIE_PAGE,
         currentFilm: film,
       });
     }

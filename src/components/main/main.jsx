@@ -9,15 +9,15 @@ import Films from "../films/films.jsx";
 
 const GenresNavigation = {
   ALL: `All genres`,
-  COMEDIES: `Comedies`,
+  COMEDY: `Comedies`,
   CRIME: `Crime`,
   DOCUMENTARY: `Documentary`,
-  DRAMAS: `Dramas`,
+  DRAMA: `Dramas`,
   HORROR: `Horror`,
   FAMILY: `Kids & Family`,
   ROMANCE: `Romance`,
   SCI_FI: `Sci-Fi`,
-  THRILLERS: `Thrillers`,
+  THRILLER: `Thrillers`,
 };
 
 const Main = (props) => {
@@ -26,6 +26,8 @@ const Main = (props) => {
     films,
     onFilmCardClick,
   } = props;
+
+  const filmsToDisplay = films.slice(0, MAIN_FILMS_DISPLAY_STEP);
 
   return (
     <React.Fragment>
@@ -118,7 +120,7 @@ const Main = (props) => {
           </ul>
 
           <Films
-            films={films.slice(0, MAIN_FILMS_DISPLAY_STEP)}
+            films={filmsToDisplay}
             onFilmCardClick={onFilmCardClick}
           />
 
