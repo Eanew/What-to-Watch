@@ -3,6 +3,8 @@ import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import VideoPlayer from "./video-player.jsx";
 
+import {film} from "../../mocks/test-mock.js";
+
 Enzyme.configure({
   adapter: new Adapter(),
 });
@@ -12,8 +14,8 @@ describe(`Video player`, () => {
     const videoPlayer = shallow(
         <VideoPlayer
           isPlaying={false}
-          src={`https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`}
-          poster={`img/midnight-special.jpg`}
+          src={film.movie.preview}
+          poster={film.image.preview}
         />, {
           disableLifecycleMethods: true,
         }

@@ -1,16 +1,15 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import App from "./app.jsx";
+import MoviePage from "./movie-page.jsx";
 
-import {promo, films, reviews} from "../../mocks/test-mock.js";
+import {film, films, reviews} from "../../mocks/test-mock.js";
 
-it(`Should AppComponent render correctly`, () => {
+it(`Should MoviePageComponent render correctly`, () => {
   const tree = renderer.create(
-      <App
-        promo={promo}
-        films={films}
+      <MoviePage
+        film={film}
         reviews={reviews}
-        renderApp={() => {}}
+        films={films}
         onFilmCardClick={() => {}}
       />
   ).toJSON();

@@ -1,23 +1,21 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Details from "./details.jsx";
+import Overview from "./overview.jsx";
 
 import {film} from "../../mocks/test-mock.js";
 
-it(`Should DetailsComponent render correctly`, () => {
+it(`Should OverviewComponent render correctly`, () => {
   const {
-    release,
-    runtime,
-    genre,
+    rating,
+    description,
     director,
     starring,
   } = film;
 
   const tree = renderer.create(
-      <Details
-        release={release}
-        runtime={runtime}
-        genre={genre}
+      <Overview
+        rating={rating}
+        description={description}
         director={director}
         starring={starring}
       />

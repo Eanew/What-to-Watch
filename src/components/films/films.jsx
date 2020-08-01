@@ -8,7 +8,10 @@ import withVideoPreview from "../../hocs/with-video-preview.js";
 const FilmCardWrapped = withVideoPreview(FilmCard);
 
 const Films = (props) => {
-  const {films, onFilmCardClick} = props;
+  const {
+    films,
+    onFilmCardClick,
+  } = props;
 
   return (
     <div className="catalog__movies-list">

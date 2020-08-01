@@ -19,25 +19,45 @@ export const movie = pt.shape({
   full: pt.string.isRequired,
 }).isRequired;
 
+export const rating = pt.shape({
+  value: pt.number.isRequired,
+  votesCount: pt.number.isRequired,
+}).isRequired;
+
 export const film = pt.shape({
-  image,
-  movie,
-  id: pt.string.isRequired,
+  id: pt.oneOfType([
+    pt.string,
+    pt.number
+  ]).isRequired,
+
   filmTitle: pt.string.isRequired,
   release: pt.number.isRequired,
+  runtime: pt.number.isRequired,
   genre: pt.oneOf(APPROVED_GENRES).isRequired,
-
-  rating: pt.shape({
-    value: pt.number.isRequired,
-    votesCount: pt.number.isRequired,
-  }).isRequired,
-
-  description: pt.arrayOf(pt.string).isRequired,
+  description: pt.string.isRequired,
   director: pt.string.isRequired,
   starring: pt.arrayOf(pt.string).isRequired,
+  isFavorite: pt.bool.isRequired,
+
+  image,
+  movie,
+  rating,
 }).isRequired;
 
 export const films = pt.arrayOf(film).isRequired;
+
+export const review = pt.shape({
+  id: pt.oneOfType([
+    pt.string,
+    pt.number
+  ]).isRequired,
+
+  userName: pt.string.isRequired,
+  rating: pt.number.isRequired,
+  comment: pt.string.isRequired,
+});
+
+export const reviews = pt.arrayOf(review).isRequired;
 
 export const currentTab = pt.oneOf(Object.values(Tab)).isRequired;
 
@@ -50,9 +70,13 @@ export default {
   promo,
   image,
   movie,
+  rating,
   film,
   films,
+  review,
+  reviews,
   currentTab,
+
   string,
   number,
   bool,

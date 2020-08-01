@@ -1,3 +1,5 @@
+export const HOUR_IN_MINUTES = 60;
+
 export const Letter = {
   SPACE: ` `,
   COMMA: `,`,
@@ -17,17 +19,17 @@ export const Key = {
   ENTER: `Enter`,
 };
 
+export const toCapitalWord = (word) => word[0].toUpperCase() + word.slice(1);
+
 export const toKebabCase = (defaultString) => defaultString
   .toLowerCase()
   .trim()
   .replace(Regular.WORD_SEPARATION, Letter.DASH);
 
-export const splitNumber = (defaultNumber, partsLength = 3) => {
-  const invertedNumber = [...defaultNumber.toString()].reverse().join(``);
-  let number = ``;
+export const toTwoDigit = (number) => number < 10 ? `0${number}` : number;
 
-  for (let i = 0; i < invertedNumber.length; i += partsLength) {
-    number += invertedNumber.slice(i, i + partsLength) + ` `;
-  }
-  return [...number].reverse().join(``).trim();
+export const toDateTimeAttribute = (iso) => {
+  const date = new Date(Date.parse(iso));
+
+  return `${date.getFullYear()}-${toTwoDigit(date.getMonth() + 1)}-${toTwoDigit(date.getDate())}`;
 };

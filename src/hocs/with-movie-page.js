@@ -3,13 +3,10 @@ import React from "react";
 import {Screen} from "../utils/const.js";
 
 import Main from "../components/main/main.jsx";
-import Details from "../components/details/details.jsx";
-import withReviews from "./with-reviews.jsx";
+import MoviePage from "../components/movie-page/movie-page.jsx";
 
-const DetailsWrapped = withReviews(Details);
-
-const withFilmPopup = (Component) => {
-  return class WithFilmPopup extends React.PureComponent {
+const withMoviePage = (Component) => {
+  return class WithMoviePage extends React.PureComponent {
     constructor(props) {
       super(props);
 
@@ -32,7 +29,7 @@ const withFilmPopup = (Component) => {
       );
     }
 
-    _renderApp(promo, films, onFilmCardClick) {
+    _renderApp(promo, films, reviews, onFilmCardClick) {
       const {
         screen,
         currentFilm,
@@ -50,8 +47,11 @@ const withFilmPopup = (Component) => {
 
         case Screen.DETAILS:
           return (
-            <DetailsWrapped
+            <MoviePage
               film={currentFilm}
+              reviews={reviews}
+              films={films}
+              onFilmCardClick={onFilmCardClick}
             />
           );
 
@@ -69,4 +69,4 @@ const withFilmPopup = (Component) => {
   };
 };
 
-export default withFilmPopup;
+export default withMoviePage;

@@ -3,15 +3,13 @@ import {Switch, Route, BrowserRouter} from "react-router-dom";
 
 import pt from "../../prop-types-cover.js";
 
-import Details from "../details/details.jsx";
-import withReviews from "../../hocs/with-reviews.jsx";
-
-const DetailsWrapped = withReviews(Details);
+import MoviePage from "../movie-page/movie-page.jsx";
 
 const App = (props) => {
   const {
     promo,
     films,
+    reviews,
     renderApp,
     onFilmCardClick,
   } = props;
@@ -20,11 +18,14 @@ const App = (props) => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          {renderApp(promo, films, onFilmCardClick)}
+          {renderApp(promo, films, reviews, onFilmCardClick)}
         </Route>
         <Route exact path="/details">
-          <DetailsWrapped
+          <MoviePage
             film={films[0]}
+            reviews={reviews}
+            films={films}
+            onFilmCardClick={onFilmCardClick}
           />
         </Route>
       </Switch>
@@ -35,6 +36,7 @@ const App = (props) => {
 App.propTypes = {
   promo: pt.promo,
   films: pt.films,
+  reviews: pt.reviews,
   renderApp: pt.func,
   onFilmCardClick: pt.func,
 };
