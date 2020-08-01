@@ -1,6 +1,8 @@
 import pt from "prop-types";
 
-import {APPROVED_GENRES, Tab} from "./utils/const.js";
+import {APPROVED_GENRES, Screen, Tab} from "./utils/const.js";
+
+export const screen = pt.oneOf(Object.values(Screen)).isRequired;
 
 export const promo = pt.shape({
   filmTitle: pt.string.isRequired,
@@ -26,8 +28,8 @@ export const rating = pt.shape({
 
 export const film = pt.shape({
   id: pt.oneOfType([
-    pt.string,
-    pt.number
+    pt.string.isRequired,
+    pt.number.isRequired
   ]).isRequired,
 
   filmTitle: pt.string.isRequired,
@@ -44,18 +46,20 @@ export const film = pt.shape({
   rating,
 }).isRequired;
 
+export const currentFilm = pt.oneOfType(film, pt.oneOf([null]).isRequired).isRequired;
+
 export const films = pt.arrayOf(film).isRequired;
 
 export const review = pt.shape({
   id: pt.oneOfType([
-    pt.string,
-    pt.number
+    pt.string.isRequired,
+    pt.number.isRequired
   ]).isRequired,
 
   userName: pt.string.isRequired,
   rating: pt.number.isRequired,
   comment: pt.string.isRequired,
-});
+}).isRequired;
 
 export const reviews = pt.arrayOf(review).isRequired;
 
@@ -67,11 +71,13 @@ export const bool = pt.bool.isRequired;
 export const func = pt.func.isRequired;
 
 export default {
+  screen,
   promo,
   image,
   movie,
   rating,
   film,
+  currentFilm,
   films,
   review,
   reviews,

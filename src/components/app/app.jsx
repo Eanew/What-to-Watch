@@ -1,44 +1,98 @@
 import React from "react";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 
+import {connect} from "react-redux";
+import {ActionCreator} from "../../reducer.js";
+
 import pt from "../../prop-types-cover.js";
 
+import {Screen} from "../../utils/const.js";
+
+import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
 
-const App = (props) => {
-  const {
-    promo,
-    films,
-    reviews,
-    renderApp,
-    onFilmCardClick,
-  } = props;
+class App extends React.PureComponent {
+  render() {
+    const {
+      films,
+      reviews,
+      onFilmCardClick,
+    } = this.props;
 
-  return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/">
-          {renderApp(promo, films, reviews, onFilmCardClick)}
-        </Route>
-        <Route exact path="/details">
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            {this._renderApp()}
+          </Route>
+          <Route exact path="/details">
+            <MoviePage
+              film={films[0]}
+              reviews={reviews}
+              films={films}
+              onFilmCardClick={onFilmCardClick}
+            />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    );
+  }
+
+  _renderApp() {
+    const {
+      promo,
+      films,
+      reviews,
+      screen,
+      currentFilm,
+      onFilmCardClick,
+    } = this.props;
+
+    switch (screen) {
+      case Screen.MAIN:
+        return (
+          <Main
+            promo={promo}
+            films={films}
+            onFilmCardClick={onFilmCardClick}
+          />
+        );
+
+      case Screen.MOVIE_PAGE:
+        return (
           <MoviePage
-            film={films[0]}
+            film={currentFilm}
             reviews={reviews}
             films={films}
             onFilmCardClick={onFilmCardClick}
           />
-        </Route>
-      </Switch>
-    </BrowserRouter>
-  );
-};
+        );
+
+      default:
+        return null;
+    }
+  }
+}
 
 App.propTypes = {
   promo: pt.promo,
   films: pt.films,
   reviews: pt.reviews,
-  renderApp: pt.func,
+  screen: pt.screen,
+  currentFilm: pt.currentFilm,
   onFilmCardClick: pt.func,
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  screen: state.screen,
+  currentFilm: state.currentFilm,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onFilmCardClick(film) {
+    dispatch(ActionCreator.setMoviePageScreen(film));
+  },
+});
+
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);

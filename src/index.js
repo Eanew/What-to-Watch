@@ -6,7 +6,6 @@ import {Provider} from "react-redux";
 import {reducer} from "./reducer.js";
 
 import App from "./components/app/app.jsx";
-import withMoviePage from "./hocs/with-movie-page.js";
 
 import films from "./mocks/films.js";
 import promo from "./mocks/promo.js";
@@ -17,11 +16,9 @@ const store = createStore(reducer,
       ? window.__REDUX_DEVTOOLS_EXTENSION__()
       : (f) => f);
 
-const AppWrapped = withMoviePage(App);
-
 ReactDOM.render(
     <Provider store={store}>
-      <AppWrapped
+      <App
         promo={promo}
         films={films}
         reviews={reviews}
