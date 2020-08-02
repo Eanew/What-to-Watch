@@ -1,4 +1,4 @@
-import {APPROVED_GENRES} from "../utils/const.js";
+import {Genre} from "../utils/const.js";
 import {toKebabCase} from "../utils/common.js";
 import {getRandomCount, getRandomItems} from "../utils/mock.js";
 
@@ -29,7 +29,7 @@ const generateFilms = () => getRandomItems(filmsTitles, getRandomCount(3, filmsT
   filmTitle,
   release: getRandomCount(1950, 2020),
   runtime: getRandomCount(30, 160),
-  genre: getRandomItems(APPROVED_GENRES, 1)[0],
+  genre: getRandomItems(Object.values(Genre), 1)[0],
   rating: {
     value: getRandomCount(0, 100) / 10,
     votesCount: getRandomCount(1, 2000),

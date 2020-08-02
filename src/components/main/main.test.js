@@ -2,12 +2,12 @@ import React from "react";
 import renderer from "react-test-renderer";
 import Main from "./main.jsx";
 
-import {promo, films} from "../../mocks/test-mock.js";
+import {film, films} from "../../mocks/test-mock.js";
 
 it(`Should MainComponent render correctly`, () => {
   const tree = renderer.create(
       <Main
-        promo={promo}
+        promo={film}
         films={films}
         onFilmCardClick={() => {}}
       />

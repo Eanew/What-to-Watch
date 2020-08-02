@@ -1,5 +1,5 @@
 import {toKebabCase} from "../utils/common.js";
-import {APPROVED_GENRES} from "../utils/const.js";
+import {Genre} from "../utils/const.js";
 
 const filmsTitles = [
   `Fantastic Beasts: The Crimes of Grindelwald`,
@@ -12,18 +12,12 @@ const usersNames = [
   `Julia Kim`,
   `Anton Timoshenkov`];
 
-export const promo = {
-  filmTitle: filmsTitles[0],
-  genre: APPROVED_GENRES[0],
-  release: 2014,
-};
-
 export const film = {
   id: filmsTitles[0] + 1,
   filmTitle: filmsTitles[0],
   release: 2011,
   runtime: 143,
-  genre: APPROVED_GENRES[0],
+  genre: Genre.SCI_FI,
 
   rating: {
     value: 6.3,
@@ -53,7 +47,7 @@ export const films = filmsTitles.map((title, i) => ({
   filmTitle: title,
   release: 2011 + i,
   runtime: 30 + i * 60,
-  genre: APPROVED_GENRES[i],
+  genre: Object.values(Genre)[i],
 
   rating: {
     value: 3.4 + i,

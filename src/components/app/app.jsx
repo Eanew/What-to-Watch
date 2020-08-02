@@ -75,17 +75,20 @@ class App extends React.PureComponent {
 }
 
 App.propTypes = {
-  promo: pt.promo,
-  films: pt.films,
-  reviews: pt.reviews,
   screen: pt.screen,
   currentFilm: pt.currentFilm,
+  promo: pt.film,
+  films: pt.films,
+  reviews: pt.reviews,
   onFilmCardClick: pt.func,
 };
 
 const mapStateToProps = (state) => ({
   screen: state.screen,
   currentFilm: state.currentFilm,
+  promo: state.promo,
+  films: state.films,
+  reviews: state.reviews,
 });
 
 const mapDispatchToProps = (dispatch) => ({

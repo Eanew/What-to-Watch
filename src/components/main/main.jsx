@@ -2,23 +2,12 @@ import React from "react";
 
 import pt from "../../prop-types-cover.js";
 
-import {MAIN_PAGE_FILMS_DISPLAY_STEP} from "../../config.js";
+import {GenreTabName} from "../../utils/const.js";
 import {toKebabCase} from "../../utils/common.js";
 
-import Films from "../films/films.jsx";
+import {MAIN_PAGE_FILMS_DISPLAY_STEP} from "../../config.js";
 
-const GenresNavigation = {
-  ALL: `All genres`,
-  COMEDY: `Comedies`,
-  CRIME: `Crime`,
-  DOCUMENTARY: `Documentary`,
-  DRAMA: `Dramas`,
-  HORROR: `Horror`,
-  FAMILY: `Kids & Family`,
-  ROMANCE: `Romance`,
-  SCI_FI: `Sci-Fi`,
-  THRILLER: `Thrillers`,
-};
+import Films from "../films/films.jsx";
 
 const Main = (props) => {
   const {
@@ -104,16 +93,16 @@ const Main = (props) => {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <ul className="catalog__genres-list">
-            {Object.values(GenresNavigation).map((it, i) => (
+            {Object.values(GenreTabName).map((genre, i) => (
               <li
-                key={it + i}
+                key={genre + i}
                 className={`catalog__genres-item${i === 0 ? ` catalog__genres-item--active` : ``}`}
               >
                 <a
                   href="#"
                   className="catalog__genres-link"
                 >
-                  {it}
+                  {genre}
                 </a>
               </li>
             ))}
@@ -148,7 +137,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  promo: pt.promo,
+  promo: pt.film,
   films: pt.films,
   onFilmCardClick: pt.func,
 };

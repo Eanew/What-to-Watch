@@ -89,12 +89,12 @@ Array [
             <span
               className="movie-card__genre"
             >
-              Comedy
+              Sci-Fi
             </span>
             <span
               className="movie-card__year"
             >
-              2014
+              2011
             </span>
           </p>
           <div

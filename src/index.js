@@ -7,10 +7,6 @@ import {reducer} from "./reducer.js";
 
 import App from "./components/app/app.jsx";
 
-import films from "./mocks/films.js";
-import promo from "./mocks/promo.js";
-import reviews from "./mocks/reviews.js";
-
 const store = createStore(reducer,
     window.__REDUX_DEVTOOLS_EXTENSION__
       ? window.__REDUX_DEVTOOLS_EXTENSION__()
@@ -18,11 +14,7 @@ const store = createStore(reducer,
 
 ReactDOM.render(
     <Provider store={store}>
-      <App
-        promo={promo}
-        films={films}
-        reviews={reviews}
-      />
+      <App />
     </Provider>,
     document.querySelector(`#root`)
 );

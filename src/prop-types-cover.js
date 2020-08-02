@@ -1,14 +1,8 @@
 import pt from "prop-types";
 
-import {APPROVED_GENRES, Screen, Tab} from "./utils/const.js";
+import {Genre, Screen, Tab} from "./utils/const.js";
 
 export const screen = pt.oneOf(Object.values(Screen)).isRequired;
-
-export const promo = pt.shape({
-  filmTitle: pt.string.isRequired,
-  genre: pt.oneOf(APPROVED_GENRES).isRequired,
-  release: pt.number.isRequired,
-}).isRequired;
 
 export const image = pt.shape({
   preview: pt.string.isRequired,
@@ -35,7 +29,7 @@ export const film = pt.shape({
   filmTitle: pt.string.isRequired,
   release: pt.number.isRequired,
   runtime: pt.number.isRequired,
-  genre: pt.oneOf(APPROVED_GENRES).isRequired,
+  genre: pt.oneOf(Object.values(Genre)).isRequired,
   description: pt.string.isRequired,
   director: pt.string.isRequired,
   starring: pt.arrayOf(pt.string).isRequired,
@@ -72,7 +66,6 @@ export const func = pt.func.isRequired;
 
 export default {
   screen,
-  promo,
   image,
   movie,
   rating,

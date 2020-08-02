@@ -73,7 +73,7 @@ exports[`Should DetailsComponent render correctly 1`] = `
       <span
         className="movie-card__details-value"
       >
-        Comedy
+        Sci-Fi
       </span>
     </p>
     <p

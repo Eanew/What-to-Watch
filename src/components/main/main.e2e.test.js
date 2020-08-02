@@ -3,7 +3,7 @@ import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Main from "./main.jsx";
 
-import {promo, films} from "../../mocks/test-mock.js";
+import {film, films} from "../../mocks/test-mock.js";
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -15,7 +15,7 @@ describe(`Main component`, () => {
 
   const main = mount(
       <Main
-        promo={promo}
+        promo={film}
         films={films}
         onFilmCardClick={handleFilmCardClick}
       />
