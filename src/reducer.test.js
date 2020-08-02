@@ -65,6 +65,21 @@ describe(`Reducer`, () => {
       filteredFilms: films.filter((film) => film.genre === `Drama`),
     });
   });
+
+  it(`Should filter films by all genres returns default films`, () => {
+    expect(reducer({
+      genre: `Drama`,
+      films,
+      filteredFilms: films.filter((film) => film.genre === `Drama`),
+    }, {
+      type: ActionType.SWITCH_GENRE,
+      payload: `All`,
+    })).toEqual({
+      genre: `All`,
+      films,
+      filteredFilms: films,
+    });
+  });
 });
 
 describe(`Action creators`, () => {

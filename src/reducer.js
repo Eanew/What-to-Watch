@@ -53,7 +53,9 @@ export const reducer = (state = initialState, action) => {
     case ActionType.SWITCH_GENRE:
       return extend(state, {
         genre: action.payload,
-        filteredFilms: state.films.filter((film) => film.genre === action.payload),
+        filteredFilms: action.payload === Genre.ALL
+          ? state.films
+          : state.films.filter((film) => film.genre === action.payload),
       });
 
     default:
