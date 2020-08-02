@@ -3,7 +3,6 @@ import React from "react";
 import pt from "../../prop-types-cover.js";
 
 import {Tab} from "../../utils/const.js";
-import {toCapitalWord} from "../../utils/common.js";
 
 const Tabs = (props) => {
   const {
@@ -11,11 +10,6 @@ const Tabs = (props) => {
     renderTab,
     onTabClick,
   } = props;
-
-  const handleTabClick = (evt) => {
-    evt.preventDefault();
-    onTabClick(evt.target.dataset.tab);
-  };
 
   return (
     <React.Fragment>
@@ -29,10 +23,12 @@ const Tabs = (props) => {
               <a
                 href="#"
                 className="movie-nav__link"
-                data-tab={tabName}
-                onClick={handleTabClick}
+                onClick={(evt) => {
+                  evt.preventDefault();
+                  onTabClick(tabName);
+                }}
               >
-                {toCapitalWord(tabName)}
+                {tabName}
               </a>
             </li>
           ))}

@@ -4,6 +4,13 @@ import {Genre, Screen, Tab} from "./utils/const.js";
 
 export const screen = pt.oneOf(Object.values(Screen)).isRequired;
 
+export const genre = pt.oneOf(Object.values(Genre)).isRequired;
+
+export const rating = pt.shape({
+  value: pt.number.isRequired,
+  votesCount: pt.number.isRequired,
+}).isRequired;
+
 export const image = pt.shape({
   preview: pt.string.isRequired,
   background: pt.string.isRequired,
@@ -15,29 +22,24 @@ export const movie = pt.shape({
   full: pt.string.isRequired,
 }).isRequired;
 
-export const rating = pt.shape({
-  value: pt.number.isRequired,
-  votesCount: pt.number.isRequired,
-}).isRequired;
-
 export const film = pt.shape({
   id: pt.oneOfType([
     pt.string.isRequired,
     pt.number.isRequired
   ]).isRequired,
 
+  genre,
+  rating,
+  image,
+  movie,
+
   filmTitle: pt.string.isRequired,
   release: pt.number.isRequired,
   runtime: pt.number.isRequired,
-  genre: pt.oneOf(Object.values(Genre)).isRequired,
   description: pt.string.isRequired,
   director: pt.string.isRequired,
   starring: pt.arrayOf(pt.string).isRequired,
   isFavorite: pt.bool.isRequired,
-
-  image,
-  movie,
-  rating,
 }).isRequired;
 
 export const currentFilm = pt.oneOfType(film, pt.oneOf([null]).isRequired).isRequired;
@@ -66,9 +68,10 @@ export const func = pt.func.isRequired;
 
 export default {
   screen,
+  genre,
+  rating,
   image,
   movie,
-  rating,
   film,
   currentFilm,
   films,

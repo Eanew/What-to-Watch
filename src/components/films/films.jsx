@@ -13,15 +13,17 @@ const Films = (props) => {
     onFilmCardClick,
   } = props;
 
+  const renderFilmCard = (film) => (
+    <FilmCardWrapped
+      key={film.filmTitle + film.id}
+      film={film}
+      onFilmCardClick={onFilmCardClick}
+    />
+  );
+
   return (
     <div className="catalog__movies-list">
-      {films.map((film) => (
-        <FilmCardWrapped
-          key={film.filmTitle + film.id}
-          film={film}
-          onFilmCardClick={onFilmCardClick}
-        />
-      ))}
+      {films.map((film) => renderFilmCard(film))}
     </div>
   );
 };

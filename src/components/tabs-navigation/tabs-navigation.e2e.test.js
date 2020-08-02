@@ -24,14 +24,9 @@ describe(`Tabs navigation`, () => {
 
     const tabsLinks = tabs.find(`.movie-nav__link`);
 
-    tabsLinks.forEach((link, i) => {
+    tabsLinks.forEach((link) => {
       link.simulate(`click`, {
         preventDefault,
-        target: {
-          dataset: {
-            tab: Object.values(Tab)[i],
-          },
-        },
       });
     });
 

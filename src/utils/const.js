@@ -4,9 +4,9 @@ export const Screen = {
 };
 
 export const Tab = {
-  OVERVIEW: `overview`,
-  DETAILS: `details`,
-  REVIEWS: `reviews`,
+  OVERVIEW: `Overview`,
+  DETAILS: `Details`,
+  REVIEWS: `Reviews`,
 };
 
 export const Genre = {
@@ -20,17 +20,4 @@ export const Genre = {
   ROMANCE: `Romance`,
   SCI_FI: `Sci-Fi`,
   THRILLER: `Thriller`,
-};
-
-export const GenreTabName = {
-  [Genre.ALL]: `All genres`,
-  [Genre.COMEDY]: `Comedies`,
-  [Genre.CRIME]: `Crime`,
-  [Genre.DOCUMENTARY]: `Documentary`,
-  [Genre.DRAMA]: `Dramas`,
-  [Genre.HORROR]: `Horror`,
-  [Genre.FAMILY]: `Kids & Family`,
-  [Genre.ROMANCE]: `Romance`,
-  [Genre.SCI_FI]: `Sci-Fi`,
-  [Genre.THRILLER]: `Thrillers`,
 };
