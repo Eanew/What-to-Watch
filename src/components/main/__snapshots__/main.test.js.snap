@@ -200,7 +200,6 @@ Array [
             className="small-movie-card__image"
           >
             <video
-              autoPlay={false}
               controls={false}
               height="175"
               loop={true}
@@ -236,7 +235,6 @@ Array [
             className="small-movie-card__image"
           >
             <video
-              autoPlay={false}
               controls={false}
               height="175"
               loop={true}
@@ -272,7 +270,6 @@ Array [
             className="small-movie-card__image"
           >
             <video
-              autoPlay={false}
               controls={false}
               height="175"
               loop={true}

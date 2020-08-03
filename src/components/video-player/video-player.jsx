@@ -29,7 +29,6 @@ export default class VideoPlayer extends React.PureComponent {
         ref={this._videoRef}
         poster={poster}
         controls={false}
-        autoPlay={false}
         muted={true}
         loop={true}
         onPlay={this._handleVideoPlay}
