@@ -29,7 +29,7 @@ const generateFilms = () => getRandomItems(filmsTitles, getRandomCount(3, filmsT
   filmTitle,
   release: getRandomCount(1950, 2020),
   runtime: getRandomCount(30, 160),
-  genre: getRandomItems(Object.values(Genre), 1)[0],
+  genre: getRandomItems(Object.values(Genre.slice(1)))[0],
   rating: {
     value: getRandomCount(0, 100) / 10,
     votesCount: getRandomCount(1, 2000),
