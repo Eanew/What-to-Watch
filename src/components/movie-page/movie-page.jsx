@@ -26,7 +26,7 @@ const MoviePage = (props) => {
   } = film;
 
   const similarFilms = films.sort((first, second) => second.rating.value - first.rating.value)
-    .filter((movie) => movie.genre === film.genre).slice(0, MOVIE_PAGE_FILMS_TO_DISPLAY);
+    .filter((movie) => (movie.genre === film.genre) && (movie !== film)).slice(0, MOVIE_PAGE_FILMS_TO_DISPLAY);
 
   return (
     <React.Fragment>
@@ -142,14 +142,16 @@ const MoviePage = (props) => {
       </section>
 
       <div className="page-content">
-        <section className="catalog catalog--like-this">
-          <h2 className="catalog__title">More like this</h2>
+        {(similarFilms && similarFilms.length !== 0) && (
+          <section className="catalog catalog--like-this">
+            <h2 className="catalog__title">More like this</h2>
 
-          <Films
-            films={similarFilms}
-            onFilmCardClick={onFilmCardClick}
-          />
-        </section>
+            <Films
+              films={similarFilms}
+              onFilmCardClick={onFilmCardClick}
+            />
+          </section>
+        )}
 
         <footer className="page-footer">
           <div className="logo">

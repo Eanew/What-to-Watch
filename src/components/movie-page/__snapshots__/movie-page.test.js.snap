@@ -273,7 +273,6 @@ Array [
               >
                 <a
                   className="movie-nav__link"
-                  data-tab="overview"
                   href="#"
                   onClick={[Function]}
                 >
@@ -285,7 +284,6 @@ Array [
               >
                 <a
                   className="movie-nav__link"
-                  data-tab="details"
                   href="#"
                   onClick={[Function]}
                 >
@@ -297,7 +295,6 @@ Array [
               >
                 <a
                   className="movie-nav__link"
-                  data-tab="reviews"
                   href="#"
                   onClick={[Function]}
                 >
@@ -360,18 +357,6 @@ Array [
   <div
     className="page-content"
   >
-    <section
-      className="catalog catalog--like-this"
-    >
-      <h2
-        className="catalog__title"
-      >
-        More like this
-      </h2>
-      <div
-        className="catalog__movies-list"
-      />
-    </section>
     <footer
       className="page-footer"
     >

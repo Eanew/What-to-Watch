@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {App} from "./app.jsx";
 
-import {Screen} from "../../utils/const.js";
+import {Screen, Genre} from "../../utils/const.js";
 
 import {film, films, reviews} from "../../mocks/test-mock.js";
 
@@ -12,11 +12,13 @@ describe(`AppComponent`, () => {
     const tree = renderer.create(
         <App
           screen={Screen.MAIN}
-          currentFilm={null}
           promo={film}
           films={films}
+          currentGenre={Genre.ALL}
+          filteredFilms={films}
           reviews={reviews}
           onFilmCardClick={() => {}}
+          onGenreTabClick={() => {}}
         />, {
           createNodeMock: () => {
             return {};
@@ -34,8 +36,11 @@ describe(`AppComponent`, () => {
           currentFilm={film}
           promo={film}
           films={films}
+          currentGenre={Genre.ALL}
+          filteredFilms={films}
           reviews={reviews}
           onFilmCardClick={() => {}}
+          onGenreTabClick={() => {}}
         />, {
           createNodeMock: () => {
             return {};

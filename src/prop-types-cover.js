@@ -42,7 +42,25 @@ export const film = pt.shape({
   isFavorite: pt.bool.isRequired,
 }).isRequired;
 
-export const currentFilm = pt.oneOfType(film, pt.oneOf([null]).isRequired).isRequired;
+export const currentFilm = pt.shape({
+  id: pt.oneOfType([
+    pt.string.isRequired,
+    pt.number.isRequired
+  ]).isRequired,
+
+  genre,
+  rating,
+  image,
+  movie,
+
+  filmTitle: pt.string.isRequired,
+  release: pt.number.isRequired,
+  runtime: pt.number.isRequired,
+  description: pt.string.isRequired,
+  director: pt.string.isRequired,
+  starring: pt.arrayOf(pt.string).isRequired,
+  isFavorite: pt.bool.isRequired,
+});
 
 export const films = pt.arrayOf(film).isRequired;
 

@@ -8,7 +8,6 @@ describe(`Reducer`, () => {
   it(`Should returns initial state by default`, () => {
     expect(reducer(void 0, {})).toMatchObject({
       screen: Screen.MAIN,
-      currentFilm: null,
       genre: Genre.ALL,
     });
   });
@@ -16,7 +15,6 @@ describe(`Reducer`, () => {
   it(`Should set current film to a given value`, () => {
     expect(reducer({
       screen: Screen.MAIN,
-      currentFilm: null,
     }, {
       type: ActionType.SET_MOVIE_PAGE_SCREEN,
       payload: films[0],
@@ -42,12 +40,10 @@ describe(`Reducer`, () => {
   it(`Should set main screen`, () => {
     expect(reducer({
       screen: Screen.MOVIE_PAGE,
-      currentFilm: films[0],
     }, {
       type: ActionType.SET_MAIN_PAGE_SCREEN,
     })).toEqual({
       screen: Screen.MAIN,
-      currentFilm: null,
     });
   });
 

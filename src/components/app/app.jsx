@@ -42,10 +42,13 @@ class App extends React.PureComponent {
     const {
       promo,
       films,
+      currentGenre,
+      filteredFilms,
       reviews,
       screen,
       currentFilm,
       onFilmCardClick,
+      onGenreTabClick,
     } = this.props;
 
     switch (screen) {
@@ -54,7 +57,10 @@ class App extends React.PureComponent {
           <Main
             promo={promo}
             films={films}
+            currentGenre={currentGenre}
+            filteredFilms={filteredFilms}
             onFilmCardClick={onFilmCardClick}
+            onGenreTabClick={onGenreTabClick}
           />
         );
 
@@ -79,8 +85,11 @@ App.propTypes = {
   currentFilm: pt.currentFilm,
   promo: pt.film,
   films: pt.films,
+  currentGenre: pt.genre,
+  filteredFilms: pt.films,
   reviews: pt.reviews,
   onFilmCardClick: pt.func,
+  onGenreTabClick: pt.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -88,12 +97,17 @@ const mapStateToProps = (state) => ({
   currentFilm: state.currentFilm,
   promo: state.promo,
   films: state.films,
+  currentGenre: state.genre,
+  filteredFilms: state.filteredFilms,
   reviews: state.reviews,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onFilmCardClick(film) {
     dispatch(ActionCreator.setMoviePageScreen(film));
+  },
+  onGenreTabClick(genre) {
+    dispatch(ActionCreator.switchGenre(genre));
   },
 });
 

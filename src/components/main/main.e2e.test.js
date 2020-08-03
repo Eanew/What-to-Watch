@@ -3,6 +3,8 @@ import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Main from "./main.jsx";
 
+import {Genre} from "../../utils/const.js";
+
 import {film, films} from "../../mocks/test-mock.js";
 
 Enzyme.configure({
@@ -17,7 +19,10 @@ describe(`Main component`, () => {
       <Main
         promo={film}
         films={films}
+        currentGenre={Genre.ALL}
+        filteredFilms={films}
         onFilmCardClick={handleFilmCardClick}
+        onGenreTabClick={() => {}}
       />
   );
 

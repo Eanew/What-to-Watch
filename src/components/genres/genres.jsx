@@ -1,11 +1,11 @@
 import React from "react";
 
-import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer.js";
-
 import pt from "../../prop-types-cover.js";
 
 import {Genre} from "../../utils/const.js";
+import {mapGenreToTab} from "../../utils/genre.js";
+
+import {MAX_GENRES_IN_GENRES_LIST} from "../../config.js";
 
 const Genres = (props) => {
   const {
@@ -16,23 +16,7 @@ const Genres = (props) => {
 
   const genresList = films.reduce((genres, film) => {
     return [...genres.filter((genre) => genre !== film.genre), film.genre];
-  }, [Genre.ALL]).sort();
-
-  const mapGenreToTab = (genre) => {
-    switch (genre) {
-      case Genre.COMEDY: return `Comedies`;
-      case Genre.CRIME: return `Crime`;
-      case Genre.DOCUMENTARY: return `Documentary`;
-      case Genre.DRAMA: return `Dramas`;
-      case Genre.HORROR: return `Horror`;
-      case Genre.FAMILY: return `Kids & Family`;
-      case Genre.ROMANCE: return `Romance`;
-      case Genre.SCI_FI: return `Sci-Fi`;
-      case Genre.THRILLER: return `Thrillers`;
-
-      default: return `All genres`;
-    }
-  };
+  }, [Genre.ALL]).sort().slice(0, MAX_GENRES_IN_GENRES_LIST);
 
   return (
     <ul className="catalog__genres-list">
@@ -63,16 +47,4 @@ Genres.propTypes = {
   onGenreTabClick: pt.func,
 };
 
-const mapStateToProps = (state) => ({
-  films: state.films,
-  currentGenre: state.genre,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onGenreTabClick(genre) {
-    dispatch(ActionCreator.switchGenre(genre));
-  },
-});
-
-export {Genres};
-export default connect(mapStateToProps, mapDispatchToProps)(Genres);
+export default Genres;

@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 
 import {films} from "../../mocks/test-mock.js";
 
-import {Genres} from "./genres.jsx";
+import Genres from "./genres.jsx";
 
 it(`Should GenresComponent render correctly`, () => {
   const tree = renderer.create(
