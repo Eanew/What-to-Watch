@@ -20,9 +20,10 @@ describe(`Main component`, () => {
         promo={film}
         films={films}
         currentGenre={Genre.ALL}
-        filteredFilms={films}
+        displayedFilms={films}
         onFilmCardClick={handleFilmCardClick}
         onGenreTabClick={() => {}}
+        onShowMoreButtonClick={() => {}}
       />
   );
 

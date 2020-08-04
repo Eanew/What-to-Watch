@@ -1,4 +1,5 @@
 import {Screen, Genre} from "./utils/const.js";
+import {MAIN_PAGE_FILMS_DISPLAY_STEP} from "./config.js";
 
 import {reducer, ActionType, ActionCreator} from "./reducer.js";
 
@@ -51,14 +52,14 @@ describe(`Reducer`, () => {
     expect(reducer({
       genre: `All`,
       films,
-      filteredFilms: films,
+      displayedFilms: films,
     }, {
       type: ActionType.SWITCH_GENRE,
       payload: `Drama`,
     })).toEqual({
       genre: `Drama`,
       films,
-      filteredFilms: films.filter((film) => film.genre === `Drama`),
+      displayedFilms: films.filter((film) => film.genre === `Drama`).slice(0, MAIN_PAGE_FILMS_DISPLAY_STEP),
     });
   });
 
@@ -66,14 +67,28 @@ describe(`Reducer`, () => {
     expect(reducer({
       genre: `Drama`,
       films,
-      filteredFilms: films.filter((film) => film.genre === `Drama`),
+      displayedFilms: films.filter((film) => film.genre === `Drama`),
     }, {
       type: ActionType.SWITCH_GENRE,
       payload: `All`,
     })).toEqual({
       genre: `All`,
       films,
-      filteredFilms: films,
+      displayedFilms: films.slice(0, MAIN_PAGE_FILMS_DISPLAY_STEP),
+    });
+  });
+
+  it(`Should show more films by current genre`, () => {
+    expect(reducer({
+      genre: `Drama`,
+      films,
+      displayedFilms: films.filter((film) => film.genre === `Drama`).slice(0, MAIN_PAGE_FILMS_DISPLAY_STEP),
+    }, {
+      type: ActionType.SHOW_MORE_FILMS,
+    })).toEqual({
+      genre: `Drama`,
+      films,
+      displayedFilms: films.filter((film) => film.genre === `Drama`).slice(0, MAIN_PAGE_FILMS_DISPLAY_STEP * 2),
     });
   });
 });
@@ -96,6 +111,12 @@ describe(`Action creators`, () => {
     expect(ActionCreator.switchGenre(Genre.COMEDY)).toEqual({
       type: ActionType.SWITCH_GENRE,
       payload: Genre.COMEDY,
+    });
+  });
+
+  it(`Should showMoreFilms method returns correct action`, () => {
+    expect(ActionCreator.showMoreFilms()).toEqual({
+      type: ActionType.SHOW_MORE_FILMS,
     });
   });
 });
