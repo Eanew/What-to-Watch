@@ -15,7 +15,7 @@ configure({
   adapter: new Adapter(),
 });
 
-describe(`Video preview`, () => {
+describe(`With video preview`, () => {
 
   it(`Should not playing before timeout is passed`, () => {
     const filmCard = mount(
@@ -40,7 +40,7 @@ describe(`Video preview`, () => {
     window.setTimeout(() => expect(playEventMock).toHaveBeenCalledTimes(0), PREVIEW_PLAY_TIMEOUT * 2);
   });
 
-  it(`Should start playing after timeout is passed and then loading on mouseleave`, () => {
+  it(`Should start playing after timeout is passed and then start loading on mouseleave`, () => {
     const filmCard = mount(
         <FilmCardWrapped
           onFilmCardClick={() => {}}

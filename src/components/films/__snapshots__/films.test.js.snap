@@ -18,8 +18,6 @@ exports[`Should FilmsComponent render correctly 1`] = `
         height="175"
         loop={true}
         muted={true}
-        onEmptied={[Function]}
-        onPlay={[Function]}
         poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
         width="280"
       >
@@ -53,8 +51,6 @@ exports[`Should FilmsComponent render correctly 1`] = `
         height="175"
         loop={true}
         muted={true}
-        onEmptied={[Function]}
-        onPlay={[Function]}
         poster="img/bohemian-rhapsody.jpg"
         width="280"
       >
@@ -88,8 +84,6 @@ exports[`Should FilmsComponent render correctly 1`] = `
         height="175"
         loop={true}
         muted={true}
-        onEmptied={[Function]}
-        onPlay={[Function]}
         poster="img/macbeth.jpg"
         width="280"
       >
