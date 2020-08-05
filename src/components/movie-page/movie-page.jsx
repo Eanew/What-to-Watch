@@ -6,7 +6,7 @@ import {MOVIE_PAGE_FILMS_TO_DISPLAY} from "../../config.js";
 
 import Films from "../films/films.jsx";
 import TabsNavigation from "../tabs-navigation/tabs-navigation.jsx";
-import withTabs from "../../hocs/with-tabs.js";
+import withTabs from "../../hocs/with-tabs/with-tabs.js";
 
 const TabsNavigationWrapped = withTabs(TabsNavigation);
 

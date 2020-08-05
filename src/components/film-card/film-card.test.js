@@ -11,8 +11,9 @@ it(`Should FilmCardComponent render correctly`, () => {
         onFilmCardClick={() => {}}
         onMouseEnter={() => {}}
         onMouseLeave={() => {}}
-        renderPlayer={() => {}}
-      />
+      >
+        <video src=""></video>
+      </FilmCard>
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

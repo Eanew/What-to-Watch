@@ -20,8 +20,9 @@ describe(`Film card`, () => {
         onFilmCardClick={handleFilmCardClick}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        renderPlayer={() => {}}
-      />
+      >
+        <video src=""></video>
+      </FilmCard>
   );
 
   it(`Should film card click returns film card data`, () => {
