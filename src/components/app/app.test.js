@@ -15,10 +15,11 @@ describe(`AppComponent`, () => {
           promo={film}
           films={films}
           currentGenre={Genre.ALL}
-          filteredFilms={films}
+          displayedFilms={films}
           reviews={reviews}
           onFilmCardClick={() => {}}
           onGenreTabClick={() => {}}
+          onShowMoreButtonClick={() => {}}
         />, {
           createNodeMock: () => {
             return {};
@@ -37,7 +38,7 @@ describe(`AppComponent`, () => {
           promo={film}
           films={films}
           currentGenre={Genre.ALL}
-          filteredFilms={films}
+          displayedFilms={films}
           reviews={reviews}
           onFilmCardClick={() => {}}
           onGenreTabClick={() => {}}

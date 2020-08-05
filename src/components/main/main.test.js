@@ -12,9 +12,10 @@ it(`Should MainComponent render correctly`, () => {
         promo={film}
         films={films}
         currentGenre={Genre.ALL}
-        filteredFilms={films}
+        displayedFilms={films}
         onFilmCardClick={() => {}}
         onGenreTabClick={() => {}}
+        onShowMoreButtonClick={() => {}}
       />
   ).toJSON();
 

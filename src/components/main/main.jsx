@@ -3,23 +3,24 @@ import React from "react";
 import pt from "../../prop-types-cover.js";
 
 import {toKebabCase} from "../../utils/common.js";
+import {getFilmsByGenre} from "../../utils/genre.js";
 
-import {MAIN_PAGE_FILMS_DISPLAY_STEP} from "../../config.js";
-
-import Films from "../films/films.jsx";
 import Genres from "../genres/genres.jsx";
+import Films from "../films/films.jsx";
+import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 
 const Main = (props) => {
   const {
     promo,
     films,
     currentGenre,
-    filteredFilms,
+    displayedFilms,
     onFilmCardClick,
     onGenreTabClick,
+    onShowMoreButtonClick,
   } = props;
 
-  const filmsToDisplay = filteredFilms.slice(0, MAIN_PAGE_FILMS_DISPLAY_STEP);
+  const isShowMoreButtonDisplayed = displayedFilms.length < getFilmsByGenre(films, currentGenre).length;
 
   return (
     <React.Fragment>
@@ -102,13 +103,16 @@ const Main = (props) => {
           />
 
           <Films
-            films={filmsToDisplay}
+            films={displayedFilms}
             onFilmCardClick={onFilmCardClick}
           />
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          {isShowMoreButtonDisplayed && (
+            <ShowMoreButton
+              onClick={onShowMoreButtonClick}
+            />
+          )}
+
         </section>
 
         <footer className="page-footer">
@@ -133,9 +137,10 @@ Main.propTypes = {
   promo: pt.film,
   films: pt.films,
   currentGenre: pt.genre,
-  filteredFilms: pt.films,
+  displayedFilms: pt.films,
   onFilmCardClick: pt.func,
   onGenreTabClick: pt.func,
+  onShowMoreButtonClick: pt.func,
 };
 
 export default Main;
