@@ -8,14 +8,8 @@ const FilmCard = (props) => {
     onFilmCardClick,
     onMouseEnter,
     onMouseLeave,
-    renderPlayer,
+    children,
   } = props;
-
-  const {
-    filmTitle,
-    image,
-    movie,
-  } = film;
 
   const handleFilmCardClick = () => {
     onFilmCardClick(film);
@@ -29,12 +23,12 @@ const FilmCard = (props) => {
       onClick={handleFilmCardClick}
     >
       <div className="small-movie-card__image">
-        {renderPlayer(movie.preview, image.preview)}
+        {children}
       </div>
 
       <h3 className="small-movie-card__title">
         <a className="small-movie-card__link">
-          {filmTitle}
+          {film.filmTitle}
         </a>
       </h3>
     </article>
@@ -46,7 +40,7 @@ FilmCard.propTypes = {
   onMouseEnter: pt.func,
   onMouseLeave: pt.func,
   onFilmCardClick: pt.func,
-  renderPlayer: pt.func,
+  children: pt.children,
 };
 
 export default FilmCard;

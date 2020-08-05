@@ -6,6 +6,12 @@ export const string = pt.string.isRequired;
 export const number = pt.number.isRequired;
 export const bool = pt.bool.isRequired;
 export const func = pt.func.isRequired;
+export const node = pt.node.isRequired;
+
+export const children = pt.oneOfType([
+  pt.arrayOf(node).isRequired,
+  node
+]).isRequired;
 
 export const screen = pt.oneOf(Object.values(Screen)).isRequired;
 
@@ -71,6 +77,8 @@ export default {
   number,
   bool,
   func,
+  node,
+  children,
 
   screen,
   genre,

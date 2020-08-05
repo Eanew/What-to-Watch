@@ -1,12 +1,12 @@
 import React from "react";
 
-import pt from "../prop-types-cover.js";
+import pt from "../../prop-types-cover.js";
 
-import {Tab} from "../utils/const.js";
+import {Tab} from "../../utils/const.js";
 
-import Overview from "../components/overview/overview.jsx";
-import Details from "../components/details/details.jsx";
-import Reviews from "../components/reviews/reviews.jsx";
+import Overview from "../../components/overview/overview.jsx";
+import Details from "../../components/details/details.jsx";
+import Reviews from "../../components/reviews/reviews.jsx";
 
 const withTabs = (Component) => {
   class WithTabs extends React.PureComponent {
