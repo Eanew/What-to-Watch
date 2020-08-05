@@ -14,7 +14,6 @@ exports[`Should FilmsComponent render correctly 1`] = `
       className="small-movie-card__image"
     >
       <video
-        autoPlay={false}
         controls={false}
         height="175"
         loop={true}
@@ -50,7 +49,6 @@ exports[`Should FilmsComponent render correctly 1`] = `
       className="small-movie-card__image"
     >
       <video
-        autoPlay={false}
         controls={false}
         height="175"
         loop={true}
@@ -86,7 +84,6 @@ exports[`Should FilmsComponent render correctly 1`] = `
       className="small-movie-card__image"
     >
       <video
-        autoPlay={false}
         controls={false}
         height="175"
         loop={true}

@@ -2,7 +2,6 @@
 
 exports[`Should VideoPlayerComponent render correctly 1`] = `
 <video
-  autoPlay={false}
   controls={false}
   height="175"
   loop={true}

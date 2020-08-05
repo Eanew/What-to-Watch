@@ -2,30 +2,24 @@ import React from "react";
 
 import pt from "../../prop-types-cover.js";
 
-import {MAIN_FILMS_DISPLAY_STEP} from "../../config.js";
 import {toKebabCase} from "../../utils/common.js";
 
-import Films from "../films/films.jsx";
+import {MAIN_PAGE_FILMS_DISPLAY_STEP} from "../../config.js";
 
-const GenresNavigation = {
-  ALL: `All genres`,
-  COMEDIES: `Comedies`,
-  CRIME: `Crime`,
-  DOCUMENTARY: `Documentary`,
-  DRAMAS: `Dramas`,
-  HORROR: `Horror`,
-  FAMILY: `Kids & Family`,
-  ROMANCE: `Romance`,
-  SCI_FI: `Sci-Fi`,
-  THRILLERS: `Thrillers`,
-};
+import Films from "../films/films.jsx";
+import Genres from "../genres/genres.jsx";
 
 const Main = (props) => {
   const {
     promo,
     films,
+    currentGenre,
+    filteredFilms,
     onFilmCardClick,
+    onGenreTabClick,
   } = props;
+
+  const filmsToDisplay = filteredFilms.slice(0, MAIN_PAGE_FILMS_DISPLAY_STEP);
 
   return (
     <React.Fragment>
@@ -101,24 +95,14 @@ const Main = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <ul className="catalog__genres-list">
-            {Object.values(GenresNavigation).map((it, i) => (
-              <li
-                key={it + i}
-                className={`catalog__genres-item${i === 0 ? ` catalog__genres-item--active` : ``}`}
-              >
-                <a
-                  href="#"
-                  className="catalog__genres-link"
-                >
-                  {it}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <Genres
+            films={films}
+            currentGenre={currentGenre}
+            onGenreTabClick={onGenreTabClick}
+          />
 
           <Films
-            films={films.slice(0, MAIN_FILMS_DISPLAY_STEP)}
+            films={filmsToDisplay}
             onFilmCardClick={onFilmCardClick}
           />
 
@@ -146,9 +130,12 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  promo: pt.promo,
+  promo: pt.film,
   films: pt.films,
+  currentGenre: pt.genre,
+  filteredFilms: pt.films,
   onFilmCardClick: pt.func,
+  onGenreTabClick: pt.func,
 };
 
 export default Main;

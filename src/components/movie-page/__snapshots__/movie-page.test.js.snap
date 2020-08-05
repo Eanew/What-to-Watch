@@ -188,7 +188,7 @@ Array [
             <span
               className="movie-card__genre"
             >
-              Comedy
+              Sci-Fi
             </span>
             <span
               className="movie-card__year"
@@ -273,7 +273,6 @@ Array [
               >
                 <a
                   className="movie-nav__link"
-                  data-tab="overview"
                   href="#"
                   onClick={[Function]}
                 >
@@ -285,7 +284,6 @@ Array [
               >
                 <a
                   className="movie-nav__link"
-                  data-tab="details"
                   href="#"
                   onClick={[Function]}
                 >
@@ -297,7 +295,6 @@ Array [
               >
                 <a
                   className="movie-nav__link"
-                  data-tab="reviews"
                   href="#"
                   onClick={[Function]}
                 >
@@ -360,55 +357,6 @@ Array [
   <div
     className="page-content"
   >
-    <section
-      className="catalog catalog--like-this"
-    >
-      <h2
-        className="catalog__title"
-      >
-        More like this
-      </h2>
-      <div
-        className="catalog__movies-list"
-      >
-        <article
-          className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <video
-              autoPlay={false}
-              controls={false}
-              height="175"
-              loop={true}
-              muted={true}
-              onEmptied={[Function]}
-              onPlay={[Function]}
-              poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-              width="280"
-            >
-              <source
-                src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
-                type="video/mp4"
-              />
-            </video>
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-            >
-              Fantastic Beasts: The Crimes of Grindelwald
-            </a>
-          </h3>
-        </article>
-      </div>
-    </section>
     <footer
       className="page-footer"
     >

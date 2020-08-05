@@ -19,8 +19,6 @@ export const Key = {
   ENTER: `Enter`,
 };
 
-export const toCapitalWord = (word) => word[0].toUpperCase() + word.slice(1);
-
 export const toKebabCase = (defaultString) => defaultString
   .toLowerCase()
   .trim()
@@ -33,3 +31,5 @@ export const toDateTimeAttribute = (iso) => {
 
   return `${date.getFullYear()}-${toTwoDigit(date.getMonth() + 1)}-${toTwoDigit(date.getDate())}`;
 };
+
+export const extend = (a, b) => Object.assign({}, a, b);

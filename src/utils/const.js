@@ -1,21 +1,23 @@
 export const Screen = {
   MAIN: `Main`,
-  DETAILS: `Details`,
+  MOVIE_PAGE: `Movie page`,
 };
 
 export const Tab = {
-  OVERVIEW: `overview`,
-  DETAILS: `details`,
-  REVIEWS: `reviews`,
+  OVERVIEW: `Overview`,
+  DETAILS: `Details`,
+  REVIEWS: `Reviews`,
 };
 
-export const APPROVED_GENRES = [
-  `Comedy`,
-  `Crime`,
-  `Documentary`,
-  `Drama`,
-  `Horror`,
-  `Kids & Family`,
-  `Romance`,
-  `Sci-Fi`,
-  `Thriller`];
+export const Genre = {
+  ALL: `All`,
+  COMEDY: `Comedy`,
+  CRIME: `Crime`,
+  DOCUMENTARY: `Documentary`,
+  DRAMA: `Drama`,
+  HORROR: `Horror`,
+  FAMILY: `Kids & Family`,
+  ROMANCE: `Romance`,
+  SCI_FI: `Sci-Fi`,
+  THRILLER: `Thriller`,
+};
