@@ -17,3 +17,19 @@ export const cancelFullScreen = () => {
     document.mozCancelFullScreen();
   }
 };
+
+export const toggleFullScreen = (element) => {
+  if (!document.mozFullScreen && !document.webkitFullscreenElement) {
+    if (element.mozRequestFullScreen) {
+      element.mozRequestFullScreen();
+    } else {
+      element.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+    }
+  } else {
+    if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } else if (document.webkitCancelFullScreen) {
+      document.webkitCancelFullScreen();
+    }
+  }
+};

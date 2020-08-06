@@ -20,6 +20,13 @@ export const Key = {
   ENTER: `Enter`,
 };
 
+export const isEscEvent = (evt, action) => {
+  if (evt.key === Key.ESC) {
+    action();
+  }
+};
+
+
 export const toKebabCase = (defaultString) => defaultString
   .toLowerCase()
   .trim()
@@ -35,8 +42,8 @@ export const toTimeString = (seconds) => {
     : Math.floor(seconds / MINUTE_IN_SECONDS) || null;
 
   const restOfSeconds = minutes
-    ? toTwoDigit(seconds % MINUTE_IN_SECONDS)
-    : seconds % MINUTE_IN_SECONDS;
+    ? toTwoDigit(Math.floor(seconds % MINUTE_IN_SECONDS))
+    : Math.floor(seconds % MINUTE_IN_SECONDS);
 
   return [hours, minutes, restOfSeconds].filter((timeUnit) => timeUnit !== null).join(`:`);
 };
@@ -47,6 +54,6 @@ export const toDateTimeAttribute = (iso) => {
   return `${date.getFullYear()}-${toTwoDigit(date.getMonth() + 1)}-${toTwoDigit(date.getDate())}`;
 };
 
-export const toPercent = (max, current) => (max && !max.isNaN()) ? Math.floor(current / max * 100) : 0;
+export const toPercent = (max, current) => max ? Math.floor(current / max * 100) : 0;
 
 export const extend = (a, b) => Object.assign({}, a, b);

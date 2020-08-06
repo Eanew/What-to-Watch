@@ -2,14 +2,17 @@ import React from "react";
 
 import pt from "../../prop-types-cover.js";
 
+import {VISUALLY_HIDDEN_CLASS} from "../../utils/const.js";
 import {toPercent, toTimeString} from "../../utils/common.js";
 
 const Player = (props) => {
   const {
     filmTitle,
     isPlaying,
+    isControlsHidden,
     duration,
     progress,
+    onMouseMove,
     onPlayButtonClick,
     onFullScreenButtonClick,
     onExitButtonClick,
@@ -17,22 +20,25 @@ const Player = (props) => {
   } = props;
 
   const progressInPercents = toPercent(duration, progress);
-  const progressInTimeString = toTimeString(progress);
+  const timeElapsed = toTimeString(duration - progress);
 
   return (
-    <div className="player">
+    <div
+      onMouseMove={onMouseMove}
+      className="player"
+    >
 
       {children}
 
       <button
         onClick={onExitButtonClick}
+        className={`player__exit${isControlsHidden ? VISUALLY_HIDDEN_CLASS : ``}`}
         type="button"
-        className="player__exit"
       >
         Exit
       </button>
 
-      <div className="player__controls">
+      <div className={`player__controls${isControlsHidden ? VISUALLY_HIDDEN_CLASS : ``}`}>
         <div className="player__controls-row">
           <div className="player__time">
             <progress
@@ -49,7 +55,7 @@ const Player = (props) => {
             </div>
           </div>
           <div className="player__time-value">
-            {progressInTimeString}
+            {timeElapsed}
           </div>
         </div>
 
@@ -98,8 +104,10 @@ const Player = (props) => {
 Player.propTypes = {
   filmTitle: pt.string,
   isPlaying: pt.bool,
+  isControlsHidden: pt.bool,
   duration: pt.number,
   progress: pt.number,
+  onMouseMove: pt.func,
   onPlayButtonClick: pt.func,
   onFullScreenButtonClick: pt.func,
   onExitButtonClick: pt.func,
