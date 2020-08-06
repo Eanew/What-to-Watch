@@ -8,8 +8,9 @@ import reviews from "./mocks/reviews.js";
 
 const initialState = {
   screen: Screen.MAIN,
+  lastScreen: Screen.MAIN,
+  currentFilm: films[0],
   genre: Genre.ALL,
-  promo: films[0],
   films,
   displayedFilms: films.slice(0, MAIN_PAGE_FILMS_DISPLAY_STEP),
   reviews,
@@ -18,18 +19,24 @@ const initialState = {
 export const ActionType = {
   SET_MAIN_PAGE_SCREEN: `SET_MAIN_PAGE_SCREEN`,
   SET_MOVIE_PAGE_SCREEN: `SET_MOVIE_PAGE_SCREEN`,
+  SET_PLAYER_SCREEN: `SET_PLAYER_SCREEN`,
   SWITCH_GENRE: `SWITCH_GENRE`,
   SHOW_MORE_FILMS: `SHOW_MORE_FILMS`,
 };
 
 export const ActionCreator = {
-  setMainPageScreen: () => ({
+  setMainPageScreen: (promo) => ({
     type: ActionType.SET_MAIN_PAGE_SCREEN,
+    payload: promo,
   }),
 
   setMoviePageScreen: (currentFilm) => ({
     type: ActionType.SET_MOVIE_PAGE_SCREEN,
     payload: currentFilm,
+  }),
+
+  setPlayerScreen: () => ({
+    type: ActionType.SET_PLAYER_SCREEN,
   }),
 
   switchGenre: (genre) => ({
@@ -47,12 +54,20 @@ export const reducer = (state = initialState, action) => {
     case ActionType.SET_MAIN_PAGE_SCREEN:
       return extend(state, {
         screen: Screen.MAIN,
+        lastScreen: Screen.MAIN,
+        currentFilm: action.payload || state.currentFilm,
       });
 
     case ActionType.SET_MOVIE_PAGE_SCREEN:
       return extend(state, {
         screen: Screen.MOVIE_PAGE,
-        currentFilm: action.payload,
+        lastScreen: Screen.MOVIE_PAGE,
+        currentFilm: action.payload || state.currentFilm,
+      });
+
+    case ActionType.SET_PLAYER_SCREEN:
+      return extend(state, {
+        screen: Screen.PLAYER,
       });
 
     case ActionType.SWITCH_GENRE:

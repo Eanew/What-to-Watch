@@ -2,6 +2,8 @@ import React from "react";
 
 import pt from "../../prop-types-cover.js";
 
+import {toFullScreen, cancelFullScreen} from "../../utils/full-screen.js";
+
 const withFullVideo = (Component) => {
   class WithFullVideo extends React.PureComponent {
     constructor(props) {
@@ -36,7 +38,7 @@ const withFullVideo = (Component) => {
         <Component
           filmTitle={filmTitle}
           isPlaying={isPlaying}
-          duration={this._videoRef.current.duration}
+          duration={NaN}
           progress={progress}
           onPlayButtonClick={this._handlePlayButtonClick}
           onFullScreenButtonClick={this._handleFullScreenButtonClick}
@@ -62,12 +64,16 @@ const withFullVideo = (Component) => {
     componentDidUpdate() {
       const video = this._videoRef.current;
 
-      video.playsInline = !this.state.isFullScreen;
-
       if (this.state.isPlaying) {
         video.play();
       } else {
         video.pause();
+      }
+
+      if (this.state.isFullScreen) {
+        toFullScreen(video);
+      } else {
+        cancelFullScreen();
       }
     }
 

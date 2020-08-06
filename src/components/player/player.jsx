@@ -43,7 +43,7 @@ const Player = (props) => {
 
             <div
               className="player__toggler"
-              style={`left: ${progressInPercents}%;`}
+              style={{left: `${progressInPercents}%`}}
             >
               Toggler
             </div>
@@ -61,18 +61,18 @@ const Player = (props) => {
           >
             {isPlaying
               ? (
-                <svg viewBox="0 0 19 19" width="19" height="19">
-                  <use xlinkHref="#play-s"></use>
-                </svg>
-              ) : (
                 <svg viewBox="0 0 14 21" width="14" height="21">
                   <use xlinkHref="#pause"></use>
+                </svg>
+              ) : (
+                <svg viewBox="0 0 19 19" width="19" height="19">
+                  <use xlinkHref="#play-s"></use>
                 </svg>
               )
             }
 
             <span>
-              {isPlaying ? `Play` : `Pause`}
+              {isPlaying ? `Pause` : `Play`}
             </span>
           </button>
           <div className="player__name">

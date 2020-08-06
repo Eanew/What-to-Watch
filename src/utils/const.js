@@ -1,6 +1,7 @@
 export const Screen = {
   MAIN: `Main`,
   MOVIE_PAGE: `Movie page`,
+  PLAYER: `Player`,
 };
 
 export const Tab = {
