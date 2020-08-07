@@ -6,16 +6,15 @@ import {MOVIE_PAGE_FILMS_TO_DISPLAY} from "../../config.js";
 
 import Films from "../films/films.jsx";
 import TabsNavigation from "../tabs-navigation/tabs-navigation.jsx";
-import withTabs from "../../hocs/with-tabs/with-tabs.js";
-
-const TabsNavigationWrapped = withTabs(TabsNavigation);
 
 const MoviePage = (props) => {
   const {
     film,
-    reviews,
+    currentTab,
     films,
     onPlayButtonClick,
+    onTabClick,
+    renderTab,
     onFilmCardClick,
   } = props;
 
@@ -107,10 +106,12 @@ const MoviePage = (props) => {
 
             <div className="movie-card__desc">
 
-              <TabsNavigationWrapped
-                film={film}
-                reviews={reviews}
+              <TabsNavigation
+                currentTab={currentTab}
+                onTabClick={onTabClick}
               />
+
+              {renderTab(currentTab)}
 
             </div>
           </div>
@@ -149,9 +150,11 @@ const MoviePage = (props) => {
 
 MoviePage.propTypes = {
   film: pt.film,
-  reviews: pt.reviews,
+  currentTab: pt.currentTab,
   films: pt.films,
   onPlayButtonClick: pt.func,
+  onTabClick: pt.func,
+  renderTab: pt.func,
   onFilmCardClick: pt.func,
 };
 

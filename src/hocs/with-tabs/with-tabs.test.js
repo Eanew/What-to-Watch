@@ -1,18 +1,22 @@
 import React from "react";
 import renderer from "react-test-renderer";
 
-import TabsNavigation from "../../components/tabs-navigation/tabs-navigation.jsx";
+import MoviePage from "../../components/movie-page/movie-page.jsx";
 import withTabs from "./with-tabs.js";
 
-import {film, reviews} from "../../mocks/test-mock.js";
+import {film, films, reviews} from "../../mocks/test-mock.js";
 
-const TabsNavigationWrapped = withTabs(TabsNavigation);
+const MoviePageWrapped = withTabs(MoviePage);
 
-it(`Should TabsNavigationWrappedComponent render corrently`, () => {
+it(`Should MoviePageWrappedComponent render corrently`, () => {
   const tree = renderer.create(
-      <TabsNavigationWrapped
+      <MoviePageWrapped
         film={film}
         reviews={reviews}
+        films={films}
+        onMoviePageEscPress={() => {}}
+        onPlayButtonClick={() => {}}
+        onFilmCardClick={() => {}}
       />
   ).toJSON();
 

@@ -17,7 +17,6 @@ describe(`Tabs navigation`, () => {
     const tabs = shallow(
         <TabsNavigation
           currentTab={Tab.OVERVIEW}
-          renderTab={() => {}}
           onTabClick={handleTabClick}
         />
     );

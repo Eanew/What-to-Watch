@@ -3,6 +3,7 @@ import React from "react";
 import pt from "../../prop-types-cover.js";
 
 import {Tab} from "../../utils/const.js";
+import {isEscEvent} from "../../utils/common.js";
 
 import Overview from "../../components/overview/overview.jsx";
 import Details from "../../components/details/details.jsx";
@@ -17,18 +18,38 @@ const withTabs = (Component) => {
         currentTab: Tab.OVERVIEW,
       };
 
-      this._renderTab = this._renderTab.bind(this);
+      this._handleEscPress = this._handleEscPress.bind(this);
       this._handleTabClick = this._handleTabClick.bind(this);
+      this._renderTab = this._renderTab.bind(this);
+    }
+
+    componentDidMount() {
+      document.addEventListener(`keydown`, this._handleEscPress);
     }
 
     render() {
       return (
         <Component
+          {...this.props}
           currentTab={this.state.currentTab}
-          renderTab={this._renderTab}
           onTabClick={this._handleTabClick}
+          renderTab={this._renderTab}
         />
       );
+    }
+
+    componentWillUnmount() {
+      document.removeEventListener(`keydown`, this._handleEscPress);
+    }
+
+    _handleEscPress(evt) {
+      isEscEvent(evt, this.props.onMoviePageEscPress);
+    }
+
+    _handleTabClick(tabName) {
+      this.setState({
+        currentTab: tabName,
+      });
     }
 
     _renderTab(tab) {
@@ -80,17 +101,12 @@ const withTabs = (Component) => {
           return null;
       }
     }
-
-    _handleTabClick(tabName) {
-      this.setState({
-        currentTab: tabName,
-      });
-    }
   }
 
   WithTabs.propTypes = {
     film: pt.film,
     reviews: pt.reviews,
+    onMoviePageEscPress: pt.func,
   };
 
   return WithTabs;

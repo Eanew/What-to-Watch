@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should MoviePageComponent render correctly 1`] = `
+exports[`Should MoviePageComponent render Reviews 1`] = `
 Array [
   <section
     className="movie-card movie-card--full"
@@ -162,7 +162,7 @@ Array [
               className="movie-nav__list"
             >
               <li
-                className="movie-nav__item movie-nav__item--active"
+                className="movie-nav__item"
               >
                 <a
                   className="movie-nav__link"
@@ -184,7 +184,7 @@ Array [
                 </a>
               </li>
               <li
-                className="movie-nav__item"
+                className="movie-nav__item movie-nav__item--active"
               >
                 <a
                   className="movie-nav__link"
@@ -197,51 +197,148 @@ Array [
             </ul>
           </nav>
           <div
-            className="movie-rating"
+            className="movie-card__reviews movie-card__row"
           >
             <div
-              className="movie-rating__score"
+              className="movie-card__reviews-col"
             >
-              6,3
+              <div
+                className="review"
+              >
+                <blockquote
+                  className="review__quote"
+                >
+                  <p
+                    className="review__text"
+                  >
+                    Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.
+                  </p>
+                  <footer
+                    className="review__details"
+                  >
+                    <cite
+                      className="review__author"
+                    >
+                      Viktor Savinov
+                    </cite>
+                    <time
+                      className="review__date"
+                      dateTime="2019-05-08"
+                    >
+                      May 08, 2019
+                    </time>
+                  </footer>
+                </blockquote>
+                <div
+                  className="review__rating"
+                >
+                  3,2
+                </div>
+              </div>
+              <div
+                className="review"
+              >
+                <blockquote
+                  className="review__quote"
+                >
+                  <p
+                    className="review__text"
+                  >
+                    Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.
+                  </p>
+                  <footer
+                    className="review__details"
+                  >
+                    <cite
+                      className="review__author"
+                    >
+                      Alexandra Pushina
+                    </cite>
+                    <time
+                      className="review__date"
+                      dateTime="2019-05-08"
+                    >
+                      May 08, 2019
+                    </time>
+                  </footer>
+                </blockquote>
+                <div
+                  className="review__rating"
+                >
+                  4,2
+                </div>
+              </div>
+              <div
+                className="review"
+              >
+                <blockquote
+                  className="review__quote"
+                >
+                  <p
+                    className="review__text"
+                  >
+                    Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.
+                  </p>
+                  <footer
+                    className="review__details"
+                  >
+                    <cite
+                      className="review__author"
+                    >
+                      Julia Kim
+                    </cite>
+                    <time
+                      className="review__date"
+                      dateTime="2019-05-08"
+                    >
+                      May 08, 2019
+                    </time>
+                  </footer>
+                </blockquote>
+                <div
+                  className="review__rating"
+                >
+                  5,2
+                </div>
+              </div>
             </div>
-            <p
-              className="movie-rating__meta"
+            <div
+              className="movie-card__reviews-col"
             >
-              <span
-                className="movie-rating__level"
+              <div
+                className="review"
               >
-                Good
-              </span>
-              <span
-                className="movie-rating__count"
-              >
-                2134 ratings
-              </span>
-            </p>
-          </div>
-          <div
-            className="movie-card__text"
-          >
-            <p>
-              In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege. Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.
-            </p>
-            <p
-              className="movie-card__director"
-            >
-              <strong>
-                Director: 
-                Wes Andreson
-              </strong>
-            </p>
-            <p
-              className="movie-card__starring"
-            >
-              <strong>
-                Starring: 
-                Bill Murray, Edward Norton, Jude Law, Willem Dafoe
-                 and other
-              </strong>
-            </p>
+                <blockquote
+                  className="review__quote"
+                >
+                  <p
+                    className="review__text"
+                  >
+                    Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.
+                  </p>
+                  <footer
+                    className="review__details"
+                  >
+                    <cite
+                      className="review__author"
+                    >
+                      Anton Timoshenkov
+                    </cite>
+                    <time
+                      className="review__date"
+                      dateTime="2019-05-08"
+                    >
+                      May 08, 2019
+                    </time>
+                  </footer>
+                </blockquote>
+                <div
+                  className="review__rating"
+                >
+                  6,2
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

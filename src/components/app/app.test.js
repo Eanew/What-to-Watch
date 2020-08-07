@@ -18,6 +18,7 @@ describe(`AppComponent`, () => {
           currentGenre={Genre.ALL}
           currentFilm={film}
           reviews={reviews}
+          onMoviePageEscPress={() => {}}
           onPlayButtonClick={() => {}}
           onExitButtonClick={() => {}}
           onGenreTabClick={() => {}}
@@ -43,6 +44,7 @@ describe(`AppComponent`, () => {
           currentGenre={Genre.ALL}
           currentFilm={film}
           reviews={reviews}
+          onMoviePageEscPress={() => {}}
           onPlayButtonClick={() => {}}
           onExitButtonClick={() => {}}
           onGenreTabClick={() => {}}
@@ -68,6 +70,7 @@ describe(`AppComponent`, () => {
           currentGenre={Genre.ALL}
           currentFilm={film}
           reviews={reviews}
+          onMoviePageEscPress={() => {}}
           onPlayButtonClick={() => {}}
           onExitButtonClick={() => {}}
           onGenreTabClick={() => {}}
