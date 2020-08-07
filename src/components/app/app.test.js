@@ -12,13 +12,17 @@ describe(`AppComponent`, () => {
     const tree = renderer.create(
         <App
           screen={Screen.MAIN}
-          promo={film}
+          lastScreen={Screen.MAIN}
           films={films}
-          currentGenre={Genre.ALL}
           displayedFilms={films}
+          currentGenre={Genre.ALL}
+          currentFilm={film}
           reviews={reviews}
-          onFilmCardClick={() => {}}
+          onMoviePageEscPress={() => {}}
+          onPlayButtonClick={() => {}}
+          onExitButtonClick={() => {}}
           onGenreTabClick={() => {}}
+          onFilmCardClick={() => {}}
           onShowMoreButtonClick={() => {}}
         />, {
           createNodeMock: () => {
@@ -34,14 +38,44 @@ describe(`AppComponent`, () => {
     const tree = renderer.create(
         <App
           screen={Screen.MOVIE_PAGE}
-          currentFilm={film}
-          promo={film}
+          lastScreen={Screen.MOVIE_PAGE}
           films={films}
-          currentGenre={Genre.ALL}
           displayedFilms={films}
+          currentGenre={Genre.ALL}
+          currentFilm={film}
           reviews={reviews}
-          onFilmCardClick={() => {}}
+          onMoviePageEscPress={() => {}}
+          onPlayButtonClick={() => {}}
+          onExitButtonClick={() => {}}
           onGenreTabClick={() => {}}
+          onFilmCardClick={() => {}}
+          onShowMoreButtonClick={() => {}}
+        />, {
+          createNodeMock: () => {
+            return {};
+          }
+        }
+    ).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`Render player`, () => {
+    const tree = renderer.create(
+        <App
+          screen={Screen.PLAYER}
+          lastScreen={Screen.MOVIE_PAGE}
+          films={films}
+          displayedFilms={films}
+          currentGenre={Genre.ALL}
+          currentFilm={film}
+          reviews={reviews}
+          onMoviePageEscPress={() => {}}
+          onPlayButtonClick={() => {}}
+          onExitButtonClick={() => {}}
+          onGenreTabClick={() => {}}
+          onFilmCardClick={() => {}}
+          onShowMoreButtonClick={() => {}}
         />, {
           createNodeMock: () => {
             return {};

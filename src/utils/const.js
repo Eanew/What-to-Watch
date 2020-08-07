@@ -1,6 +1,9 @@
+export const VISUALLY_HIDDEN_CLASS = ` visually-hidden`;
+
 export const Screen = {
   MAIN: `Main`,
   MOVIE_PAGE: `Movie page`,
+  PLAYER: `Player`,
 };
 
 export const Tab = {

@@ -9,14 +9,25 @@ import pt from "../../prop-types-cover.js";
 import {Screen} from "../../utils/const.js";
 
 import Main from "../main/main.jsx";
+
 import MoviePage from "../movie-page/movie-page.jsx";
+import withTabs from "../../hocs/with-tabs/with-tabs.js";
+
+import Player from "../player/player.jsx";
+import withFullVideo from "../../hocs/with-full-video/with-full-video.js";
+
+const MoviePageWrapped = withTabs(MoviePage);
+const PlayerWrapped = withFullVideo(Player);
 
 class App extends React.PureComponent {
   render() {
     const {
+      currentFilm,
       films,
       reviews,
       onFilmCardClick,
+      onMoviePageEscPress,
+      onPlayButtonClick,
     } = this.props;
 
     return (
@@ -26,11 +37,13 @@ class App extends React.PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/details">
-            <MoviePage
-              film={films[0]}
+            <MoviePageWrapped
+              film={currentFilm}
               reviews={reviews}
               films={films}
               onFilmCardClick={onFilmCardClick}
+              onMoviePageEscPress={onMoviePageEscPress}
+              onPlayButtonClick={onPlayButtonClick}
             />
           </Route>
         </Switch>
@@ -40,15 +53,18 @@ class App extends React.PureComponent {
 
   _renderApp() {
     const {
-      promo,
-      films,
-      currentGenre,
-      displayedFilms,
-      reviews,
       screen,
+      lastScreen,
+      films,
+      displayedFilms,
+      currentGenre,
       currentFilm,
-      onFilmCardClick,
+      reviews,
+      onMoviePageEscPress,
+      onPlayButtonClick,
+      onExitButtonClick,
       onGenreTabClick,
+      onFilmCardClick,
       onShowMoreButtonClick,
     } = this.props;
 
@@ -56,23 +72,35 @@ class App extends React.PureComponent {
       case Screen.MAIN:
         return (
           <Main
-            promo={promo}
+            promo={currentFilm}
             films={films}
-            currentGenre={currentGenre}
             displayedFilms={displayedFilms}
-            onFilmCardClick={onFilmCardClick}
+            currentGenre={currentGenre}
+            onPlayButtonClick={onPlayButtonClick}
             onGenreTabClick={onGenreTabClick}
+            onFilmCardClick={onFilmCardClick}
             onShowMoreButtonClick={onShowMoreButtonClick}
           />
         );
 
       case Screen.MOVIE_PAGE:
         return (
-          <MoviePage
+          <MoviePageWrapped
             film={currentFilm}
             reviews={reviews}
             films={films}
+            onMoviePageEscPress={onMoviePageEscPress}
+            onPlayButtonClick={onPlayButtonClick}
             onFilmCardClick={onFilmCardClick}
+          />
+        );
+
+      case Screen.PLAYER:
+        const handleExitButtonClick = () => onExitButtonClick(lastScreen);
+        return (
+          <PlayerWrapped
+            film={currentFilm}
+            onExitButtonClick={handleExitButtonClick}
           />
         );
 
@@ -84,21 +112,24 @@ class App extends React.PureComponent {
 
 App.propTypes = {
   screen: pt.screen,
-  currentFilm: pt.currentFilm,
-  promo: pt.film,
+  lastScreen: pt.screen,
   films: pt.films,
-  currentGenre: pt.genre,
   displayedFilms: pt.films,
+  currentGenre: pt.genre,
+  currentFilm: pt.film,
   reviews: pt.reviews,
-  onFilmCardClick: pt.func,
+  onMoviePageEscPress: pt.func,
+  onPlayButtonClick: pt.func,
+  onExitButtonClick: pt.func,
   onGenreTabClick: pt.func,
+  onFilmCardClick: pt.func,
   onShowMoreButtonClick: pt.func,
 };
 
 const mapStateToProps = (state) => ({
   screen: state.screen,
+  lastScreen: state.lastScreen,
   currentFilm: state.currentFilm,
-  promo: state.promo,
   films: state.films,
   currentGenre: state.genre,
   displayedFilms: state.displayedFilms,
@@ -106,11 +137,20 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onFilmCardClick(film) {
-    dispatch(ActionCreator.setMoviePageScreen(film));
+  onMoviePageEscPress() {
+    dispatch(ActionCreator.setMainPageScreen());
+  },
+  onPlayButtonClick() {
+    dispatch(ActionCreator.setPlayerScreen());
+  },
+  onExitButtonClick(lastScreen) {
+    dispatch(lastScreen === Screen.MOVIE_PAGE ? ActionCreator.setMoviePageScreen() : ActionCreator.setMainPageScreen());
   },
   onGenreTabClick(genre) {
     dispatch(ActionCreator.switchGenre(genre));
+  },
+  onFilmCardClick(film) {
+    dispatch(ActionCreator.setMoviePageScreen(film));
   },
   onShowMoreButtonClick() {
     dispatch(ActionCreator.showMoreFilms());

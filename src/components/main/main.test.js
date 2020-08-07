@@ -13,8 +13,9 @@ it(`Should MainComponent render correctly`, () => {
         films={films}
         currentGenre={Genre.ALL}
         displayedFilms={films}
-        onFilmCardClick={() => {}}
+        onPlayButtonClick={() => {}}
         onGenreTabClick={() => {}}
+        onFilmCardClick={() => {}}
         onShowMoreButtonClick={() => {}}
       />
   ).toJSON();

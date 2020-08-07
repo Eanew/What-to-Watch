@@ -21,8 +21,9 @@ describe(`Main component`, () => {
         films={films}
         currentGenre={Genre.ALL}
         displayedFilms={films}
-        onFilmCardClick={handleFilmCardClick}
+        onPlayButtonClick={() => {}}
         onGenreTabClick={() => {}}
+        onFilmCardClick={handleFilmCardClick}
         onShowMoreButtonClick={() => {}}
       />
   );
