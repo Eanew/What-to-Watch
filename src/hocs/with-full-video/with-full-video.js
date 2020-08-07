@@ -30,13 +30,15 @@ const withFullVideo = (Component) => {
     componentDidMount() {
       const video = this._videoRef.current;
 
-      video.onloadedmetadata = () => this.setState({
-        duration: video.duration,
-      });
+      if (video) {
+        video.onloadedmetadata = () => this.setState({
+          duration: video.duration,
+        });
 
-      video.ontimeupdate = () => this.setState({
-        progress: Math.ceil(video.currentTime),
-      });
+        video.ontimeupdate = () => this.setState({
+          progress: Math.ceil(video.currentTime),
+        });
+      }
 
       this._hideControlsTimeout = window.setTimeout(() => this.setState({
         isControlsHidden: true,
@@ -53,7 +55,7 @@ const withFullVideo = (Component) => {
           filmTitle={filmTitle}
           isPlaying={isPlaying}
           isControlsHidden={isControlsHidden}
-          duration={duration}
+          duration={duration || 0}
           progress={progress}
           onMouseMove={this._showControls}
           onPlayButtonClick={this._handlePlayButtonClick}

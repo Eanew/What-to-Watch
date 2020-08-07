@@ -15,8 +15,8 @@ const MoviePage = (props) => {
     film,
     reviews,
     films,
-    onFilmCardClick,
     onPlayButtonClick,
+    onFilmCardClick,
   } = props;
 
   const {
@@ -151,8 +151,8 @@ MoviePage.propTypes = {
   film: pt.film,
   reviews: pt.reviews,
   films: pt.films,
-  onFilmCardClick: pt.func,
   onPlayButtonClick: pt.func,
+  onFilmCardClick: pt.func,
 };
 
 export default MoviePage;

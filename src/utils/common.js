@@ -26,7 +26,6 @@ export const isEscEvent = (evt, action) => {
   }
 };
 
-
 export const toKebabCase = (defaultString) => defaultString
   .toLowerCase()
   .trim()
@@ -51,7 +50,7 @@ export const toTimeString = (seconds) => {
 export const toDateTimeAttribute = (iso) => {
   const date = new Date(Date.parse(iso));
 
-  return `${date.getFullYear()}-${toTwoDigit(date.getMonth() + 1)}-${toTwoDigit(date.getDate())}`;
+  return [date.getFullYear(), toTwoDigit(date.getMonth() + 1), toTwoDigit(date.getDate())].join(`-`);
 };
 
 export const toPercent = (max, current) => max ? Math.floor(current / max * 100) : 0;

@@ -50,14 +50,14 @@ class App extends React.PureComponent {
       screen,
       lastScreen,
       films,
-      currentGenre,
       displayedFilms,
-      reviews,
+      currentGenre,
       currentFilm,
-      onFilmCardClick,
+      reviews,
       onPlayButtonClick,
       onExitButtonClick,
       onGenreTabClick,
+      onFilmCardClick,
       onShowMoreButtonClick,
     } = this.props;
 
@@ -67,11 +67,11 @@ class App extends React.PureComponent {
           <Main
             promo={currentFilm}
             films={films}
-            currentGenre={currentGenre}
             displayedFilms={displayedFilms}
-            onFilmCardClick={onFilmCardClick}
+            currentGenre={currentGenre}
             onPlayButtonClick={onPlayButtonClick}
             onGenreTabClick={onGenreTabClick}
+            onFilmCardClick={onFilmCardClick}
             onShowMoreButtonClick={onShowMoreButtonClick}
           />
         );
@@ -82,14 +82,13 @@ class App extends React.PureComponent {
             film={currentFilm}
             reviews={reviews}
             films={films}
-            onFilmCardClick={onFilmCardClick}
             onPlayButtonClick={onPlayButtonClick}
+            onFilmCardClick={onFilmCardClick}
           />
         );
 
       case Screen.PLAYER:
         const handleExitButtonClick = () => onExitButtonClick(lastScreen);
-
         return (
           <PlayerWrapped
             film={currentFilm}
@@ -106,15 +105,15 @@ class App extends React.PureComponent {
 App.propTypes = {
   screen: pt.screen,
   lastScreen: pt.screen,
-  currentFilm: pt.film,
   films: pt.films,
-  currentGenre: pt.genre,
   displayedFilms: pt.films,
+  currentGenre: pt.genre,
+  currentFilm: pt.film,
   reviews: pt.reviews,
-  onFilmCardClick: pt.func,
   onPlayButtonClick: pt.func,
   onExitButtonClick: pt.func,
   onGenreTabClick: pt.func,
+  onFilmCardClick: pt.func,
   onShowMoreButtonClick: pt.func,
 };
 

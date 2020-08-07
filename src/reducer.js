@@ -9,6 +9,7 @@ import reviews from "./mocks/reviews.js";
 const initialState = {
   screen: Screen.MAIN,
   lastScreen: Screen.MAIN,
+  promo: films[0],
   currentFilm: films[0],
   genre: Genre.ALL,
   films,
@@ -25,9 +26,8 @@ export const ActionType = {
 };
 
 export const ActionCreator = {
-  setMainPageScreen: (promo) => ({
+  setMainPageScreen: () => ({
     type: ActionType.SET_MAIN_PAGE_SCREEN,
-    payload: promo,
   }),
 
   setMoviePageScreen: (currentFilm) => ({
@@ -55,7 +55,7 @@ export const reducer = (state = initialState, action) => {
       return extend(state, {
         screen: Screen.MAIN,
         lastScreen: Screen.MAIN,
-        currentFilm: action.payload || state.currentFilm,
+        currentFilm: state.promo,
       });
 
     case ActionType.SET_MOVIE_PAGE_SCREEN:

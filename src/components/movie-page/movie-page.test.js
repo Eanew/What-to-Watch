@@ -10,6 +10,7 @@ it(`Should MoviePageComponent render correctly`, () => {
         film={film}
         reviews={reviews}
         films={films}
+        onPlayButtonClick={() => {}}
         onFilmCardClick={() => {}}
       />
   ).toJSON();

@@ -140,12 +140,12 @@ const Main = (props) => {
 
 Main.propTypes = {
   promo: pt.film,
-  onPlayButtonClick: pt.func,
   films: pt.films,
   currentGenre: pt.genre,
   displayedFilms: pt.films,
-  onFilmCardClick: pt.func,
+  onPlayButtonClick: pt.func,
   onGenreTabClick: pt.func,
+  onFilmCardClick: pt.func,
   onShowMoreButtonClick: pt.func,
 };
 
