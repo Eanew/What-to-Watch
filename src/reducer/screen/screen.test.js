@@ -9,6 +9,7 @@ describe(`Screen reducer`, () => {
     expect(reducer(void 0, {})).toEqual({
       screen: Screen.MAIN,
       lastScreen: Screen.MAIN,
+      currentFilm: {},
     });
   });
 
@@ -58,16 +59,14 @@ describe(`Screen reducer`, () => {
 
   it(`Should set main screen`, () => {
     expect(reducer({
-      screen: Screen.PLAYER,
+      screen: Screen.MOVIE_PAGE,
       lastScreen: Screen.MOVIE_PAGE,
-      promo: films[0],
-      currentFilm: films[1],
+      currentFilm: films[0],
     }, {
       type: ActionType.SET_MAIN_PAGE_SCREEN,
     })).toEqual({
       screen: Screen.MAIN,
       lastScreen: Screen.MAIN,
-      promo: films[0],
       currentFilm: films[0],
     });
   });

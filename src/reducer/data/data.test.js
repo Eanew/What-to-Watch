@@ -12,24 +12,21 @@ describe(`Data reducer`, () => {
     });
   });
 
-  it(`Should set currentFilm to promo if currentFilm is not already set`, () => {
+  it(`Should update promo by load promo`, () => {
     expect(reducer(void 0, {
       type: ActionType.LOAD_PROMO,
       payload: film,
     })).toMatchObject({
       promo: film,
-      currentFilm: film,
     });
 
     expect(reducer({
-      promo: {},
-      currentFilm: films[0],
+      promo: films[0],
     }, {
       type: ActionType.LOAD_PROMO,
       payload: films[1],
     })).toMatchObject({
       promo: films[1],
-      currentFilm: films[0],
     });
   });
 

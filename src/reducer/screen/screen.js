@@ -4,6 +4,7 @@ import {extend} from "../../utils/common.js";
 const initialState = {
   screen: Screen.MAIN,
   lastScreen: Screen.MAIN,
+  currentFilm: {},
 };
 
 const ActionType = {
@@ -33,7 +34,6 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         screen: Screen.MAIN,
         lastScreen: Screen.MAIN,
-        currentFilm: state.promo,
       });
 
     case ActionType.SET_MOVIE_PAGE_SCREEN:
