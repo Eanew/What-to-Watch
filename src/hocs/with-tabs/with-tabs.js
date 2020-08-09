@@ -2,7 +2,7 @@ import React from "react";
 
 import pt from "../../prop-types-cover.js";
 
-import {Tab} from "../../utils/const.js";
+import {MovieTab} from "../../utils/const.js";
 import {isEscEvent} from "../../utils/common.js";
 
 import Overview from "../../components/overview/overview.jsx";
@@ -15,7 +15,7 @@ const withTabs = (Component) => {
       super(props);
 
       this.state = {
-        currentTab: Tab.OVERVIEW,
+        currentTab: MovieTab.OVERVIEW,
       };
 
       this._handleEscPress = this._handleEscPress.bind(this);
@@ -69,7 +69,7 @@ const withTabs = (Component) => {
       } = film;
 
       switch (tab) {
-        case Tab.OVERVIEW:
+        case MovieTab.OVERVIEW:
           return (
             <Overview
               rating={rating}
@@ -79,7 +79,7 @@ const withTabs = (Component) => {
             />
           );
 
-        case Tab.DETAILS:
+        case MovieTab.DETAILS:
           return (
             <Details
               release={release}
@@ -90,7 +90,7 @@ const withTabs = (Component) => {
             />
           );
 
-        case Tab.REVIEWS:
+        case MovieTab.REVIEWS:
           return (
             <Reviews
               reviews={reviews}

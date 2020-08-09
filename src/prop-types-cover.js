@@ -1,6 +1,6 @@
 import pt from "prop-types";
 
-import {Screen, Genre, Tab} from "./utils/const.js";
+import {Screen, Genre, MovieTab} from "./utils/const.js";
 
 export const string = pt.string.isRequired;
 export const number = pt.number.isRequired;
@@ -33,7 +33,7 @@ export const screen = pt.oneOf(Object.values(Screen)).isRequired;
 export const genre = pt.oneOf(Object.values(Genre)).isRequired;
 export const genres = pt.arrayOf(genre).isRequired;
 
-export const currentTab = pt.oneOf(Object.values(Tab)).isRequired;
+export const currentTab = pt.oneOf(Object.values(MovieTab)).isRequired;
 
 export const rating = pt.shape({
   value: number,

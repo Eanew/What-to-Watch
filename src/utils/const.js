@@ -6,7 +6,7 @@ export const Screen = {
   PLAYER: `Player`,
 };
 
-export const Tab = {
+export const MovieTab = {
   OVERVIEW: `Overview`,
   DETAILS: `Details`,
   REVIEWS: `Reviews`,

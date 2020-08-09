@@ -3,7 +3,7 @@ import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import TabsNavigation from "./tabs-navigation.jsx";
 
-import {Tab} from "../../utils/const.js";
+import {MovieTab} from "../../utils/const.js";
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -16,7 +16,7 @@ describe(`Tabs navigation`, () => {
 
     const tabs = shallow(
         <TabsNavigation
-          currentTab={Tab.OVERVIEW}
+          currentTab={MovieTab.OVERVIEW}
           onTabClick={handleTabClick}
         />
     );
@@ -31,8 +31,8 @@ describe(`Tabs navigation`, () => {
 
     expect(preventDefault).toHaveBeenCalledTimes(tabsLinks.length);
 
-    expect(handleTabClick.mock.calls[0][0]).toBe(Tab.OVERVIEW);
-    expect(handleTabClick.mock.calls[1][0]).toBe(Tab.DETAILS);
-    expect(handleTabClick.mock.calls[2][0]).toBe(Tab.REVIEWS);
+    expect(handleTabClick.mock.calls[0][0]).toBe(MovieTab.OVERVIEW);
+    expect(handleTabClick.mock.calls[1][0]).toBe(MovieTab.DETAILS);
+    expect(handleTabClick.mock.calls[2][0]).toBe(MovieTab.REVIEWS);
   });
 });

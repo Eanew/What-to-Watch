@@ -3,12 +3,12 @@ import renderer from "react-test-renderer";
 import MoviePage from "./movie-page.jsx";
 import Reviews from "../reviews/reviews.jsx";
 
-import {Tab} from "../../utils/const.js";
+import {MovieTab} from "../../utils/const.js";
 
 import {film, films, reviews} from "../../test-mock.js";
 
 it(`Should MoviePageComponent render Reviews`, () => {
-  const renderTab = (tab) => tab === Tab.REVIEWS && (
+  const renderTab = (tab) => tab === MovieTab.REVIEWS && (
     <Reviews
       reviews={reviews}
     />
@@ -17,7 +17,7 @@ it(`Should MoviePageComponent render Reviews`, () => {
   const tree = renderer.create(
       <MoviePage
         film={film}
-        currentTab={Tab.REVIEWS}
+        currentTab={MovieTab.REVIEWS}
         films={films}
         onPlayButtonClick={() => {}}
         onTabClick={() => {}}

@@ -2,7 +2,7 @@ import React from "react";
 
 import pt from "../../prop-types-cover.js";
 
-import {Tab} from "../../utils/const.js";
+import {MovieTab} from "../../utils/const.js";
 
 const TabsNavigation = (props) => {
   const {
@@ -13,7 +13,7 @@ const TabsNavigation = (props) => {
   return (
     <nav className="movie-nav movie-card__nav">
       <ul className="movie-nav__list">
-        {Object.values(Tab).map((tabName) => (
+        {Object.values(MovieTab).map((tabName) => (
           <li
             key={`tab-${tabName}`}
             className={`movie-nav__item${tabName === currentTab ? ` movie-nav__item--active` : ``}`}
