@@ -8,6 +8,7 @@ describe(`User reducer`, () => {
   it(`Without additional parameters should return initial state`, () => {
     expect(reducer(void 0, {})).toEqual({
       authorizationStatus: AuthorizationStatus.NO_AUTH,
+      userInfo: {},
     });
   });
 
@@ -16,50 +17,78 @@ describe(`User reducer`, () => {
       authorizationStatus: AuthorizationStatus.NO_AUTH,
     }, {
       type: ActionType.REQUIRED_AUTHORIZATION,
-      payload: AuthorizationStatus.AUTH,
+      payload: {
+        status: AuthorizationStatus.AUTH,
+        userInfo: {id: 123},
+      },
     })).toEqual({
       authorizationStatus: AuthorizationStatus.AUTH,
+      userInfo: {id: 123},
     });
 
     expect(reducer({
       authorizationStatus: AuthorizationStatus.AUTH,
+      userInfo: {id: 123},
     }, {
       type: ActionType.REQUIRED_AUTHORIZATION,
-      payload: AuthorizationStatus.NO_AUTH,
+      payload: {
+        status: AuthorizationStatus.NO_AUTH,
+      },
     })).toEqual({
       authorizationStatus: AuthorizationStatus.NO_AUTH,
+      userInfo: {},
     });
 
     expect(reducer({
       authorizationStatus: AuthorizationStatus.AUTH,
+      userInfo: {id: 123},
     }, {
       type: ActionType.REQUIRED_AUTHORIZATION,
-      payload: AuthorizationStatus.AUTH,
+      payload: {
+        status: AuthorizationStatus.AUTH,
+        userInfo: {id: 456},
+      },
     })).toEqual({
       authorizationStatus: AuthorizationStatus.AUTH,
+      userInfo: {id: 456},
     });
 
     expect(reducer({
       authorizationStatus: AuthorizationStatus.NO_AUTH,
+      userInfo: {},
     }, {
       type: ActionType.REQUIRED_AUTHORIZATION,
-      payload: AuthorizationStatus.NO_AUTH,
+      payload: {
+        status: AuthorizationStatus.NO_AUTH,
+      },
     })).toEqual({
       authorizationStatus: AuthorizationStatus.NO_AUTH,
+      userInfo: {},
     });
   });
 });
 
 describe(`User action creators`, () => {
   it(`Should requireAuthorization method returns correct action`, () => {
-    expect(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)).toEqual({
+    expect(ActionCreator.requireAuthorization({
+      status: AuthorizationStatus.NO_AUTH,
+    })).toEqual({
       type: ActionType.REQUIRED_AUTHORIZATION,
-      payload: AuthorizationStatus.NO_AUTH,
+      payload: {
+        status: AuthorizationStatus.NO_AUTH,
+        userInfo: {},
+      },
     });
 
-    expect(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)).toEqual({
+    expect(ActionCreator.requireAuthorization({
+      status: AuthorizationStatus.AUTH,
+      userInfo: {id: 123},
+    })).toEqual({
       type: ActionType.REQUIRED_AUTHORIZATION,
-      payload: AuthorizationStatus.AUTH,
+      payload: {
+        status: AuthorizationStatus.AUTH,
+        userInfo: {id: 123},
+      },
     });
   });
 });

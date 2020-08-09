@@ -54,6 +54,9 @@ export const toDateTimeAttribute = (iso) => {
   return [date.getFullYear(), toTwoDigit(date.getMonth() + 1), toTwoDigit(date.getDate())].join(`-`);
 };
 
+export const sortByDate = (items, isoDateKey) => [...items]
+  .sort((first, second) => Date.parse(second[isoDateKey]) - Date.parse(first[isoDateKey]));
+
 export const toPercent = (max, current) => max ? Math.floor(current / max * 100) : 0;
 
 export const extend = (a, b) => Object.assign({}, a, b);

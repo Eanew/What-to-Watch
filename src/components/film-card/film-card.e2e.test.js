@@ -3,7 +3,7 @@ import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import FilmCard from "./film-card.jsx";
 
-import {film} from "../../mocks/test-mock.js";
+import {film} from "../../test-mock.js";
 
 Enzyme.configure({
   adapter: new Adapter(),

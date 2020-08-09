@@ -6,7 +6,7 @@ import Genres from "./genres.jsx";
 
 import {Genre} from "../../utils/const.js";
 
-import {films} from "../../mocks/test-mock.js";
+import {films} from "../../test-mock.js";
 
 Enzyme.configure({
   adapter: new Adapter(),

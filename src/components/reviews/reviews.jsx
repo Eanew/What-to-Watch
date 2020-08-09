@@ -2,7 +2,7 @@ import React from "react";
 
 import pt from "../../prop-types-cover.js";
 
-import {toDateTimeAttribute} from "../../utils/common.js";
+import {sortByDate, toDateTimeAttribute} from "../../utils/common.js";
 import {getReviewDate, getRatingScore} from "../../utils/normalize.js";
 import {REVIEWS_PER_COLUMN} from "../../config.js";
 
@@ -13,6 +13,8 @@ const Reviews = (props) => {
 
   const columnsCount = Math.ceil(reviews.length / REVIEWS_PER_COLUMN);
 
+  const sortedReviews = sortByDate(reviews);
+
   return (
     <div className="movie-card__reviews movie-card__row">
       {new Array(columnsCount).fill(``).map((column, i) => (
@@ -20,7 +22,7 @@ const Reviews = (props) => {
           key={`comments-column${i + 1}`}
           className="movie-card__reviews-col"
         >
-          {reviews.slice((i * REVIEWS_PER_COLUMN), ((i + 1) * REVIEWS_PER_COLUMN)).map((review) => (
+          {sortedReviews.slice((i * REVIEWS_PER_COLUMN), ((i + 1) * REVIEWS_PER_COLUMN)).map((review) => (
             <div
               key={`review${review.id}`}
               className="review"

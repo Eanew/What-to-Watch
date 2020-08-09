@@ -4,7 +4,7 @@ import renderer from "react-test-renderer";
 import FilmCard from "../../components/film-card/film-card.jsx";
 import withVideoPreview from "./with-video-preview.js";
 
-import {film} from "../../mocks/test-mock.js";
+import {film} from "../../test-mock.js";
 
 const FilmCardWrapped = withVideoPreview(FilmCard);
 

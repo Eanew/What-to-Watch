@@ -26,8 +26,9 @@ export const rating = pt.shape({
 
 export const image = pt.shape({
   preview: string,
-  background: string,
   poster: string,
+  background: string,
+  backgroundColor: string,
 }).isRequired;
 
 export const movie = pt.shape({
@@ -69,9 +70,15 @@ export const review = pt.shape({
     number
   ]).isRequired,
 
+  userId: pt.oneOfType([
+    string,
+    number
+  ]).isRequired,
+
   userName: string,
   rating: number,
   comment: string,
+  date: string,
 }).isRequired;
 
 export const reviews = pt.oneOfType([

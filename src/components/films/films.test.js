@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import Films from "./films.jsx";
 
-import {films} from "../../mocks/test-mock.js";
+import {films} from "../../test-mock.js";
 
 it(`Should FilmsComponent render correctly`, () => {
   const tree = renderer.create(

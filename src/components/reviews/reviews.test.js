@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import Reviews from "./reviews.jsx";
 
-import {reviews} from "../../mocks/test-mock.js";
+import {reviews} from "../../test-mock.js";
 
 it(`Should ReviewsComponent render correctly`, () => {
   const tree = renderer.create(

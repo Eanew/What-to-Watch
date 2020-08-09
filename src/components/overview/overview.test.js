@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import Overview from "./overview.jsx";
 
-import {film} from "../../mocks/test-mock.js";
+import {film} from "../../test-mock.js";
 
 it(`Should OverviewComponent render correctly`, () => {
   const {

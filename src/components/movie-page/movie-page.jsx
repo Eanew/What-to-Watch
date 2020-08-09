@@ -36,6 +36,9 @@ const MoviePage = (props) => {
             <img
               src={image.background}
               alt={filmTitle}
+              style={{
+                backgroundColor: image.backgroundColor,
+              }}
             />
           </div>
 

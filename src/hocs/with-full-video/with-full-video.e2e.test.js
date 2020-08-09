@@ -5,7 +5,7 @@ import Adapter from "enzyme-adapter-react-16";
 import Player from "../../components/player/player.jsx";
 import withFullVideo from "./with-full-video.js";
 
-import {film} from "../../mocks/test-mock.js";
+import {film} from "../../test-mock.js";
 
 const PlayerWrapped = withFullVideo(Player);
 

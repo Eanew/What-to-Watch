@@ -5,7 +5,7 @@ import Reviews from "../reviews/reviews.jsx";
 
 import {Tab} from "../../utils/const.js";
 
-import {film, films, reviews} from "../../mocks/test-mock.js";
+import {film, films, reviews} from "../../test-mock.js";
 
 it(`Should MoviePageComponent render Reviews`, () => {
   const renderTab = (tab) => tab === Tab.REVIEWS && (

@@ -4,7 +4,7 @@ import {App} from "./app.jsx";
 
 import {Screen, Genre} from "../../utils/const.js";
 
-import {film, films, reviews} from "../../mocks/test-mock.js";
+import {film, films, reviews} from "../../test-mock.js";
 
 describe(`AppComponent`, () => {
 

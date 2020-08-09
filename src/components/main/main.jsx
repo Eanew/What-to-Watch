@@ -2,7 +2,6 @@ import React from "react";
 
 import pt from "../../prop-types-cover.js";
 
-import {toKebabCase} from "../../utils/common.js";
 import {getFilmsByGenre} from "../../utils/genre.js";
 
 import Genres from "../genres/genres.jsx";
@@ -21,6 +20,12 @@ const Main = (props) => {
     onShowMoreButtonClick,
   } = props;
 
+  const {
+    poster,
+    background,
+    backgroundColor,
+  } = promo.image;
+
   const isShowMoreButtonDisplayed = displayedFilms.length < getFilmsByGenre(films, currentGenre).length;
 
   return (
@@ -28,8 +33,11 @@ const Main = (props) => {
       <section className="movie-card">
         <div className="movie-card__bg">
           <img
-            src={`img/bg-${toKebabCase(promo.filmTitle)}.jpg`}
+            src={background}
             alt={promo.filmTitle}
+            style={{
+              backgroundColor,
+            }}
           />
         </div>
 
@@ -57,7 +65,7 @@ const Main = (props) => {
           <div className="movie-card__info">
             <div className="movie-card__poster">
               <img
-                src={`img/${toKebabCase(promo.filmTitle)}-poster.jpg`}
+                src={poster}
                 alt={`${promo.filmTitle} poster`}
                 width="218" height="327"
               />

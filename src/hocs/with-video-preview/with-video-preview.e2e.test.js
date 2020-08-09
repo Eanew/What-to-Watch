@@ -4,7 +4,7 @@ import Adapter from "enzyme-adapter-react-16";
 
 import {PREVIEW_PLAY_TIMEOUT} from "../../config.js";
 
-import {film} from "../../mocks/test-mock.js";
+import {film} from "../../test-mock.js";
 
 import FilmCard from "../../components/film-card/film-card.jsx";
 import withVideoPreview from "./with-video-preview.js";

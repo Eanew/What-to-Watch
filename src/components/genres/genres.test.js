@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 
-import {films} from "../../mocks/test-mock.js";
+import {films} from "../../test-mock.js";
 
 import Genres from "./genres.jsx";
 

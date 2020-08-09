@@ -2,7 +2,7 @@ import {Screen} from "../../utils/const.js";
 
 import {reducer, ActionType, ActionCreator} from "./screen.js";
 
-import {films} from "../../mocks/test-mock.js";
+import {films} from "../../test-mock.js";
 
 describe(`Screen reducer`, () => {
   it(`Should returns initial state by default`, () => {

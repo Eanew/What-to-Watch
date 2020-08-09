@@ -2,7 +2,7 @@ import axios from "axios";
 
 const BASE_URL = `https://4.react.pages.academy/wtw`;
 
-const REQUEST_TIMEOUT = 10 * 1000;
+const REQUEST_TIMEOUT = 5000;
 
 const Error = {
   BAD_REQUEST: 400,

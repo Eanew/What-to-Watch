@@ -26,8 +26,9 @@ export const film = {
 
   image: {
     preview: `img/${toKebabCase(filmsTitles[0])}.jpg`,
-    background: `img/bg-${toKebabCase(filmsTitles[0])}.jpg`,
     poster: `img/${toKebabCase(filmsTitles[0])}-poster.jpg`,
+    background: `img/bg-${toKebabCase(filmsTitles[0])}.jpg`,
+    backgroundColor: `#ffffff`,
   },
 
   movie: {
@@ -56,8 +57,9 @@ export const films = filmsTitles.map((title, i) => ({
 
   image: {
     preview: `img/${toKebabCase(title)}.jpg`,
-    background: `img/bg-${toKebabCase(title)}.jpg`,
     poster: `img/${toKebabCase(title)}-poster.jpg`,
+    background: `img/bg-${toKebabCase(title)}.jpg`,
+    backgroundColor: `#ffffff`,
   },
 
   movie: {
@@ -74,6 +76,7 @@ export const films = filmsTitles.map((title, i) => ({
 
 export const review = {
   id: `comment1`,
+  userId: 1,
   userName: usersNames[0],
   rating: 6.3,
   comment: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
@@ -81,7 +84,8 @@ export const review = {
 };
 
 export const reviews = usersNames.map((name, i) => ({
-  id: `comment${i + 1}`,
+  id: i + 1,
+  userId: (i + 1) * 3,
   userName: name,
   rating: 3.2 + i,
   comment: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,

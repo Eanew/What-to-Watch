@@ -2,7 +2,7 @@ import {reducer, ActionType, ActionCreator, Operation} from "./data.js";
 import MockAdapter from "axios-mock-adapter";
 import {createAPI} from "../../api.js";
 
-import {film, films, reviews} from "../../mocks/test-mock.js";
+import {film, films, reviews} from "../../test-mock.js";
 
 const api = createAPI(() => {});
 

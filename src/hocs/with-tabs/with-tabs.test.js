@@ -4,7 +4,7 @@ import renderer from "react-test-renderer";
 import MoviePage from "../../components/movie-page/movie-page.jsx";
 import withTabs from "./with-tabs.js";
 
-import {film, films, reviews} from "../../mocks/test-mock.js";
+import {film, films, reviews} from "../../test-mock.js";
 
 const MoviePageWrapped = withTabs(MoviePage);
 

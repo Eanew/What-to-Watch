@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import Details from "./details.jsx";
 
-import {film} from "../../mocks/test-mock.js";
+import {film} from "../../test-mock.js";
 
 it(`Should DetailsComponent render correctly`, () => {
   const {
