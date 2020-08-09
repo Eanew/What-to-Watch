@@ -1,5 +1,7 @@
 import {extend} from "../../utils/common.js";
 
+import UserAdapter from "../../adapters/user-info.js";
+
 const AuthorizationStatus = {
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`,
@@ -30,20 +32,17 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.requireAuthorization({
           status: AuthorizationStatus.AUTH,
-          userInfo: response.data,
+          userInfo: UserAdapter.parse(response.data),
         }));
       });
   },
 
   login: (authData) => (dispatch, getState, api) => {
-    return api.post(`/login`, {
-      email: authData.login,
-      password: authData.password,
-    })
+    return api.post(`/login`, UserAdapter.toPost(authData))
       .then((response) => {
         dispatch(ActionCreator.requireAuthorization({
           status: AuthorizationStatus.AUTH,
-          userInfo: response.data,
+          userInfo: UserAdapter.parse(response.data),
         }));
       });
   },

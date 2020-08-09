@@ -12,6 +12,13 @@ const usersNames = [
   `Julia Kim`,
   `Anton Timoshenkov`];
 
+export const userInfo = {
+  id: 1,
+  name: usersNames[2],
+  email: `julia.kim@gmail.com`,
+  avatar: `img/avatar.jpg`,
+};
+
 export const film = {
   id: filmsTitles[0] + 1,
   filmTitle: filmsTitles[0],

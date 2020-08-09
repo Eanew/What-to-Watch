@@ -1,5 +1,8 @@
 import {extend} from "../../utils/common.js";
 
+import FilmAdapter from "../../adapters/film.js";
+import ReviewAdapter from "../../adapters/review.js";
+
 const initialState = {
   promo: {},
   films: [],
@@ -40,28 +43,32 @@ const Operation = {
   loadPromo: () => (dispatch, getState, api) => {
     return api.get(`/films/promo`)
       .then((response) => {
-        dispatch(ActionCreator.loadPromo(response.data));
+        const promo = FilmAdapter.parse(response.data);
+        dispatch(ActionCreator.loadPromo(promo));
       });
   },
 
   loadFilms: () => (dispatch, getState, api) => {
     return api.get(`/films`)
       .then((response) => {
-        dispatch(ActionCreator.loadFilms(response.data));
+        const films = FilmAdapter.parse(response.data);
+        dispatch(ActionCreator.loadFilms(films));
       });
   },
 
   loadFavorites: () => (dispatch, getState, api) => {
     return api.get(`/favorite`)
       .then((response) => {
-        dispatch(ActionCreator.loadFavorites(response.data));
+        const favorites = FilmAdapter.parse(response.data);
+        dispatch(ActionCreator.loadFavorites(favorites));
       });
   },
 
   loadReviews: (filmId) => (dispatch, getState, api) => {
     return api.get(`/comments/${filmId}`)
       .then((response) => {
-        dispatch(ActionCreator.loadReviews(response.data));
+        const reviews = ReviewAdapter.parse(response.data);
+        dispatch(ActionCreator.loadReviews(reviews));
       });
   },
 };
