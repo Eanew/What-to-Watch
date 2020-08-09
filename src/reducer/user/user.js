@@ -14,7 +14,7 @@ const ActionType = {
 };
 
 const ActionCreator = {
-  requireAuthorization: ({status, userInfo}) => ({
+  requireAuthorization: ({status, userInfo = {}}) => ({
     type: ActionType.REQUIRED_AUTHORIZATION,
     payload: {
       status,
