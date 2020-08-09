@@ -25,7 +25,3 @@ export const mapGenreToTab = (genre) => {
       return `All genres`;
   }
 };
-
-export const getFilmsByGenre = (films, genre) => (genre === Genre.ALL)
-  ? films
-  : films.filter((film) => film.genre === genre);
