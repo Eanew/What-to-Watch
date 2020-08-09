@@ -12,6 +12,7 @@ export const Regular = {
   EXCEPT_NUMBERS: /(\D+)*[^.\d]/g,
   EMPTY_SPACE: /\s+/g,
   WORD_SEPARATION: /(\s|:\s|:)+/g,
+  VALID_EMAIL: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
 };
 
 export const Key = {

@@ -14,10 +14,38 @@ const ActionType = {
 };
 
 const ActionCreator = {
-  requireAuthorization: (status) => ({
+  requireAuthorization: ({status, userInfo}) => ({
     type: ActionType.REQUIRED_AUTHORIZATION,
-    payload: status,
+    payload: {
+      status,
+      userInfo,
+    },
   }),
+};
+
+const Operation = {
+  checkAuthorization: () => (dispatch, getState, api) => {
+    return api.get(`/login`)
+      .then((response) => {
+        dispatch(ActionCreator.requireAuthorization({
+          status: AuthorizationStatus.AUTH,
+          userInfo: response.data,
+        }));
+      });
+  },
+
+  login: (authData) => (dispatch, getState, api) => {
+    return api.post(`/login`, {
+      email: authData.login,
+      password: authData.password,
+    })
+      .then((response) => {
+        dispatch(ActionCreator.requireAuthorization({
+          status: AuthorizationStatus.AUTH,
+          userInfo: response.data,
+        }));
+      });
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -32,4 +60,4 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export {reducer, AuthorizationStatus, ActionType, ActionCreator};
+export {reducer, AuthorizationStatus, ActionType, ActionCreator, Operation};

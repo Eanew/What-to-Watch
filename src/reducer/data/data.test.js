@@ -1,6 +1,10 @@
-import {reducer, ActionType, ActionCreator} from "./data.js";
+import {reducer, ActionType, ActionCreator, Operation} from "./data.js";
+import MockAdapter from "axios-mock-adapter";
+import {createAPI} from "../../api.js";
 
 import {film, films, reviews} from "../../mocks/test-mock.js";
+
+const api = createAPI(() => {});
 
 describe(`Data reducer`, () => {
   it(`Without additional parameters should return initial state`, () => {
@@ -118,5 +122,83 @@ describe(`Data action creators`, () => {
       type: ActionType.LOAD_REVIEWS,
       payload: reviews,
     });
+  });
+});
+
+describe(`Data request operation`, () => {
+  it(`Should make a correct API call to /films/promo`, function () {
+    const mockApi = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const questionLoader = Operation.loadPromo();
+
+    mockApi
+      .onGet(`/films/promo`)
+      .reply(200, film);
+
+    return questionLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_PROMO,
+          payload: film,
+        });
+      });
+  });
+
+  it(`Should make a correct API call to /films`, function () {
+    const mockApi = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const questionLoader = Operation.loadFilms();
+
+    mockApi
+      .onGet(`/films`)
+      .reply(200, films);
+
+    return questionLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_FILMS,
+          payload: films,
+        });
+      });
+  });
+
+  it(`Should make a correct API call to /favorite`, function () {
+    const mockApi = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const questionLoader = Operation.loadFavorites();
+
+    mockApi
+      .onGet(`/favorite`)
+      .reply(200, films);
+
+    return questionLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_FAVORITES,
+          payload: films,
+        });
+      });
+  });
+
+  it(`Should make a correct API call to /comments/123`, function () {
+    const mockApi = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const questionLoader = Operation.loadReviews(123);
+
+    mockApi
+      .onGet(`/comments/123`)
+      .reply(200, reviews);
+
+    return questionLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_REVIEWS,
+          payload: reviews,
+        });
+      });
   });
 });
