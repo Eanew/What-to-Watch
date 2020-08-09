@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import {showCustomAlert} from "./utils/api.js";
+
 const BASE_URL = `https://4.react.pages.academy/wtw`;
 
 const REQUEST_TIMEOUT = 5000;
@@ -9,7 +11,7 @@ const Error = {
   UNAUTHORIZED: 401,
 };
 
-export const createAPI = (onUnauthorized, onBadRequest) => {
+export const createAPI = (onUnauthorized, onBadRequest = () => {}) => {
   const api = axios.create({
     baseURL: BASE_URL,
     timeout: REQUEST_TIMEOUT,
@@ -19,13 +21,19 @@ export const createAPI = (onUnauthorized, onBadRequest) => {
   const onSuccess = (response) => response;
 
   const onError = (error) => {
-    if (error.response.status === Error.UNAUTHORIZED) {
-      onUnauthorized();
-    } else if (error.response.status === Error.BAD_REQUEST) {
-      onBadRequest();
-    }
+    switch (error.response.status) {
+      case Error.UNAUTHORIZED:
+        onUnauthorized();
+        throw error;
 
-    throw error;
+      case Error.BAD_REQUEST:
+        onBadRequest();
+        throw error;
+
+      default:
+        showCustomAlert(`Ошибка соединения. Код ошибки: ${error.response.status}`);
+        throw error;
+    }
   };
 
   api.interceptors.response.use(onSuccess, onError);
