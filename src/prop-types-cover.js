@@ -1,6 +1,6 @@
 import pt from "prop-types";
 
-import {Genre, Screen, Tab} from "./utils/const.js";
+import {Screen, Genre, Tab} from "./utils/const.js";
 
 export const string = pt.string.isRequired;
 export const number = pt.number.isRequired;
@@ -16,6 +16,8 @@ export const children = pt.oneOfType([
 export const screen = pt.oneOf(Object.values(Screen)).isRequired;
 
 export const genre = pt.oneOf(Object.values(Genre)).isRequired;
+
+export const currentTab = pt.oneOf(Object.values(Tab)).isRequired;
 
 export const rating = pt.shape({
   value: number,
@@ -33,29 +35,33 @@ export const movie = pt.shape({
   full: string,
 }).isRequired;
 
-export const currentFilm = pt.shape({
-  id: pt.oneOfType([
-    string,
-    number
-  ]).isRequired,
+export const film = pt.oneOfType([
+  pt.shape({
+    id: pt.oneOfType([
+      string,
+      number
+    ]).isRequired,
 
-  genre,
-  rating,
-  image,
-  movie,
+    genre,
+    rating,
+    image,
+    movie,
 
-  filmTitle: string,
-  release: number,
-  runtime: number,
-  description: string,
-  director: string,
-  starring: pt.arrayOf(pt.string).isRequired,
-  isFavorite: bool,
-});
+    filmTitle: string,
+    release: number,
+    runtime: number,
+    description: string,
+    director: string,
+    starring: pt.arrayOf(pt.string).isRequired,
+    isFavorite: bool,
+  }).isRequired,
+  pt.exact({}).isRequired,
+]).isRequired;
 
-export const film = currentFilm.isRequired;
-
-export const films = pt.arrayOf(film).isRequired;
+export const films = pt.oneOfType([
+  pt.arrayOf(film).isRequired,
+  pt.exact([]).isRequired
+]).isRequired;
 
 export const review = pt.shape({
   id: pt.oneOfType([
@@ -68,9 +74,10 @@ export const review = pt.shape({
   comment: string,
 }).isRequired;
 
-export const reviews = pt.arrayOf(review).isRequired;
-
-export const currentTab = pt.oneOf(Object.values(Tab)).isRequired;
+export const reviews = pt.oneOfType([
+  pt.arrayOf(review).isRequired,
+  pt.exact([]).isRequired
+]).isRequired;
 
 export default {
   string,
@@ -82,13 +89,13 @@ export default {
 
   screen,
   genre,
+  currentTab,
+
   rating,
   image,
   movie,
-  currentFilm,
   film,
   films,
   review,
   reviews,
-  currentTab,
 };
