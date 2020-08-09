@@ -1,5 +1,5 @@
-import {toKebabCase} from "../utils/common.js";
-import {Genre} from "../utils/const.js";
+import {toKebabCase} from "./utils/common.js";
+import {Genre} from "./utils/const.js";
 
 const filmsTitles = [
   `Fantastic Beasts: The Crimes of Grindelwald`,

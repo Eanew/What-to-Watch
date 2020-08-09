@@ -1,4 +1,4 @@
-import {Screen} from "../../utils/const.js";
+import {Screen, MovieTab} from "../../utils/const.js";
 
 import {reducer, ActionType, ActionCreator} from "./screen.js";
 
@@ -10,6 +10,7 @@ describe(`Screen reducer`, () => {
       screen: Screen.MAIN,
       lastScreen: Screen.MAIN,
       currentFilm: {},
+      movieTab: MovieTab.OVERVIEW,
     });
   });
 
@@ -25,6 +26,7 @@ describe(`Screen reducer`, () => {
       screen: Screen.MOVIE_PAGE,
       lastScreen: Screen.MOVIE_PAGE,
       currentFilm: films[1],
+      movieTab: MovieTab.OVERVIEW,
     });
   });
 
@@ -33,6 +35,7 @@ describe(`Screen reducer`, () => {
       screen: Screen.MOVIE_PAGE,
       lastScreen: Screen.MOVIE_PAGE,
       currentFilm: films[0],
+      movieTab: MovieTab.REVIEWS,
     }, {
       type: ActionType.SET_MOVIE_PAGE_SCREEN,
       payload: films[1],
@@ -40,6 +43,7 @@ describe(`Screen reducer`, () => {
       screen: Screen.MOVIE_PAGE,
       lastScreen: Screen.MOVIE_PAGE,
       currentFilm: films[1],
+      movieTab: MovieTab.OVERVIEW,
     });
   });
 
@@ -57,6 +61,22 @@ describe(`Screen reducer`, () => {
     });
   });
 
+  it(`Should switch player screen to movie page`, () => {
+    expect(reducer({
+      screen: Screen.PLAYER,
+      lastScreen: Screen.MOVIE_PAGE,
+      currentFilm: films[0],
+      movieTab: MovieTab.REVIEWS,
+    }, {
+      type: ActionType.SET_MOVIE_PAGE_SCREEN,
+    })).toEqual({
+      screen: Screen.MOVIE_PAGE,
+      lastScreen: Screen.MOVIE_PAGE,
+      currentFilm: films[0],
+      movieTab: MovieTab.REVIEWS,
+    });
+  });
+
   it(`Should set main screen`, () => {
     expect(reducer({
       screen: Screen.MOVIE_PAGE,
@@ -68,6 +88,23 @@ describe(`Screen reducer`, () => {
       screen: Screen.MAIN,
       lastScreen: Screen.MAIN,
       currentFilm: films[0],
+    });
+  });
+
+  it(`Should switch movie tab`, () => {
+    expect(reducer({
+      screen: Screen.MOVIE_PAGE,
+      lastScreen: Screen.MOVIE_PAGE,
+      currentFilm: films[0],
+      movieTab: MovieTab.REVIEWS,
+    }, {
+      type: ActionType.SWITCH_MOVIE_TAB,
+      payload: MovieTab.DETAILS,
+    })).toEqual({
+      screen: Screen.MOVIE_PAGE,
+      lastScreen: Screen.MOVIE_PAGE,
+      currentFilm: films[0],
+      movieTab: MovieTab.DETAILS,
     });
   });
 });
@@ -89,6 +126,12 @@ describe(`Screen action creators`, () => {
   it(`Should setPlayerScreen method returns correct action`, () => {
     expect(ActionCreator.setPlayerScreen()).toEqual({
       type: ActionType.SET_PLAYER_SCREEN,
+    });
+  });
+
+  it(`Should switchMovieTab method returns correct action`, () => {
+    expect(ActionCreator.switchMovieTab()).toEqual({
+      type: ActionType.SWITCH_MOVIE_TAB,
     });
   });
 });
