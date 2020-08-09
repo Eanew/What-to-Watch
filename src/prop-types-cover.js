@@ -31,6 +31,7 @@ export const userInfo = pt.oneOfType([
 export const screen = pt.oneOf(Object.values(Screen)).isRequired;
 
 export const genre = pt.oneOf(Object.values(Genre)).isRequired;
+export const genres = pt.arrayOf(genre).isRequired;
 
 export const currentTab = pt.oneOf(Object.values(Tab)).isRequired;
 
@@ -114,6 +115,7 @@ export default {
 
   screen,
   genre,
+  genres,
   currentTab,
 
   rating,

@@ -10,12 +10,12 @@ import TabsNavigation from "../tabs-navigation/tabs-navigation.jsx";
 const MoviePage = (props) => {
   const {
     film,
-    currentTab,
     films,
     onPlayButtonClick,
-    onTabClick,
-    renderTab,
     onFilmCardClick,
+    currentTab,
+    renderTab,
+    onTabClick,
   } = props;
 
   const {

@@ -2,22 +2,14 @@ import React from "react";
 
 import pt from "../../prop-types-cover.js";
 
-import {getFilmsByGenre} from "../../utils/genre.js";
-
-import Genres from "../genres/genres.jsx";
-import Films from "../films/films.jsx";
-import ShowMoreButton from "../show-more-button/show-more-button.jsx";
+import Catalog from "../catalog/catalog.jsx";
 
 const Main = (props) => {
   const {
+    userInfo,
     promo,
     onPlayButtonClick,
-    films,
-    currentGenre,
-    displayedFilms,
-    onFilmCardClick,
-    onGenreTabClick,
-    onShowMoreButtonClick,
+    onMyListButtonClick,
   } = props;
 
   const {
@@ -26,8 +18,6 @@ const Main = (props) => {
     backgroundColor,
   } = promo.image;
 
-  const isShowMoreButtonDisplayed = displayedFilms.length < getFilmsByGenre(films, currentGenre).length;
-
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -35,9 +25,7 @@ const Main = (props) => {
           <img
             src={background}
             alt={promo.filmTitle}
-            style={{
-              backgroundColor,
-            }}
+            style={{backgroundColor}}
           />
         </div>
 
@@ -54,11 +42,17 @@ const Main = (props) => {
             </a>
           </div>
 
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+          {userInfo && (
+            <div className="user-block">
+              <div className="user-block__avatar">
+                <img
+                  src={userInfo.avatar}
+                  alt="User avatar"
+                  width="63" height="63"
+                />
+              </div>
             </div>
-          </div>
+          )}
         </header>
 
         <div className="movie-card__wrap">
@@ -72,14 +66,18 @@ const Main = (props) => {
             </div>
 
             <div className="movie-card__desc">
-              <h2
-                className="movie-card__title"
-              >
+              <h2 className="movie-card__title">
                 {promo.filmTitle}
               </h2>
+
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{promo.genre}</span>
-                <span className="movie-card__year">{promo.release}</span>
+                <span className="movie-card__genre">
+                  {promo.genre}
+                </span>
+
+                <span className="movie-card__year">
+                  {promo.release}
+                </span>
               </p>
 
               <div className="movie-card__buttons">
@@ -93,7 +91,11 @@ const Main = (props) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" type="button">
+                <button
+                  onClick={onMyListButtonClick}
+                  className="btn btn--list movie-card__button"
+                  type="button"
+                >
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
@@ -106,27 +108,8 @@ const Main = (props) => {
       </section>
 
       <div className="page-content">
-        <section className="catalog">
-          <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <Genres
-            films={films}
-            currentGenre={currentGenre}
-            onGenreTabClick={onGenreTabClick}
-          />
-
-          <Films
-            films={displayedFilms}
-            onFilmCardClick={onFilmCardClick}
-          />
-
-          {isShowMoreButtonDisplayed && (
-            <ShowMoreButton
-              onClick={onShowMoreButtonClick}
-            />
-          )}
-
-        </section>
+        <Catalog />
 
         <footer className="page-footer">
           <div className="logo">
@@ -147,14 +130,10 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
+  userInfo: pt.userInfo,
   promo: pt.film,
-  films: pt.films,
-  currentGenre: pt.genre,
-  displayedFilms: pt.films,
   onPlayButtonClick: pt.func,
-  onGenreTabClick: pt.func,
-  onFilmCardClick: pt.func,
-  onShowMoreButtonClick: pt.func,
+  onMyListButtonClick: pt.func,
 };
 
 export default Main;
