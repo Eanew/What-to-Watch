@@ -11,7 +11,6 @@ import {getReviews} from "../../reducer/data/selectors.js";
 import {Operation} from "../../reducer/data/data.js";
 
 import {MovieTab} from "../../utils/const.js";
-import {isEscEvent} from "../../utils/common.js";
 
 import TabsNavigation from "../tabs-navigation/tabs-navigation.jsx";
 import Overview from "../overview/overview.jsx";
@@ -20,19 +19,6 @@ import Reviews from "../reviews/reviews.jsx";
 import Films from "../films/films.jsx";
 
 class MoviePage extends React.PureComponent {
-  componentDidMount() {
-    Operation.loadReviews(this.props.film.id);
-    document.addEventListener(`keydown`, this._handleEscPress);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener(`keydown`, this._handleEscPress);
-  }
-
-  _handleEscPress(evt) {
-    isEscEvent(evt, this.props.onMoviePageEscPress);
-  }
-
   render() {
     const {
       userInfo,
@@ -42,7 +28,7 @@ class MoviePage extends React.PureComponent {
       onTabClick,
       onPlayButtonClick,
       onFilmCardClick,
-      onMoviePageEscPress,
+      onLogoLinkClick,
     } = this.props;
 
     const {
@@ -69,7 +55,8 @@ class MoviePage extends React.PureComponent {
             <header className="page-header movie-card__head">
               <div className="logo">
                 <a
-                  onClick={onMoviePageEscPress}
+                  onClick={onLogoLinkClick}
+                  href="#"
                   className="logo__link"
                 >
                   <span className="logo__letter logo__letter--1">W</span>
@@ -167,7 +154,8 @@ class MoviePage extends React.PureComponent {
           <footer className="page-footer">
             <div className="logo">
               <a
-                onClick={onMoviePageEscPress}
+                onClick={onLogoLinkClick}
+                href="#"
                 className="logo__link logo__link--light"
               >
                 <span className="logo__letter logo__letter--1">W</span>
@@ -219,7 +207,7 @@ class MoviePage extends React.PureComponent {
         );
 
       case MovieTab.REVIEWS:
-        return (
+        return this.props.reviews && (
           <Reviews
             reviews={this.props.reviews}
           />
@@ -240,7 +228,7 @@ MoviePage.propTypes = {
   onTabClick: pt.func,
   onPlayButtonClick: pt.func,
   onFilmCardClick: pt.func,
-  onMoviePageEscPress: pt.func,
+  onLogoLinkClick: pt.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -260,8 +248,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onFilmCardClick(film) {
     dispatch(ActionCreator.setMoviePageScreen(film));
+    dispatch(Operation.loadReviews(film.id));
   },
-  onMoviePageEscPress() {
+  onLogoLinkClick() {
     dispatch(ActionCreator.setMainPageScreen());
   },
 });

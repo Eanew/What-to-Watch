@@ -3,6 +3,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {ActionCreator as ScreenActionCreator} from "../../reducer/screen/screen.js";
 import {ActionCreator as FilmsActionCreator} from "../../reducer/films/films.js";
+import {Operation} from "../../reducer/data/data.js";
 import Selector from "../../reducer/films/selectors.js";
 
 import pt from "../../prop-types-cover.js";
@@ -70,6 +71,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onFilmCardClick(film) {
     dispatch(ScreenActionCreator.setMoviePageScreen(film));
+    dispatch(Operation.loadReviews(film.id));
   },
   onShowMoreButtonClick() {
     dispatch(FilmsActionCreator.showMoreFilms());

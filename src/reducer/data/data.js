@@ -65,6 +65,8 @@ const Operation = {
   },
 
   loadReviews: (filmId) => (dispatch, getState, api) => {
+    dispatch(ActionCreator.loadReviews(null));
+
     return api.get(`/comments/${filmId}`)
       .then((response) => {
         const reviews = ReviewAdapter.parse(response.data);
