@@ -4,52 +4,54 @@ import pt from "../../prop-types-cover.js";
 
 import {sortByDate, toDateTimeAttribute} from "../../utils/common.js";
 import {getReviewDate, getRatingScore} from "../../utils/normalize.js";
-import {REVIEWS_PER_COLUMN} from "../../config.js";
+
+const COLUMNS_COUNT = 2;
 
 const Reviews = (props) => {
   const {
     reviews,
   } = props;
 
-  const columnsCount = Math.ceil(reviews.length / REVIEWS_PER_COLUMN);
-
   const sortedReviews = sortByDate(reviews);
 
   return (
     <div className="movie-card__reviews movie-card__row">
-      {new Array(columnsCount).fill(``).map((column, i) => (
+      {new Array(COLUMNS_COUNT).fill(``).map((column, i) => (
         <div
           key={`comments-column${i + 1}`}
           className="movie-card__reviews-col"
         >
-          {sortedReviews.slice((i * REVIEWS_PER_COLUMN), ((i + 1) * REVIEWS_PER_COLUMN)).map((review) => (
-            <div
-              key={`review${review.id}`}
-              className="review"
-            >
-              <blockquote className="review__quote">
-                <p className="review__text">
-                  {review.comment}
-                </p>
+          {sortedReviews
+            .slice(Math.ceil(reviews.length / COLUMNS_COUNT) * i, Math.ceil(reviews.length / COLUMNS_COUNT) * (i + 1))
+            .map((review) => (
+              <div
+                key={`review${review.id}`}
+                className="review"
+              >
+                <blockquote className="review__quote">
+                  <p className="review__text">
+                    {review.comment}
+                  </p>
 
-                <footer className="review__details">
-                  <cite className="review__author">
-                    {review.userName}
-                  </cite>
-                  <time
-                    className="review__date"
-                    dateTime={toDateTimeAttribute(review.date)}
-                  >
-                    {getReviewDate(review.date)}
-                  </time>
-                </footer>
-              </blockquote>
+                  <footer className="review__details">
+                    <cite className="review__author">
+                      {review.userName}
+                    </cite>
+                    <time
+                      className="review__date"
+                      dateTime={toDateTimeAttribute(review.date)}
+                    >
+                      {getReviewDate(review.date)}
+                    </time>
+                  </footer>
+                </blockquote>
 
-              <div className="review__rating">
-                {getRatingScore(review.rating)}
+                <div className="review__rating">
+                  {getRatingScore(review.rating)}
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          }
         </div>
       ))}
     </div>

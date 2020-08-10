@@ -49,6 +49,11 @@ const Overview = (props) => {
   );
 };
 
-Overview.propTypes = pt.film;
+Overview.propTypes = {
+  rating: pt.rating,
+  description: pt.string,
+  director: pt.string,
+  starring: pt.starring,
+};
 
 export default Overview;

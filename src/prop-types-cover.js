@@ -50,24 +50,26 @@ export const movie = pt.shape({
   full: string,
 }).isRequired;
 
+export const starring = pt.arrayOf(pt.string).isRequired;
+
 export const film = pt.shape({
   id: pt.oneOfType([
     string,
     number
   ]).isRequired,
 
-  genre,
-  rating,
-  image,
-  movie,
-
   filmTitle: string,
   release: number,
   runtime: number,
   description: string,
   director: string,
-  starring: pt.arrayOf(pt.string).isRequired,
   isFavorite: bool,
+
+  genre,
+  rating,
+  image,
+  movie,
+  starring,
 });
 
 export const films = pt.arrayOf(film);
@@ -109,6 +111,7 @@ export default {
   rating,
   image,
   movie,
+  starring,
   film,
   films,
   review,

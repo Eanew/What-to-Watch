@@ -51,6 +51,12 @@ const Details = (props) => {
   );
 };
 
-Details.propTypes = pt.film;
+Details.propTypes = {
+  release: pt.number,
+  runtime: pt.number,
+  genre: pt.genre,
+  director: pt.string,
+  starring: pt.starring,
+};
 
 export default Details;

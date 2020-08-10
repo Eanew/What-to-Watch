@@ -23,7 +23,6 @@ const store = createStore(
 );
 
 store.dispatch(UserOperation.checkAuthorization());
-store.dispatch(DataOperation.loadFavorites());
 store.dispatch(DataOperation.loadPromo());
 store.dispatch(DataOperation.loadFilms());
 
