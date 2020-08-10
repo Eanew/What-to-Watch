@@ -2,163 +2,269 @@ import React from "react";
 
 import pt from "../../prop-types-cover.js";
 
-import {MOVIE_PAGE_FILMS_TO_DISPLAY} from "../../config.js";
+import {connect} from "react-redux";
+import {ActionCreator} from "../../reducer/screen/screen.js";
+import {getCurrentFilm, getCurrentTab} from "../../reducer/screen/selectors.js";
+import {getFilmsLikeCurrentFilm} from "../../reducer/films/selectors.js";
+import {getUserInfo} from "../../reducer/user/selectors.js";
+import {getReviews} from "../../reducer/data/selectors.js";
+import {Operation} from "../../reducer/data/data.js";
 
-import Films from "../films/films.jsx";
+import {MovieTab} from "../../utils/const.js";
+import {isEscEvent} from "../../utils/common.js";
+
 import TabsNavigation from "../tabs-navigation/tabs-navigation.jsx";
+import Overview from "../overview/overview.jsx";
+import Details from "../details/details.jsx";
+import Reviews from "../reviews/reviews.jsx";
+import Films from "../films/films.jsx";
 
-const MoviePage = (props) => {
-  const {
-    film,
-    films,
-    onPlayButtonClick,
-    onFilmCardClick,
-    currentTab,
-    renderTab,
-    onTabClick,
-  } = props;
+class MoviePage extends React.PureComponent {
+  componentDidMount() {
+    Operation.loadReviews(this.props.film.id);
+    document.addEventListener(`keydown`, this._handleEscPress);
+  }
 
-  const {
-    filmTitle,
-    release,
-    genre,
-    image,
-  } = film;
+  componentWillUnmount() {
+    document.removeEventListener(`keydown`, this._handleEscPress);
+  }
 
-  const similarFilms = films.sort((first, second) => second.rating.value - first.rating.value)
-    .filter((movie) => (movie.genre === film.genre) && (movie !== film)).slice(0, MOVIE_PAGE_FILMS_TO_DISPLAY);
+  _handleEscPress(evt) {
+    isEscEvent(evt, this.props.onMoviePageEscPress);
+  }
 
-  return (
-    <React.Fragment>
-      <section className="movie-card movie-card--full">
-        <div className="movie-card__hero">
-          <div className="movie-card__bg">
-            <img
-              src={image.background}
-              alt={filmTitle}
-              style={{
-                backgroundColor: image.backgroundColor,
-              }}
-            />
+  render() {
+    const {
+      userInfo,
+      film,
+      similarFilms,
+      currentTab,
+      onTabClick,
+      onPlayButtonClick,
+      onFilmCardClick,
+      onMoviePageEscPress,
+    } = this.props;
+
+    const {
+      filmTitle,
+      release,
+      genre,
+      image,
+    } = film;
+
+    return (
+      <React.Fragment>
+        <section className="movie-card movie-card--full">
+          <div className="movie-card__hero">
+            <div className="movie-card__bg">
+              <img
+                src={image.background}
+                alt={filmTitle}
+                style={{backgroundColor: image.backgroundColor}}
+              />
+            </div>
+
+            <h1 className="visually-hidden">WTW</h1>
+
+            <header className="page-header movie-card__head">
+              <div className="logo">
+                <a
+                  onClick={onMoviePageEscPress}
+                  className="logo__link"
+                >
+                  <span className="logo__letter logo__letter--1">W</span>
+                  <span className="logo__letter logo__letter--2">T</span>
+                  <span className="logo__letter logo__letter--3">W</span>
+                </a>
+              </div>
+
+              {userInfo && (
+                <div className="user-block">
+                  <div className="user-block__avatar">
+                    <img
+                      src={userInfo.avatar}
+                      alt="User avatar"
+                      width="63" height="63"
+                    />
+                  </div>
+                </div>
+              )}
+            </header>
+
+            <div className="movie-card__wrap">
+              <div className="movie-card__desc">
+                <h2 className="movie-card__title">
+                  {filmTitle}
+                </h2>
+                <p className="movie-card__meta">
+                  <span className="movie-card__genre">
+                    {genre}
+                  </span>
+                  <span className="movie-card__year">
+                    {release}
+                  </span>
+                </p>
+
+                <div className="movie-card__buttons">
+                  <button
+                    onClick={onPlayButtonClick}
+                    className="btn btn--play movie-card__button"
+                    type="button"
+                  >
+                    <svg viewBox="0 0 19 19" width="19" height="19">
+                      <use xlinkHref="#play-s"></use>
+                    </svg>
+                    <span>Play</span>
+                  </button>
+                  <button className="btn btn--list movie-card__button" type="button">
+                    <svg viewBox="0 0 19 20" width="19" height="20">
+                      <use xlinkHref="#add"></use>
+                    </svg>
+                    <span>My list</span>
+                  </button>
+                  <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <h1 className="visually-hidden">WTW</h1>
+          <div className="movie-card__wrap movie-card__translate-top">
+            <div className="movie-card__info">
+              <div className="movie-card__poster movie-card__poster--big">
+                <img
+                  src={image.poster}
+                  alt={`${filmTitle} poster`}
+                  width="218" height="327"
+                />
+              </div>
 
-          <header className="page-header movie-card__head">
+              <div className="movie-card__desc">
+
+                <TabsNavigation
+                  currentTab={currentTab}
+                  onTabClick={onTabClick}
+                />
+
+                {this._renderTab(currentTab)}
+
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div className="page-content">
+          {(similarFilms && similarFilms.length !== 0) && (
+            <section className="catalog catalog--like-this">
+              <h2 className="catalog__title">More like this</h2>
+
+              <Films
+                films={similarFilms}
+                onFilmCardClick={onFilmCardClick}
+              />
+            </section>
+          )}
+
+          <footer className="page-footer">
             <div className="logo">
-              <a href="main.html" className="logo__link">
+              <a
+                onClick={onMoviePageEscPress}
+                className="logo__link logo__link--light"
+              >
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
               </a>
             </div>
 
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
+            <div className="copyright">
+              <p>© 2019 What to watch Ltd.</p>
             </div>
-          </header>
-
-          <div className="movie-card__wrap">
-            <div className="movie-card__desc">
-              <h2 className="movie-card__title">
-                {filmTitle}
-              </h2>
-              <p className="movie-card__meta">
-                <span className="movie-card__genre">
-                  {genre}
-                </span>
-                <span className="movie-card__year">
-                  {release}
-                </span>
-              </p>
-
-              <div className="movie-card__buttons">
-                <button
-                  onClick={onPlayButtonClick}
-                  className="btn btn--play movie-card__button"
-                  type="button"
-                >
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
-              </div>
-            </div>
-          </div>
+          </footer>
         </div>
+      </React.Fragment>
+    );
+  }
 
-        <div className="movie-card__wrap movie-card__translate-top">
-          <div className="movie-card__info">
-            <div className="movie-card__poster movie-card__poster--big">
-              <img
-                src={image.poster}
-                alt={`${filmTitle} poster`}
-                width="218" height="327"
-              />
-            </div>
+  _renderTab(tab) {
+    const {
+      release,
+      runtime,
+      genre,
+      rating,
+      description,
+      director,
+      starring,
+    } = this.props.film;
 
-            <div className="movie-card__desc">
+    switch (tab) {
+      case MovieTab.OVERVIEW:
+        return (
+          <Overview
+            rating={rating}
+            description={description}
+            director={director}
+            starring={starring}
+          />
+        );
 
-              <TabsNavigation
-                currentTab={currentTab}
-                onTabClick={onTabClick}
-              />
+      case MovieTab.DETAILS:
+        return (
+          <Details
+            release={release}
+            runtime={runtime}
+            genre={genre}
+            director={director}
+            starring={starring}
+          />
+        );
 
-              {renderTab(currentTab)}
+      case MovieTab.REVIEWS:
+        return (
+          <Reviews
+            reviews={this.props.reviews}
+          />
+        );
 
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div className="page-content">
-        {(similarFilms && similarFilms.length !== 0) && (
-          <section className="catalog catalog--like-this">
-            <h2 className="catalog__title">More like this</h2>
-
-            <Films
-              films={similarFilms}
-              onFilmCardClick={onFilmCardClick}
-            />
-          </section>
-        )}
-
-        <footer className="page-footer">
-          <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
-      </div>
-    </React.Fragment>
-  );
-};
+      default:
+        return null;
+    }
+  }
+}
 
 MoviePage.propTypes = {
+  userInfo: pt.userInfo,
   film: pt.film,
+  similarFilms: pt.films,
+  reviews: pt.reviews,
   currentTab: pt.currentTab,
-  films: pt.films,
-  onPlayButtonClick: pt.func,
   onTabClick: pt.func,
-  renderTab: pt.func,
+  onPlayButtonClick: pt.func,
   onFilmCardClick: pt.func,
+  onMoviePageEscPress: pt.func,
 };
 
-export default MoviePage;
+const mapStateToProps = (state) => ({
+  userInfo: getUserInfo(state),
+  film: getCurrentFilm(state),
+  similarFilms: getFilmsLikeCurrentFilm(state),
+  reviews: getReviews(state),
+  currentTab: getCurrentTab(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onPlayButtonClick() {
+    dispatch(ActionCreator.setPlayerScreen());
+  },
+  onTabClick(tab) {
+    dispatch(ActionCreator.switchMovieTab(tab));
+  },
+  onFilmCardClick(film) {
+    dispatch(ActionCreator.setMoviePageScreen(film));
+  },
+  onMoviePageEscPress() {
+    dispatch(ActionCreator.setMainPageScreen());
+  },
+});
+
+export {MoviePage};
+export default connect(mapStateToProps, mapDispatchToProps)(MoviePage);
