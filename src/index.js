@@ -6,13 +6,13 @@ import {composeWithDevTools} from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import reducer from "./reducer/reducer.js";
 import {Operation as DataOperation} from "./reducer/data/data.js";
-import {Operation as UserOperation, ActionCreator, AuthorizationStatus} from "./reducer/user/user.js";
+import {Operation as UserOperation, ActionCreator} from "./reducer/user/user.js";
 import {createAPI} from "./api.js";
 
 import App from "./components/app/app.jsx";
 
 const onUnauthorized = () => store.dispatch(ActionCreator.requireAuthorization({
-  status: AuthorizationStatus.NO_AUTH,
+  isAuthorized: false,
 }));
 
 const api = createAPI(onUnauthorized);
@@ -24,13 +24,15 @@ const store = createStore(
 
 store.dispatch(UserOperation.checkAuthorization());
 
-store.dispatch(DataOperation.loadPromo());
-store.dispatch(DataOperation.loadFilms());
-store.dispatch(DataOperation.loadFavorites());
-
-ReactDOM.render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
-    document.querySelector(`#root`)
-);
+Promise.all([
+  store.dispatch(DataOperation.loadPromo()),
+  store.dispatch(DataOperation.loadFilms())
+])
+  .then(() => {
+    ReactDOM.render(
+        <Provider store={store}>
+          <App />
+        </Provider>,
+        document.querySelector(`#root`)
+    );
+  });

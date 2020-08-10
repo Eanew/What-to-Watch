@@ -13,20 +13,18 @@ export const children = pt.oneOfType([
   node
 ]).isRequired;
 
-export const userInfo = pt.oneOfType([
-  pt.shape({
-    id: pt.oneOfType([
-      string,
-      number
-    ]).isRequired,
+export const userInfo = pt.shape({
+  isAuthorized: bool,
 
-    name: string,
-    email: string,
-    avatar: string,
-  }).isRequired,
+  id: pt.oneOfType([
+    string,
+    number
+  ]),
 
-  pt.exact({}).isRequired,
-]).isRequired;
+  name: pt.string,
+  email: pt.string,
+  avatar: pt.string,
+}).isRequired;
 
 export const screen = pt.oneOf(Object.values(Screen)).isRequired;
 

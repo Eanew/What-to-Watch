@@ -1,4 +1,4 @@
-import {reducer, AuthorizationStatus, ActionType, ActionCreator, Operation} from "./user.js";
+import {reducer, ActionType, ActionCreator, Operation} from "./user.js";
 import MockAdapter from "axios-mock-adapter";
 import {createAPI} from "../../api.js";
 
@@ -7,63 +7,77 @@ const api = createAPI(() => {});
 describe(`User reducer`, () => {
   it(`Without additional parameters should return initial state`, () => {
     expect(reducer(void 0, {})).toEqual({
-      authorizationStatus: AuthorizationStatus.NO_AUTH,
-      userInfo: {},
+      userInfo: {
+        isAuthorized: false,
+      },
     });
   });
 
   it(`Should change authorizationStatus by a given value`, () => {
     expect(reducer({
-      authorizationStatus: AuthorizationStatus.NO_AUTH,
+      userInfo: {
+        isAuthorized: false,
+      },
     }, {
       type: ActionType.REQUIRED_AUTHORIZATION,
       payload: {
-        status: AuthorizationStatus.AUTH,
-        userInfo: {id: 123},
+        isAuthorized: true,
+        id: 123,
       },
     })).toEqual({
-      authorizationStatus: AuthorizationStatus.AUTH,
-      userInfo: {id: 123},
+      userInfo: {
+        isAuthorized: true,
+        id: 123,
+      },
     });
 
     expect(reducer({
-      authorizationStatus: AuthorizationStatus.AUTH,
-      userInfo: {id: 123},
+      userInfo: {
+        isAuthorized: true,
+        id: 123,
+      },
     }, {
       type: ActionType.REQUIRED_AUTHORIZATION,
       payload: {
-        status: AuthorizationStatus.NO_AUTH,
+        isAuthorized: false,
       },
     })).toEqual({
-      authorizationStatus: AuthorizationStatus.NO_AUTH,
-      userInfo: {},
+      userInfo: {
+        isAuthorized: false,
+      },
     });
 
     expect(reducer({
-      authorizationStatus: AuthorizationStatus.AUTH,
-      userInfo: {id: 123},
+      userInfo: {
+        isAuthorized: true,
+        id: 123,
+      }
     }, {
       type: ActionType.REQUIRED_AUTHORIZATION,
       payload: {
-        status: AuthorizationStatus.AUTH,
-        userInfo: {id: 456},
+        isAuthorized: true,
+        id: 456,
       },
     })).toEqual({
-      authorizationStatus: AuthorizationStatus.AUTH,
-      userInfo: {id: 456},
+      userInfo: {
+        isAuthorized: true,
+        id: 456,
+      },
     });
 
     expect(reducer({
-      authorizationStatus: AuthorizationStatus.NO_AUTH,
-      userInfo: {},
+      userInfo: {
+        isAuthorized: false,
+      },
     }, {
       type: ActionType.REQUIRED_AUTHORIZATION,
       payload: {
-        status: AuthorizationStatus.NO_AUTH,
+        isAuthorized: false,
       },
     })).toEqual({
-      authorizationStatus: AuthorizationStatus.NO_AUTH,
-      userInfo: {},
+      userInfo: {
+        isAuthorized: false,
+      },
     });
   });
 });
@@ -71,23 +85,22 @@ describe(`User reducer`, () => {
 describe(`User action creators`, () => {
   it(`Should requireAuthorization method returns correct action`, () => {
     expect(ActionCreator.requireAuthorization({
-      status: AuthorizationStatus.NO_AUTH,
+      isAuthorized: false,
     })).toEqual({
       type: ActionType.REQUIRED_AUTHORIZATION,
       payload: {
-        status: AuthorizationStatus.NO_AUTH,
-        userInfo: {},
+        isAuthorized: false,
       },
     });
 
     expect(ActionCreator.requireAuthorization({
-      status: AuthorizationStatus.AUTH,
-      userInfo: {id: 123},
+      isAuthorized: true,
+      id: 123,
     })).toEqual({
       type: ActionType.REQUIRED_AUTHORIZATION,
       payload: {
-        status: AuthorizationStatus.AUTH,
-        userInfo: {id: 123},
+        isAuthorized: true,
+        id: 123,
       },
     });
   });
@@ -101,7 +114,7 @@ describe(`User request operation`, () => {
 
     mockApi
       .onGet(`/login`)
-      .reply(200, {userId: 123});
+      .reply(200, {"id": 123});
 
     return questionLoader(dispatch, () => {}, api)
       .then(() => {
@@ -109,8 +122,8 @@ describe(`User request operation`, () => {
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.REQUIRED_AUTHORIZATION,
           payload: {
-            status: AuthorizationStatus.AUTH,
-            userInfo: {userId: 123},
+            isAuthorized: true,
+            id: 123,
           },
         });
       });
@@ -126,7 +139,7 @@ describe(`User request operation`, () => {
 
     mockApi
       .onPost(`/login`)
-      .reply(200, {userId: 123});
+      .reply(200, {"id": 123});
 
     return questionLoader(dispatch, () => {}, api)
       .then(() => {
@@ -134,8 +147,8 @@ describe(`User request operation`, () => {
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.REQUIRED_AUTHORIZATION,
           payload: {
-            status: AuthorizationStatus.AUTH,
-            userInfo: {userId: 123},
+            isAuthorized: true,
+            id: 123,
           },
         });
       });

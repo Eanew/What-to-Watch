@@ -78,7 +78,7 @@ class MoviePage extends React.PureComponent {
                 </a>
               </div>
 
-              {userInfo && (
+              {(userInfo && userInfo.isAuthorized) && (
                 <div className="user-block">
                   <div className="user-block__avatar">
                     <img

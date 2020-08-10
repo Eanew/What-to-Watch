@@ -13,6 +13,7 @@ const usersNames = [
   `Anton Timoshenkov`];
 
 export const userInfo = {
+  isAuthorized: true,
   id: 1,
   name: usersNames[2],
   email: `julia.kim@gmail.com`,

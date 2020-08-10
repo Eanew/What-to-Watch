@@ -14,12 +14,15 @@ export const MovieTab = {
 
 export const Genre = {
   ALL: `All`,
+  ACTION: `Action`,
+  ADVENTURE: `Adventure`,
   COMEDY: `Comedy`,
   CRIME: `Crime`,
   DOCUMENTARY: `Documentary`,
   DRAMA: `Drama`,
   HORROR: `Horror`,
   FAMILY: `Kids & Family`,
+  FANTASY: `Fantasy`,
   ROMANCE: `Romance`,
   SCI_FI: `Sci-Fi`,
   THRILLER: `Thriller`,
