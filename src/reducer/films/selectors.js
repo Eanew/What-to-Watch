@@ -15,10 +15,13 @@ export const getDisplayedFilmsCount = (state) => state[NAME_SPACE].displayedFilm
 export const getGenresList = createSelector(
     getFilms,
 
-    (films) => films
-      .reduce((genres, film) => [film.genre, ...genres.filter((genre) => genre !== film.genre)], [Genre.ALL])
-      .sort()
-      .slice(0, MAX_GENRES_IN_GENRES_LIST)
+    (films) => {
+      const filmsGenres = films.reduce((genres, film) => {
+        return [film.genre, ...genres.filter((genre) => genre !== film.genre)];
+      }, []);
+
+      return [Genre.ALL, ...filmsGenres.sort()].slice(0, MAX_GENRES_IN_GENRES_LIST);
+    }
 );
 
 export const getFilmsLikeCurrentFilm = createSelector(

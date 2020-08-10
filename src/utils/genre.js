@@ -2,6 +2,8 @@ import {Genre} from "./const.js";
 
 export const mapGenreToTab = (genre) => {
   switch (genre) {
+    case Genre.ALL:
+      return `All genres`;
     case Genre.COMEDY:
       return `Comedies`;
     case Genre.CRIME:
@@ -22,6 +24,6 @@ export const mapGenreToTab = (genre) => {
       return `Thrillers`;
 
     default:
-      return `All genres`;
+      return genre;
   }
 };

@@ -9,6 +9,7 @@ import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/screen/screen.js";
 import {getCurrentScreen, getLastScreen, getCurrentFilm} from "../../reducer/screen/selectors.js";
 import {getUserInfo} from "../../reducer/user/selectors.js";
+import {getPromo} from "../../reducer/data/selectors.js";
 
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
@@ -39,16 +40,17 @@ class App extends React.PureComponent {
       screen,
       lastScreen,
       currentFilm,
+      promo,
       onPlayButtonClick,
       onExitButtonClick,
     } = this.props;
 
     switch (screen) {
       case Screen.MAIN:
-        return (
+        return (userInfo && promo) && (
           <Main
             userInfo={userInfo}
-            promo={currentFilm}
+            promo={promo}
             onPlayButtonClick={onPlayButtonClick}
             onMyListButtonClick={() => {}}
           />
@@ -80,6 +82,7 @@ App.propTypes = {
   screen: pt.screen,
   lastScreen: pt.screen,
   currentFilm: pt.film,
+  promo: pt.film,
   onPlayButtonClick: pt.func,
   onExitButtonClick: pt.func,
 };
@@ -89,6 +92,7 @@ const mapStateToProps = (state) => ({
   screen: getCurrentScreen(state),
   lastScreen: getLastScreen(state),
   currentFilm: getCurrentFilm(state),
+  promo: getPromo(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
