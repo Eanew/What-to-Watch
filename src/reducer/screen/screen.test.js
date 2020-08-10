@@ -9,7 +9,7 @@ describe(`Screen reducer`, () => {
     expect(reducer(void 0, {})).toEqual({
       screen: Screen.MAIN,
       lastScreen: Screen.MAIN,
-      currentFilm: {},
+      currentFilm: null,
       movieTab: MovieTab.OVERVIEW,
     });
   });

@@ -9,10 +9,10 @@ const api = createAPI(() => {});
 describe(`Data reducer`, () => {
   it(`Without additional parameters should return initial state`, () => {
     expect(reducer(void 0, {})).toEqual({
-      promo: {},
-      films: [],
-      favorites: [],
-      reviews: [],
+      promo: null,
+      films: null,
+      favorites: null,
+      reviews: null,
     });
   });
 

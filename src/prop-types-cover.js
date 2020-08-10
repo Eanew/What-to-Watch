@@ -50,34 +50,27 @@ export const movie = pt.shape({
   full: string,
 }).isRequired;
 
-export const film = pt.oneOfType([
-  pt.shape({
-    id: pt.oneOfType([
-      string,
-      number
-    ]).isRequired,
+export const film = pt.shape({
+  id: pt.oneOfType([
+    string,
+    number
+  ]).isRequired,
 
-    genre,
-    rating,
-    image,
-    movie,
+  genre,
+  rating,
+  image,
+  movie,
 
-    filmTitle: string,
-    release: number,
-    runtime: number,
-    description: string,
-    director: string,
-    starring: pt.arrayOf(pt.string).isRequired,
-    isFavorite: bool,
-  }).isRequired,
+  filmTitle: string,
+  release: number,
+  runtime: number,
+  description: string,
+  director: string,
+  starring: pt.arrayOf(pt.string).isRequired,
+  isFavorite: bool,
+});
 
-  pt.exact({}).isRequired,
-]).isRequired;
-
-export const films = pt.oneOfType([
-  pt.arrayOf(film).isRequired,
-  pt.exact([]).isRequired
-]).isRequired;
+export const films = pt.arrayOf(film);
 
 export const review = pt.shape({
   id: pt.oneOfType([
@@ -96,10 +89,7 @@ export const review = pt.shape({
   date: string,
 }).isRequired;
 
-export const reviews = pt.oneOfType([
-  pt.arrayOf(review).isRequired,
-  pt.exact([]).isRequired
-]).isRequired;
+export const reviews = pt.arrayOf(review);
 
 export default {
   string,

@@ -23,16 +23,13 @@ const store = createStore(
 );
 
 store.dispatch(UserOperation.checkAuthorization());
+store.dispatch(DataOperation.loadFavorites());
+store.dispatch(DataOperation.loadPromo());
+store.dispatch(DataOperation.loadFilms());
 
-Promise.all([
-  store.dispatch(DataOperation.loadPromo()),
-  store.dispatch(DataOperation.loadFilms())
-])
-  .then(() => {
-    ReactDOM.render(
-        <Provider store={store}>
-          <App />
-        </Provider>,
-        document.querySelector(`#root`)
-    );
-  });
+ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.querySelector(`#root`)
+);

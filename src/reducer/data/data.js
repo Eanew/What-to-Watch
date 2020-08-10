@@ -4,10 +4,10 @@ import FilmAdapter from "../../adapters/film.js";
 import ReviewAdapter from "../../adapters/review.js";
 
 const initialState = {
-  promo: {},
-  films: [],
-  favorites: [],
-  reviews: [],
+  promo: null,
+  films: null,
+  favorites: null,
+  reviews: null,
 };
 
 const ActionType = {

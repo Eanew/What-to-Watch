@@ -4,7 +4,7 @@ import {extend} from "../../utils/common.js";
 const initialState = {
   screen: Screen.MAIN,
   lastScreen: Screen.MAIN,
-  currentFilm: {},
+  currentFilm: null,
   movieTab: MovieTab.OVERVIEW,
 };
 
