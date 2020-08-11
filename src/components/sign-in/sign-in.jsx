@@ -2,11 +2,11 @@ import React from "react";
 
 import pt from "../../prop-types-cover.js";
 
-import {MIN_PASSWORD_LENGTH} from "../../utils/const.js";
 import {Regular} from "../../utils/common.js";
 import {showCustomAlert} from "../../utils/custom-alert.js";
 
 const ALERT_MESSAGE_TIMEOUT = 5000;
+const MIN_PASSWORD_LENGTH = 4;
 
 class SignIn extends React.PureComponent {
   constructor(props) {

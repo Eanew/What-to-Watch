@@ -1,10 +1,18 @@
 export const VISUALLY_HIDDEN_CLASS = ` visually-hidden`;
 
-export const MIN_PASSWORD_LENGTH = 4;
+export const AppRoute = {
+  MAIN: `/`,
+  SIGN_IN: `/login`,
+  MY_LIST: `/mylist`,
+  MOVIE_PAGE: `/films/:id`,
+  REVIEW: `/films/:id/review`,
+  PLAYER: `/player/:id`,
+};
 
 export const Screen = {
-  SIGN_IN: `Sign in`,
   MAIN: `Main`,
+  SIGN_IN: `Sign in`,
+  MY_LIST: `My list`,
   MOVIE_PAGE: `Movie page`,
   PLAYER: `Player`,
   REVIEW: `Review`,
