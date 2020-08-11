@@ -73,6 +73,14 @@ const Operation = {
         dispatch(ActionCreator.loadReviews(reviews));
       });
   },
+
+  postReview: (review, filmId) => (dispatch, getState, api) => {
+    return api.post(`/comments/${filmId}`, ReviewAdapter.toPost(review))
+      .then((response) => {
+        const reviews = ReviewAdapter.parse(response.data);
+        dispatch(ActionCreator.loadReviews(reviews));
+      });
+  },
 };
 
 const reducer = (state = initialState, action) => {

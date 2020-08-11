@@ -61,6 +61,20 @@ describe(`Screen reducer`, () => {
     });
   });
 
+  it(`Should set review page screen`, () => {
+    expect(reducer({
+      screen: Screen.MOVIE_PAGE,
+      lastScreen: Screen.MOVIE_PAGE,
+      currentFilm: films[0],
+    }, {
+      type: ActionType.SET_REVIEW_PAGE_SCREEN,
+    })).toEqual({
+      screen: Screen.REVIEW,
+      lastScreen: Screen.MOVIE_PAGE,
+      currentFilm: films[0],
+    });
+  });
+
   it(`Should switch player screen to movie page`, () => {
     expect(reducer({
       screen: Screen.PLAYER,
@@ -146,6 +160,12 @@ describe(`Screen action creators`, () => {
   it(`Should setPlayerScreen method returns correct action`, () => {
     expect(ActionCreator.setPlayerScreen()).toEqual({
       type: ActionType.SET_PLAYER_SCREEN,
+    });
+  });
+
+  it(`Should setReviewPageScreen method returns correct action`, () => {
+    expect(ActionCreator.setReviewPageScreen()).toEqual({
+      type: ActionType.SET_REVIEW_PAGE_SCREEN,
     });
   });
 

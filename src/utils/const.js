@@ -7,6 +7,7 @@ export const Screen = {
   MAIN: `Main`,
   MOVIE_PAGE: `Movie page`,
   PLAYER: `Player`,
+  REVIEW: `Review`,
 };
 
 export const MovieTab = {

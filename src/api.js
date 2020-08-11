@@ -27,11 +27,11 @@ export const createAPI = (onUnauthorized) => {
         throw error;
 
       case Error.BAD_REQUEST:
-        showCustomAlert(`Ошибка запроса. Пожалуйста, введите корректные данные`);
+        showCustomAlert(`Please enter a valid data`);
         throw error;
 
       default:
-        showCustomAlert(`Ошибка соединения. Код ошибки: ${error.response.status}`);
+        showCustomAlert(`Connection error. Error code: ${error.response.status}`);
         throw error;
     }
   };

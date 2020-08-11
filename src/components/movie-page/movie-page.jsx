@@ -30,6 +30,7 @@ class MoviePage extends React.PureComponent {
       onFilmCardClick,
       onLogoLinkClick,
       onSignInLinkClick,
+      onAddReviewClick,
     } = this.props;
 
     const {
@@ -42,6 +43,11 @@ class MoviePage extends React.PureComponent {
     const handleSignInLinkClick = (evt) => {
       evt.preventDefault();
       onSignInLinkClick();
+    };
+
+    const handleAddReviewClick = (evt) => {
+      evt.preventDefault();
+      onAddReviewClick();
     };
 
     return (
@@ -125,7 +131,15 @@ class MoviePage extends React.PureComponent {
                     </svg>
                     <span>My list</span>
                   </button>
-                  <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                  {userInfo.isAuthorized && (
+                    <a
+                      onClick={handleAddReviewClick}
+                      href="add-review.html"
+                      className="btn movie-card__button"
+                    >
+                      Add review
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
@@ -246,6 +260,7 @@ MoviePage.propTypes = {
   onFilmCardClick: pt.func,
   onLogoLinkClick: pt.func,
   onSignInLinkClick: pt.func,
+  onAddReviewClick: pt.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -272,6 +287,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onSignInLinkClick() {
     dispatch(ActionCreator.setSignInScreen());
+  },
+  onAddReviewClick() {
+    dispatch(ActionCreator.setReviewPageScreen());
   },
 });
 

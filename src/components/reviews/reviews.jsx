@@ -29,7 +29,12 @@ const Reviews = (props) => {
                 className="review"
               >
                 <blockquote className="review__quote">
-                  <p className="review__text">
+                  <p
+                    className="review__text"
+                    style={{
+                      overflowWrap: `break-word`,
+                    }}
+                  >
                     {review.comment}
                   </p>
 

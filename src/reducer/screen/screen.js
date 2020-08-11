@@ -13,6 +13,7 @@ const ActionType = {
   SET_MAIN_PAGE_SCREEN: `SET_MAIN_PAGE_SCREEN`,
   SET_MOVIE_PAGE_SCREEN: `SET_MOVIE_PAGE_SCREEN`,
   SET_PLAYER_SCREEN: `SET_PLAYER_SCREEN`,
+  SET_REVIEW_PAGE_SCREEN: `SET_REVIEW_PAGE_SCREEN`,
   SWITCH_MOVIE_TAB: `SWITCH_MOVIE_TAB`,
 };
 
@@ -32,6 +33,10 @@ const ActionCreator = {
 
   setPlayerScreen: () => ({
     type: ActionType.SET_PLAYER_SCREEN,
+  }),
+
+  setReviewPageScreen: () => ({
+    type: ActionType.SET_REVIEW_PAGE_SCREEN,
   }),
 
   switchMovieTab: (tab) => ({
@@ -58,12 +63,19 @@ const reducer = (state = initialState, action) => {
         screen: Screen.MOVIE_PAGE,
         lastScreen: Screen.MOVIE_PAGE,
         currentFilm: action.payload || state.currentFilm,
-        movieTab: state.screen === Screen.PLAYER ? state.movieTab : MovieTab.OVERVIEW,
+        movieTab: (state.screen === Screen.MAIN || state.screen === Screen.MOVIE_PAGE)
+          ? MovieTab.OVERVIEW
+          : state.movieTab,
       });
 
     case ActionType.SET_PLAYER_SCREEN:
       return extend(state, {
         screen: Screen.PLAYER,
+      });
+
+    case ActionType.SET_REVIEW_PAGE_SCREEN:
+      return extend(state, {
+        screen: Screen.REVIEW,
       });
 
     case ActionType.SWITCH_MOVIE_TAB:

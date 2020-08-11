@@ -119,12 +119,12 @@ class SignIn extends React.PureComponent {
     let alertMessage = ``;
 
     if (!isLoginValid) {
-      alertMessage += `Введён некорректный email. `;
+      alertMessage += `Incorrect email entered. `;
       login.style.outline = `2px solid red`;
     }
 
     if (!isPasswordValid) {
-      alertMessage += `Минимальная длина пароля: ${MIN_PASSWORD_LENGTH}`;
+      alertMessage += `Minimum password length: ${MIN_PASSWORD_LENGTH}`;
       password.style.outline = `2px solid red`;
     }
 

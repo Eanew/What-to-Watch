@@ -10,15 +10,21 @@ import {ActionCreator} from "../../reducer/screen/screen.js";
 import {getCurrentScreen, getLastScreen, getCurrentFilm} from "../../reducer/screen/selectors.js";
 import {getPromo, getFilms} from "../../reducer/data/selectors.js";
 import {getUserInfo} from "../../reducer/user/selectors.js";
-import {Operation} from "../../reducer/user/user.js";
+import {Operation as UserOperation} from "../../reducer/user/user.js";
+import {Operation as DataOperation} from "../../reducer/data/data.js";
 
 import SignIn from "../sign-in/sign-in.jsx";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
+
 import Player from "../player/player.jsx";
 import withFullVideo from "../../hocs/with-full-video/with-full-video.js";
 
+import ReviewPage from "../review-page/review-page.jsx";
+import withCommentForm from "../../hocs/with-comment-form/with-comment-form.js";
+
 const PlayerWrapped = withFullVideo(Player);
+const ReviewPageWrapped = withCommentForm(ReviewPage);
 
 class App extends React.PureComponent {
   render() {
@@ -51,9 +57,11 @@ class App extends React.PureComponent {
       currentFilm,
       onLogoLinkClick,
       onPlayButtonClick,
+      onMoviePageClick,
       onExitButtonClick,
       onSignInLinkClick,
       onSignInSubmit,
+      onReviewSubmit,
     } = this.props;
 
     switch (screen) {
@@ -93,6 +101,19 @@ class App extends React.PureComponent {
           />
         );
 
+      case Screen.REVIEW:
+        const handleReviewSubmit = (review) => onReviewSubmit(review, currentFilm.id);
+
+        return (
+          <ReviewPageWrapped
+            userInfo={userInfo}
+            film={currentFilm}
+            onMoviePageClick={onMoviePageClick}
+            onLogoLinkClick={onLogoLinkClick}
+            onSubmit={handleReviewSubmit}
+          />
+        );
+
       default:
         return null;
     }
@@ -108,9 +129,11 @@ App.propTypes = {
   currentFilm: pt.film,
   onLogoLinkClick: pt.func,
   onPlayButtonClick: pt.func,
+  onMoviePageClick: pt.func,
   onExitButtonClick: pt.func,
   onSignInLinkClick: pt.func,
   onSignInSubmit: pt.func,
+  onReviewSubmit: pt.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -129,6 +152,9 @@ const mapDispatchToProps = (dispatch) => ({
   onPlayButtonClick() {
     dispatch(ActionCreator.setPlayerScreen());
   },
+  onMoviePageClick() {
+    dispatch(ActionCreator.setMoviePageScreen());
+  },
   onExitButtonClick(lastScreen) {
     dispatch(lastScreen === Screen.MOVIE_PAGE
       ? ActionCreator.setMoviePageScreen()
@@ -138,9 +164,13 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.setSignInScreen());
   },
   onSignInSubmit(authData, lastScreen) {
-    dispatch(Operation.login(authData)).then(() => dispatch(lastScreen === Screen.MOVIE_PAGE
+    dispatch(UserOperation.login(authData)).then(() => dispatch(lastScreen === Screen.MOVIE_PAGE
       ? ActionCreator.setMoviePageScreen()
       : ActionCreator.setMainPageScreen()));
+  },
+  onReviewSubmit(review, filmId) {
+    dispatch(DataOperation.postReview(review, filmId))
+      .then(() => dispatch(ActionCreator.setMoviePageScreen()));
   },
 });
 
