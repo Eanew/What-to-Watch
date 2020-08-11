@@ -13,6 +13,7 @@ describe(`Data reducer`, () => {
       films: null,
       favorites: null,
       reviews: null,
+      isFetching: false,
     });
   });
 

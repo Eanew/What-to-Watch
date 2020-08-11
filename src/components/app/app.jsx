@@ -8,7 +8,7 @@ import {Screen} from "../../utils/const.js";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/screen/screen.js";
 import {getCurrentScreen, getLastScreen, getCurrentFilm} from "../../reducer/screen/selectors.js";
-import {getPromo, getFilms} from "../../reducer/data/selectors.js";
+import {getPromo, getFilms, getFetchingStatus} from "../../reducer/data/selectors.js";
 import {getUserInfo} from "../../reducer/user/selectors.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
@@ -55,6 +55,7 @@ class App extends React.PureComponent {
       screen,
       lastScreen,
       currentFilm,
+      isDataFetching,
       onLogoLinkClick,
       onPlayButtonClick,
       onMoviePageClick,
@@ -110,6 +111,7 @@ class App extends React.PureComponent {
             film={currentFilm}
             onMoviePageClick={onMoviePageClick}
             onLogoLinkClick={onLogoLinkClick}
+            isFetching={isDataFetching}
             onSubmit={handleReviewSubmit}
           />
         );
@@ -127,6 +129,7 @@ App.propTypes = {
   screen: pt.screen,
   lastScreen: pt.screen,
   currentFilm: pt.film,
+  isDataFetching: pt.bool,
   onLogoLinkClick: pt.func,
   onPlayButtonClick: pt.func,
   onMoviePageClick: pt.func,
@@ -143,6 +146,7 @@ const mapStateToProps = (state) => ({
   screen: getCurrentScreen(state),
   lastScreen: getLastScreen(state),
   currentFilm: getCurrentFilm(state),
+  isDataFetching: getFetchingStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

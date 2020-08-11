@@ -13,10 +13,9 @@ const withCommentForm = (Component) => {
       super(props);
 
       this.state = {
-        currentStarValue: ``,
+        currentStarValue: `5`,
         comment: ``,
         isCommentValid: false,
-        isSubmitInProcess: false,
       };
 
       this._handleLogoClick = this._handleLogoClick.bind(this);
@@ -52,10 +51,6 @@ const withCommentForm = (Component) => {
 
       evt.preventDefault();
 
-      this.setState({
-        isSubmitInProcess: true,
-      });
-
       this.props.onSubmit({
         rating,
         comment,
@@ -63,8 +58,7 @@ const withCommentForm = (Component) => {
     }
 
     render() {
-      const {currentStarValue, isCommentValid, isSubmitInProcess} = this.state;
-      const isSubmitButtonEnabled = Boolean(currentStarValue && isCommentValid && !isSubmitInProcess);
+      const isSubmitButtonEnabled = Boolean(this.state.isCommentValid && !this.props.isFetching);
 
       return (
         <Component
@@ -81,6 +75,7 @@ const withCommentForm = (Component) => {
   }
 
   WithCommentForm.propTypes = {
+    isFetching: pt.bool,
     onLogoLinkClick: pt.func,
     onSubmit: pt.func,
   };
