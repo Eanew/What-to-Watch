@@ -1,6 +1,9 @@
 export const VISUALLY_HIDDEN_CLASS = ` visually-hidden`;
 
+export const MIN_PASSWORD_LENGTH = 4;
+
 export const Screen = {
+  SIGN_IN: `Sign in`,
   MAIN: `Main`,
   MOVIE_PAGE: `Movie page`,
   PLAYER: `Player`,

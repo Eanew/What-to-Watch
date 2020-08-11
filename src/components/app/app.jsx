@@ -8,9 +8,11 @@ import {Screen} from "../../utils/const.js";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/screen/screen.js";
 import {getCurrentScreen, getLastScreen, getCurrentFilm} from "../../reducer/screen/selectors.js";
-import {getUserInfo} from "../../reducer/user/selectors.js";
 import {getPromo, getFilms} from "../../reducer/data/selectors.js";
+import {getUserInfo} from "../../reducer/user/selectors.js";
+import {Operation} from "../../reducer/user/user.js";
 
+import SignIn from "../sign-in/sign-in.jsx";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
 import Player from "../player/player.jsx";
@@ -20,14 +22,19 @@ const PlayerWrapped = withFullVideo(Player);
 
 class App extends React.PureComponent {
   render() {
+    const handleSubmit = (authData) => this.props.onSignInSubmit(authData, this.props.lastScreen);
+
     return (
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
             {this._renderApp()}
           </Route>
-          <Route exact path="/details">
-            <MoviePage />
+          <Route exact path="/sign-in">
+            <SignIn
+              onLogoLinkClick={this.props.onLogoLinkClick}
+              onSubmit={handleSubmit}
+            />
           </Route>
         </Switch>
       </BrowserRouter>
@@ -42,8 +49,11 @@ class App extends React.PureComponent {
       screen,
       lastScreen,
       currentFilm,
+      onLogoLinkClick,
       onPlayButtonClick,
       onExitButtonClick,
+      onSignInLinkClick,
+      onSignInSubmit,
     } = this.props;
 
     switch (screen) {
@@ -54,6 +64,17 @@ class App extends React.PureComponent {
             promo={promo}
             onPlayButtonClick={onPlayButtonClick}
             onMyListButtonClick={() => {}}
+            onSignInLinkClick={onSignInLinkClick}
+          />
+        );
+
+      case Screen.SIGN_IN:
+        const handleSubmit = (authData) => onSignInSubmit(authData, lastScreen);
+
+        return (
+          <SignIn
+            onLogoLinkClick={onLogoLinkClick}
+            onSubmit={handleSubmit}
           />
         );
 
@@ -85,8 +106,11 @@ App.propTypes = {
   screen: pt.screen,
   lastScreen: pt.screen,
   currentFilm: pt.film,
+  onLogoLinkClick: pt.func,
   onPlayButtonClick: pt.func,
   onExitButtonClick: pt.func,
+  onSignInLinkClick: pt.func,
+  onSignInSubmit: pt.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -99,11 +123,24 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  onLogoLinkClick() {
+    dispatch(ActionCreator.setMainPageScreen());
+  },
   onPlayButtonClick() {
     dispatch(ActionCreator.setPlayerScreen());
   },
   onExitButtonClick(lastScreen) {
-    dispatch(lastScreen === Screen.MOVIE_PAGE ? ActionCreator.setMoviePageScreen() : ActionCreator.setMainPageScreen());
+    dispatch(lastScreen === Screen.MOVIE_PAGE
+      ? ActionCreator.setMoviePageScreen()
+      : ActionCreator.setMainPageScreen());
+  },
+  onSignInLinkClick() {
+    dispatch(ActionCreator.setSignInScreen());
+  },
+  onSignInSubmit(authData, lastScreen) {
+    dispatch(Operation.login(authData)).then(() => dispatch(lastScreen === Screen.MOVIE_PAGE
+      ? ActionCreator.setMoviePageScreen()
+      : ActionCreator.setMainPageScreen()));
   },
 });
 

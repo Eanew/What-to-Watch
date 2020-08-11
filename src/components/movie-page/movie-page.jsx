@@ -29,6 +29,7 @@ class MoviePage extends React.PureComponent {
       onPlayButtonClick,
       onFilmCardClick,
       onLogoLinkClick,
+      onSignInLinkClick,
     } = this.props;
 
     const {
@@ -37,6 +38,11 @@ class MoviePage extends React.PureComponent {
       genre,
       image,
     } = film;
+
+    const handleSignInLinkClick = (evt) => {
+      evt.preventDefault();
+      onSignInLinkClick();
+    };
 
     return (
       <React.Fragment>
@@ -65,17 +71,27 @@ class MoviePage extends React.PureComponent {
                 </a>
               </div>
 
-              {(userInfo && userInfo.isAuthorized) && (
-                <div className="user-block">
-                  <div className="user-block__avatar">
-                    <img
-                      src={userInfo.avatar}
-                      alt="User avatar"
-                      width="63" height="63"
-                    />
-                  </div>
-                </div>
-              )}
+              <div className="user-block">
+                {userInfo.isAuthorized
+                  ? (
+                    <div className="user-block__avatar">
+                      <img
+                        src={userInfo.avatar}
+                        alt="User avatar"
+                        width="63" height="63"
+                      />
+                    </div>
+                  ) : (
+                    <a
+                      onClick={handleSignInLinkClick}
+                      href="#"
+                      className="user-block__link"
+                    >
+                      Sign in
+                    </a>
+                  )
+                }
+              </div>
             </header>
 
             <div className="movie-card__wrap">
@@ -229,6 +245,7 @@ MoviePage.propTypes = {
   onPlayButtonClick: pt.func,
   onFilmCardClick: pt.func,
   onLogoLinkClick: pt.func,
+  onSignInLinkClick: pt.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -252,6 +269,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onLogoLinkClick() {
     dispatch(ActionCreator.setMainPageScreen());
+  },
+  onSignInLinkClick() {
+    dispatch(ActionCreator.setSignInScreen());
   },
 });
 

@@ -77,6 +77,20 @@ describe(`Screen reducer`, () => {
     });
   });
 
+  it(`Should switch movie page screen to sign in screen`, () => {
+    expect(reducer({
+      screen: Screen.MOVIE_PAGE,
+      lastScreen: Screen.MOVIE_PAGE,
+      currentFilm: films[0],
+    }, {
+      type: ActionType.SET_SIGN_IN_SCREEN,
+    })).toEqual({
+      screen: Screen.SIGN_IN,
+      lastScreen: Screen.MOVIE_PAGE,
+      currentFilm: films[0],
+    });
+  });
+
   it(`Should set main screen`, () => {
     expect(reducer({
       screen: Screen.MOVIE_PAGE,
@@ -110,6 +124,12 @@ describe(`Screen reducer`, () => {
 });
 
 describe(`Screen action creators`, () => {
+  it(`Should setSignInScreen method returns correct action`, () => {
+    expect(ActionCreator.setSignInScreen()).toEqual({
+      type: ActionType.SET_SIGN_IN_SCREEN,
+    });
+  });
+
   it(`Should setMainPageScreen method returns correct action`, () => {
     expect(ActionCreator.setMainPageScreen()).toEqual({
       type: ActionType.SET_MAIN_PAGE_SCREEN,

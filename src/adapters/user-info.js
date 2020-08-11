@@ -1,9 +1,13 @@
+import {BASE_URL} from "../api.js";
+
+const pathName = BASE_URL.split(`/`).pop();
+
 export default {
   parse: (raw) => ({
     id: raw[`id`],
     name: raw[`name`],
     email: raw[`email`],
-    avatar: raw[`avatar_url`],
+    avatar: BASE_URL.replace(`/${pathName}`, raw[`avatar_url`]),
   }),
 
   toPost: (authData) => ({

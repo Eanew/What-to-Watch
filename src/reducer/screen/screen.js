@@ -9,6 +9,7 @@ const initialState = {
 };
 
 const ActionType = {
+  SET_SIGN_IN_SCREEN: `SET_SIGN_IN_SCREEN`,
   SET_MAIN_PAGE_SCREEN: `SET_MAIN_PAGE_SCREEN`,
   SET_MOVIE_PAGE_SCREEN: `SET_MOVIE_PAGE_SCREEN`,
   SET_PLAYER_SCREEN: `SET_PLAYER_SCREEN`,
@@ -16,6 +17,10 @@ const ActionType = {
 };
 
 const ActionCreator = {
+  setSignInScreen: () => ({
+    type: ActionType.SET_SIGN_IN_SCREEN,
+  }),
+
   setMainPageScreen: () => ({
     type: ActionType.SET_MAIN_PAGE_SCREEN,
   }),
@@ -37,6 +42,11 @@ const ActionCreator = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case ActionType.SET_SIGN_IN_SCREEN:
+      return extend(state, {
+        screen: Screen.SIGN_IN,
+      });
+
     case ActionType.SET_MAIN_PAGE_SCREEN:
       return extend(state, {
         screen: Screen.MAIN,

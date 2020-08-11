@@ -10,6 +10,7 @@ const Main = (props) => {
     promo,
     onPlayButtonClick,
     onMyListButtonClick,
+    onSignInLinkClick,
   } = props;
 
   const {
@@ -17,6 +18,11 @@ const Main = (props) => {
     background,
     backgroundColor,
   } = promo.image;
+
+  const handleSignInLinkClick = (evt) => {
+    evt.preventDefault();
+    onSignInLinkClick();
+  };
 
   return (
     <React.Fragment>
@@ -43,17 +49,27 @@ const Main = (props) => {
             </a>
           </div>
 
-          {(userInfo && userInfo.isAuthorized) && (
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img
-                  src={userInfo.avatar}
-                  alt="User avatar"
-                  width="63" height="63"
-                />
-              </div>
-            </div>
-          )}
+          <div className="user-block">
+            {userInfo.isAuthorized
+              ? (
+                <div className="user-block__avatar">
+                  <img
+                    src={userInfo.avatar}
+                    alt="User avatar"
+                    width="63" height="63"
+                  />
+                </div>
+              ) : (
+                <a
+                  onClick={handleSignInLinkClick}
+                  href="#"
+                  className="user-block__link"
+                >
+                  Sign in
+                </a>
+              )
+            }
+          </div>
         </header>
 
         <div className="movie-card__wrap">
@@ -138,6 +154,7 @@ Main.propTypes = {
   promo: pt.film,
   onPlayButtonClick: pt.func,
   onMyListButtonClick: pt.func,
+  onSignInLinkClick: pt.func,
 };
 
 export default Main;
