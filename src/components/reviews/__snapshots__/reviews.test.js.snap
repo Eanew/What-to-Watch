@@ -15,6 +15,11 @@ exports[`Should ReviewsComponent render correctly 1`] = `
       >
         <p
           className="review__text"
+          style={
+            Object {
+              "overflowWrap": "break-word",
+            }
+          }
         >
           Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.
         </p>
@@ -48,6 +53,11 @@ exports[`Should ReviewsComponent render correctly 1`] = `
       >
         <p
           className="review__text"
+          style={
+            Object {
+              "overflowWrap": "break-word",
+            }
+          }
         >
           Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.
         </p>
@@ -73,6 +83,10 @@ exports[`Should ReviewsComponent render correctly 1`] = `
         4,2
       </div>
     </div>
+  </div>
+  <div
+    className="movie-card__reviews-col"
+  >
     <div
       className="review"
     >
@@ -81,6 +95,11 @@ exports[`Should ReviewsComponent render correctly 1`] = `
       >
         <p
           className="review__text"
+          style={
+            Object {
+              "overflowWrap": "break-word",
+            }
+          }
         >
           Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.
         </p>
@@ -106,10 +125,6 @@ exports[`Should ReviewsComponent render correctly 1`] = `
         5,2
       </div>
     </div>
-  </div>
-  <div
-    className="movie-card__reviews-col"
-  >
     <div
       className="review"
     >
@@ -118,6 +133,11 @@ exports[`Should ReviewsComponent render correctly 1`] = `
       >
         <p
           className="review__text"
+          style={
+            Object {
+              "overflowWrap": "break-word",
+            }
+          }
         >
           Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.
         </p>

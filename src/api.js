@@ -31,7 +31,7 @@ export const createAPI = (onUnauthorized) => {
         throw error;
 
       default:
-        showCustomAlert(`Connection error. Error code: ${error.response.status}`);
+        showCustomAlert(`Connecting error.`);
         throw error;
     }
   };

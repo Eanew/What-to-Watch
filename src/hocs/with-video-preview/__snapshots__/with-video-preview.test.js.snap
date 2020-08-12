@@ -16,6 +16,7 @@ exports[`Should FilmCardWrappedComponent render corrently 1`] = `
       loop={true}
       muted={true}
       poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+      preload="none"
       width="280"
     >
       <source
@@ -29,6 +30,7 @@ exports[`Should FilmCardWrappedComponent render corrently 1`] = `
   >
     <a
       className="small-movie-card__link"
+      href=""
     >
       Fantastic Beasts: The Crimes of Grindelwald
     </a>

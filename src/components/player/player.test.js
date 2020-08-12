@@ -2,9 +2,10 @@ import React from "react";
 import renderer from "react-test-renderer";
 import Player from "./player.jsx";
 
-it(`Should TabsNavigationComponent render Reviews`, () => {
+it(`Should PlayerComponent render correctly`, () => {
   const tree = renderer.create(
       <Player
+        id={1}
         filmTitle={`Aviator`}
         isPlaying={true}
         isControlsHidden={false}

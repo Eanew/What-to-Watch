@@ -4,7 +4,6 @@ import {extend} from "../../utils/common.js";
 const initialState = {
   screen: Screen.MAIN,
   lastScreen: Screen.MAIN,
-  currentFilm: null,
   movieTab: MovieTab.OVERVIEW,
 };
 
@@ -26,9 +25,8 @@ const ActionCreator = {
     type: ActionType.SET_MAIN_PAGE_SCREEN,
   }),
 
-  setMoviePageScreen: (currentFilm) => ({
+  setMoviePageScreen: () => ({
     type: ActionType.SET_MOVIE_PAGE_SCREEN,
-    payload: currentFilm,
   }),
 
   setPlayerScreen: () => ({
@@ -62,7 +60,6 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         screen: Screen.MOVIE_PAGE,
         lastScreen: Screen.MOVIE_PAGE,
-        currentFilm: action.payload || state.currentFilm,
         movieTab: (state.screen === Screen.MAIN || state.screen === Screen.MOVIE_PAGE)
           ? MovieTab.OVERVIEW
           : state.movieTab,

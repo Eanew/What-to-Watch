@@ -1,15 +1,17 @@
 import React from "react";
 import renderer from "react-test-renderer";
 
-import {films} from "../../test-mock.js";
+import {film} from "../../test-mock.js";
+
+import {Genre} from "../../utils/const.js";
 
 import Genres from "./genres.jsx";
 
 it(`Should GenresComponent render correctly`, () => {
   const tree = renderer.create(
       <Genres
-        films={films}
-        currentGenre={films[0].genre}
+        genres={Object.values(Genre).slice(0, 10)}
+        currentGenre={film.genre}
         onGenreTabClick={() => {}}
       />
   ).toJSON();

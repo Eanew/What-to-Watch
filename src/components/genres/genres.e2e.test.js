@@ -14,7 +14,7 @@ Enzyme.configure({
 
 const genresList = films.reduce((genres, film) => {
   return [...genres.filter((genre) => genre !== film.genre), film.genre];
-}, [Genre.ALL]).sort();
+}, [Genre.ALL]).sort().slice(0, 10);
 
 describe(`Genres`, () => {
   it(`Should tab link click returns tab name`, () => {
@@ -23,9 +23,9 @@ describe(`Genres`, () => {
 
     const tabs = shallow(
         <Genres
-          films={films}
+          genres={genresList}
           currentGenre={Genre.ALL}
-          onGenreTabClick={handleGenreTabClick}
+          onGenreTabClick={() => {}}
         />
     );
 

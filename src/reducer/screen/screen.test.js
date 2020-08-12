@@ -2,47 +2,11 @@ import {Screen, MovieTab} from "../../utils/const.js";
 
 import {reducer, ActionType, ActionCreator} from "./screen.js";
 
-import {films} from "../../test-mock.js";
-
 describe(`Screen reducer`, () => {
   it(`Should returns initial state by default`, () => {
     expect(reducer(void 0, {})).toEqual({
       screen: Screen.MAIN,
       lastScreen: Screen.MAIN,
-      currentFilm: null,
-      movieTab: MovieTab.OVERVIEW,
-    });
-  });
-
-  it(`Should set current film to a given value`, () => {
-    expect(reducer({
-      screen: Screen.MAIN,
-      lastScreen: Screen.MAIN,
-      currentFilm: films[0],
-    }, {
-      type: ActionType.SET_MOVIE_PAGE_SCREEN,
-      payload: films[1],
-    })).toEqual({
-      screen: Screen.MOVIE_PAGE,
-      lastScreen: Screen.MOVIE_PAGE,
-      currentFilm: films[1],
-      movieTab: MovieTab.OVERVIEW,
-    });
-  });
-
-  it(`Should switch current film`, () => {
-    expect(reducer({
-      screen: Screen.MOVIE_PAGE,
-      lastScreen: Screen.MOVIE_PAGE,
-      currentFilm: films[0],
-      movieTab: MovieTab.REVIEWS,
-    }, {
-      type: ActionType.SET_MOVIE_PAGE_SCREEN,
-      payload: films[1],
-    })).toEqual({
-      screen: Screen.MOVIE_PAGE,
-      lastScreen: Screen.MOVIE_PAGE,
-      currentFilm: films[1],
       movieTab: MovieTab.OVERVIEW,
     });
   });
@@ -51,13 +15,11 @@ describe(`Screen reducer`, () => {
     expect(reducer({
       screen: Screen.MOVIE_PAGE,
       lastScreen: Screen.MOVIE_PAGE,
-      currentFilm: films[0],
     }, {
       type: ActionType.SET_PLAYER_SCREEN,
     })).toEqual({
       screen: Screen.PLAYER,
       lastScreen: Screen.MOVIE_PAGE,
-      currentFilm: films[0],
     });
   });
 
@@ -65,13 +27,11 @@ describe(`Screen reducer`, () => {
     expect(reducer({
       screen: Screen.MOVIE_PAGE,
       lastScreen: Screen.MOVIE_PAGE,
-      currentFilm: films[0],
     }, {
       type: ActionType.SET_REVIEW_PAGE_SCREEN,
     })).toEqual({
       screen: Screen.REVIEW,
       lastScreen: Screen.MOVIE_PAGE,
-      currentFilm: films[0],
     });
   });
 
@@ -79,14 +39,12 @@ describe(`Screen reducer`, () => {
     expect(reducer({
       screen: Screen.PLAYER,
       lastScreen: Screen.MOVIE_PAGE,
-      currentFilm: films[0],
       movieTab: MovieTab.REVIEWS,
     }, {
       type: ActionType.SET_MOVIE_PAGE_SCREEN,
     })).toEqual({
       screen: Screen.MOVIE_PAGE,
       lastScreen: Screen.MOVIE_PAGE,
-      currentFilm: films[0],
       movieTab: MovieTab.REVIEWS,
     });
   });
@@ -95,13 +53,11 @@ describe(`Screen reducer`, () => {
     expect(reducer({
       screen: Screen.MOVIE_PAGE,
       lastScreen: Screen.MOVIE_PAGE,
-      currentFilm: films[0],
     }, {
       type: ActionType.SET_SIGN_IN_SCREEN,
     })).toEqual({
       screen: Screen.SIGN_IN,
       lastScreen: Screen.MOVIE_PAGE,
-      currentFilm: films[0],
     });
   });
 
@@ -109,13 +65,11 @@ describe(`Screen reducer`, () => {
     expect(reducer({
       screen: Screen.MOVIE_PAGE,
       lastScreen: Screen.MOVIE_PAGE,
-      currentFilm: films[0],
     }, {
       type: ActionType.SET_MAIN_PAGE_SCREEN,
     })).toEqual({
       screen: Screen.MAIN,
       lastScreen: Screen.MAIN,
-      currentFilm: films[0],
     });
   });
 
@@ -123,7 +77,6 @@ describe(`Screen reducer`, () => {
     expect(reducer({
       screen: Screen.MOVIE_PAGE,
       lastScreen: Screen.MOVIE_PAGE,
-      currentFilm: films[0],
       movieTab: MovieTab.REVIEWS,
     }, {
       type: ActionType.SWITCH_MOVIE_TAB,
@@ -131,7 +84,6 @@ describe(`Screen reducer`, () => {
     })).toEqual({
       screen: Screen.MOVIE_PAGE,
       lastScreen: Screen.MOVIE_PAGE,
-      currentFilm: films[0],
       movieTab: MovieTab.DETAILS,
     });
   });
@@ -151,9 +103,8 @@ describe(`Screen action creators`, () => {
   });
 
   it(`Should setMoviePageScreen method returns correct action`, () => {
-    expect(ActionCreator.setMoviePageScreen(films[0])).toEqual({
+    expect(ActionCreator.setMoviePageScreen()).toEqual({
       type: ActionType.SET_MOVIE_PAGE_SCREEN,
-      payload: films[0],
     });
   });
 

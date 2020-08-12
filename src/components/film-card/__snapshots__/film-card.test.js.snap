@@ -19,6 +19,7 @@ exports[`Should FilmCardComponent render correctly 1`] = `
   >
     <a
       className="small-movie-card__link"
+      href=""
     >
       Fantastic Beasts: The Crimes of Grindelwald
     </a>

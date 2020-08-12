@@ -30,6 +30,7 @@ describe(`With video preview`, () => {
         />
     );
 
+    const loadEventMock = jest.spyOn(window.HTMLMediaElement.prototype, `load`).mockImplementation(() => {});
     const playEventMock = jest.spyOn(window.HTMLMediaElement.prototype, `play`).mockImplementation(() => {});
 
     const preview = filmCard.find(`.small-movie-card`);
@@ -37,7 +38,10 @@ describe(`With video preview`, () => {
     preview.simulate(`mouseenter`, {});
     window.setTimeout(() => preview.simulate(`mouseleave`, {}), PREVIEW_PLAY_TIMEOUT / 2);
 
-    window.setTimeout(() => expect(playEventMock).toHaveBeenCalledTimes(0), PREVIEW_PLAY_TIMEOUT * 2);
+    window.setTimeout(() => {
+      expect(loadEventMock).toHaveBeenCalledTimes(1);
+      expect(playEventMock).toHaveBeenCalledTimes(0);
+    }, PREVIEW_PLAY_TIMEOUT * 2);
   });
 
   it(`Should start playing after timeout is passed and then start loading on mouseleave`, () => {
@@ -61,12 +65,12 @@ describe(`With video preview`, () => {
     preview.simulate(`mouseenter`, {});
 
     window.setTimeout(() => {
-      expect(loadEventMock).toHaveBeenCalledTimes(0);
+      expect(loadEventMock).toHaveBeenCalledTimes(1);
       expect(playEventMock).toHaveBeenCalledTimes(1);
 
       preview.simulate(`mouseleave`, {});
 
-      expect(loadEventMock).toHaveBeenCalledTimes(1);
+      expect(loadEventMock).toHaveBeenCalledTimes(2);
       expect(playEventMock).toHaveBeenCalledTimes(1);
     }, PREVIEW_PLAY_TIMEOUT * 2);
   });

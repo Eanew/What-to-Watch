@@ -31,8 +31,8 @@ describe(`With full video`, () => {
     const pauseEventMock = jest.spyOn(window.HTMLMediaElement.prototype, `pause`).mockImplementation(() => {});
 
     player.find(`.player__play`).simulate(`click`, {});
-    expect(playEventMock).toHaveBeenCalledTimes(0);
-    expect(pauseEventMock).toHaveBeenCalledTimes(1);
+    expect(playEventMock).toHaveBeenCalledTimes(1);
+    expect(pauseEventMock).toHaveBeenCalledTimes(0);
 
     player.find(`.player__play`).simulate(`click`, {});
     expect(playEventMock).toHaveBeenCalledTimes(1);

@@ -1,28 +1,28 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import MoviePage from "./movie-page.jsx";
-import Reviews from "../reviews/reviews.jsx";
 
 import {MovieTab} from "../../utils/const.js";
 
-import {film, films, reviews} from "../../test-mock.js";
+import {userInfo, film, films, reviews} from "../../test-mock.js";
 
-it(`Should MoviePageComponent render Reviews`, () => {
-  const renderTab = (tab) => tab === MovieTab.REVIEWS && (
-    <Reviews
-      reviews={reviews}
-    />
-  );
-
+it(`Should MoviePageComponent render correctly`, () => {
   const tree = renderer.create(
       <MoviePage
         film={film}
         currentTab={MovieTab.REVIEWS}
-        films={films}
+        userInfo={userInfo}
+        similarFilms={films}
+        reviews={reviews}
+        renderTab={() => {}}
         onPlayButtonClick={() => {}}
         onTabClick={() => {}}
-        renderTab={renderTab}
         onFilmCardClick={() => {}}
+        onLogoLinkClick={() => {}}
+        onSignInLinkClick={() => {}}
+        onAddReviewClick={() => {}}
+        onMyListButtonClick={() => {}}
+        onAvatarClick={() => {}}
       />
   ).toJSON();
 

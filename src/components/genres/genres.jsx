@@ -1,6 +1,4 @@
 import React from "react";
-import {Link} from "react-router-dom";
-import {AppRoute} from "../../utils/const.js";
 
 import pt from "../../prop-types-cover.js";
 

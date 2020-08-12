@@ -19,6 +19,7 @@ exports[`Should FilmsComponent render correctly 1`] = `
         loop={true}
         muted={true}
         poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        preload="none"
         width="280"
       >
         <source
@@ -32,6 +33,7 @@ exports[`Should FilmsComponent render correctly 1`] = `
     >
       <a
         className="small-movie-card__link"
+        href=""
       >
         Fantastic Beasts: The Crimes of Grindelwald
       </a>
@@ -52,6 +54,7 @@ exports[`Should FilmsComponent render correctly 1`] = `
         loop={true}
         muted={true}
         poster="img/bohemian-rhapsody.jpg"
+        preload="none"
         width="280"
       >
         <source
@@ -65,6 +68,7 @@ exports[`Should FilmsComponent render correctly 1`] = `
     >
       <a
         className="small-movie-card__link"
+        href=""
       >
         Bohemian Rhapsody
       </a>
@@ -85,6 +89,7 @@ exports[`Should FilmsComponent render correctly 1`] = `
         loop={true}
         muted={true}
         poster="img/macbeth.jpg"
+        preload="none"
         width="280"
       >
         <source
@@ -98,6 +103,7 @@ exports[`Should FilmsComponent render correctly 1`] = `
     >
       <a
         className="small-movie-card__link"
+        href=""
       >
         Macbeth
       </a>

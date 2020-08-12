@@ -106,7 +106,11 @@ class App extends React.PureComponent {
           />
 
           <Route path={AppRoute.MAIN}>
-            <p>404</p>
+            <div style={{
+              fontSize: `50 px`,
+              marginTop: `150 px`,
+              textAlign: `center`,
+            }}>Page not found.</div>
           </Route>
         </Switch>
       </Router>
