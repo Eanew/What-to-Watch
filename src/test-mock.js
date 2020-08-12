@@ -1,5 +1,6 @@
 import {toKebabCase} from "./utils/common.js";
-import {Genre} from "./utils/const.js";
+import {Genre, Screen, MovieTab} from "./utils/const.js";
+import NameSpace from "./reducer/name-space.js";
 
 const filmsTitles = [
   `Fantastic Beasts: The Crimes of Grindelwald`,
@@ -99,3 +100,27 @@ export const reviews = usersNames.map((name, i) => ({
   comment: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
   date: `2019-05-08T14:13:56.569Z`,
 }));
+
+export const mockStore = {
+  [NameSpace.DATA]: {
+    promo: films[0],
+    films,
+    favorites: films.filter((movie) => movie.isFavorite),
+    reviews,
+  },
+
+  [NameSpace.USER]: {
+    userInfo,
+  },
+
+  [NameSpace.FILMS]: {
+    genre: Genre.ALL,
+    displayedFilmsCount: 8,
+  },
+
+  [NameSpace.SCREEN]: {
+    screen: Screen.MAIN,
+    lastScreen: Screen.MAIN,
+    movieTab: MovieTab.OVERVIEW,
+  },
+};

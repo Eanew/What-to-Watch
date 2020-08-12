@@ -4,10 +4,14 @@ import Adapter from "enzyme-adapter-react-16";
 import {MoviePage} from "./movie-page.jsx";
 import {Switch, Route, Router} from "react-router-dom";
 import history from "../../history.js";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
+
+const store = configureStore([]);
 
 import {MovieTab} from "../../utils/const.js";
 
-import {userInfo, film, films, reviews} from "../../test-mock.js";
+import {userInfo, film, films, reviews, mockStore} from "../../test-mock.js";
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -18,28 +22,30 @@ describe(`Should movie page tab link click returns tab name`, () => {
   const preventDefault = jest.fn();
 
   const moviePage = mount(
-      <Router history={history}>
-        <Switch>
-          <Route exact path="">
-            <MoviePage
-              film={film}
-              currentTab={MovieTab.OVERVIEW}
-              userInfo={userInfo}
-              similarFilms={films}
-              reviews={reviews}
-              onTabClick={handleTabClick}
-              renderTab={() => {}}
-              onPlayButtonClick={() => {}}
-              onFilmCardClick={() => {}}
-              onLogoLinkClick={() => {}}
-              onSignInLinkClick={() => {}}
-              onAddReviewClick={() => {}}
-              onMyListButtonClick={() => {}}
-              onAvatarClick={() => {}}
-            />
-          </Route>
-        </Switch>
-      </Router>
+      <Provider store={store(mockStore)}>
+        <Router history={history}>
+          <Switch>
+            <Route exact path="">
+              <MoviePage
+                film={film}
+                currentTab={MovieTab.OVERVIEW}
+                userInfo={userInfo}
+                similarFilms={films}
+                reviews={reviews}
+                onTabClick={handleTabClick}
+                renderTab={() => {}}
+                onPlayButtonClick={() => {}}
+                onFilmCardClick={() => {}}
+                onLogoLinkClick={() => {}}
+                onSignInLinkClick={() => {}}
+                onAddReviewClick={() => {}}
+                onMyListButtonClick={() => {}}
+                onAvatarClick={() => {}}
+              />
+            </Route>
+          </Switch>
+        </Router>
+      </Provider>
   );
 
   const tabsLinks = moviePage.find(`.movie-nav__link`);

@@ -11,6 +11,11 @@ Array [
       <img
         alt="Fantastic Beasts: The Crimes of Grindelwald"
         src="img/bg-fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        style={
+          Object {
+            "backgroundColor": "#ffffff",
+          }
+        }
       />
     </div>
     <h1
@@ -26,6 +31,8 @@ Array [
       >
         <a
           className="logo__link"
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"
@@ -53,6 +60,7 @@ Array [
           <img
             alt="User avatar"
             height="63"
+            onClick={[Function]}
             src="img/avatar.jpg"
             width="63"
           />
@@ -100,10 +108,10 @@ Array [
           <div
             className="movie-card__buttons"
           >
-            <button
+            <a
               className="btn btn--play movie-card__button"
+              href=""
               onClick={[Function]}
-              type="button"
             >
               <svg
                 height="19"
@@ -117,9 +125,10 @@ Array [
               <span>
                 Play
               </span>
-            </button>
+            </a>
             <button
               className="btn btn--list movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -173,7 +182,7 @@ Array [
             href="#"
             onClick={[Function]}
           >
-            Comedies
+            Actions
           </a>
         </li>
         <li
@@ -184,7 +193,18 @@ Array [
             href="#"
             onClick={[Function]}
           >
-            Crime
+            Adventures
+          </a>
+        </li>
+        <li
+          className="catalog__genres-item catalog__genres-item--active"
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+            onClick={[Function]}
+          >
+            All genres
           </a>
         </li>
       </ul>
@@ -206,6 +226,7 @@ Array [
               loop={true}
               muted={true}
               poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              preload="none"
               width="280"
             >
               <source
@@ -219,6 +240,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
+              href=""
             >
               Fantastic Beasts: The Crimes of Grindelwald
             </a>
@@ -239,6 +261,7 @@ Array [
               loop={true}
               muted={true}
               poster="img/bohemian-rhapsody.jpg"
+              preload="none"
               width="280"
             >
               <source
@@ -252,6 +275,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
+              href=""
             >
               Bohemian Rhapsody
             </a>
@@ -272,6 +296,7 @@ Array [
               loop={true}
               muted={true}
               poster="img/macbeth.jpg"
+              preload="none"
               width="280"
             >
               <source
@@ -285,6 +310,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
+              href=""
             >
               Macbeth
             </a>
@@ -300,6 +326,8 @@ Array [
       >
         <a
           className="logo__link logo__link--light"
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"
@@ -333,69 +361,86 @@ Array [
 exports[`AppComponent Render movie page 1`] = `
 Array [
   <section
-    className="movie-card movie-card--full"
+    className="movie-card"
   >
     <div
-      className="movie-card__hero"
+      className="movie-card__bg"
+    >
+      <img
+        alt="Fantastic Beasts: The Crimes of Grindelwald"
+        src="img/bg-fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        style={
+          Object {
+            "backgroundColor": "#ffffff",
+          }
+        }
+      />
+    </div>
+    <h1
+      className="visually-hidden"
+    >
+      WTW
+    </h1>
+    <header
+      className="page-header movie-card__head"
     >
       <div
-        className="movie-card__bg"
+        className="logo"
       >
-        <img
-          alt="Fantastic Beasts: The Crimes of Grindelwald"
-          src="img/bg-fantastic-beasts-the-crimes-of-grindelwald.jpg"
-        />
+        <a
+          className="logo__link"
+          href="/"
+          onClick={[Function]}
+        >
+          <span
+            className="logo__letter logo__letter--1"
+          >
+            W
+          </span>
+          <span
+            className="logo__letter logo__letter--2"
+          >
+            T
+          </span>
+          <span
+            className="logo__letter logo__letter--3"
+          >
+            W
+          </span>
+        </a>
       </div>
-      <h1
-        className="visually-hidden"
-      >
-        WTW
-      </h1>
-      <header
-        className="page-header movie-card__head"
-      >
-        <div
-          className="logo"
-        >
-          <a
-            className="logo__link"
-            href="main.html"
-          >
-            <span
-              className="logo__letter logo__letter--1"
-            >
-              W
-            </span>
-            <span
-              className="logo__letter logo__letter--2"
-            >
-              T
-            </span>
-            <span
-              className="logo__letter logo__letter--3"
-            >
-              W
-            </span>
-          </a>
-        </div>
-        <div
-          className="user-block"
-        >
-          <div
-            className="user-block__avatar"
-          >
-            <img
-              alt="User avatar"
-              height="63"
-              src="img/avatar.jpg"
-              width="63"
-            />
-          </div>
-        </div>
-      </header>
       <div
-        className="movie-card__wrap"
+        className="user-block"
       >
+        <div
+          className="user-block__avatar"
+        >
+          <img
+            alt="User avatar"
+            height="63"
+            onClick={[Function]}
+            src="img/avatar.jpg"
+            width="63"
+          />
+        </div>
+      </div>
+    </header>
+    <div
+      className="movie-card__wrap"
+    >
+      <div
+        className="movie-card__info"
+      >
+        <div
+          className="movie-card__poster"
+        >
+          <img
+            alt="Fantastic Beasts: The Crimes of Grindelwald poster"
+            height="327"
+            src="img/fantastic-beasts-the-crimes-of-grindelwald-poster.jpg"
+            width="218"
+          />
+        </div>
         <div
           className="movie-card__desc"
         >
@@ -421,10 +466,10 @@ Array [
           <div
             className="movie-card__buttons"
           >
-            <button
+            <a
               className="btn btn--play movie-card__button"
+              href=""
               onClick={[Function]}
-              type="button"
             >
               <svg
                 height="19"
@@ -438,9 +483,10 @@ Array [
               <span>
                 Play
               </span>
-            </button>
+            </a>
             <button
               className="btn btn--list movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -456,122 +502,6 @@ Array [
                 My list
               </span>
             </button>
-            <a
-              className="btn movie-card__button"
-              href="add-review.html"
-            >
-              Add review
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      className="movie-card__wrap movie-card__translate-top"
-    >
-      <div
-        className="movie-card__info"
-      >
-        <div
-          className="movie-card__poster movie-card__poster--big"
-        >
-          <img
-            alt="Fantastic Beasts: The Crimes of Grindelwald poster"
-            height="327"
-            src="img/fantastic-beasts-the-crimes-of-grindelwald-poster.jpg"
-            width="218"
-          />
-        </div>
-        <div
-          className="movie-card__desc"
-        >
-          <nav
-            className="movie-nav movie-card__nav"
-          >
-            <ul
-              className="movie-nav__list"
-            >
-              <li
-                className="movie-nav__item movie-nav__item--active"
-              >
-                <a
-                  className="movie-nav__link"
-                  href="#"
-                  onClick={[Function]}
-                >
-                  Overview
-                </a>
-              </li>
-              <li
-                className="movie-nav__item"
-              >
-                <a
-                  className="movie-nav__link"
-                  href="#"
-                  onClick={[Function]}
-                >
-                  Details
-                </a>
-              </li>
-              <li
-                className="movie-nav__item"
-              >
-                <a
-                  className="movie-nav__link"
-                  href="#"
-                  onClick={[Function]}
-                >
-                  Reviews
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <div
-            className="movie-rating"
-          >
-            <div
-              className="movie-rating__score"
-            >
-              6,3
-            </div>
-            <p
-              className="movie-rating__meta"
-            >
-              <span
-                className="movie-rating__level"
-              >
-                Good
-              </span>
-              <span
-                className="movie-rating__count"
-              >
-                2134 ratings
-              </span>
-            </p>
-          </div>
-          <div
-            className="movie-card__text"
-          >
-            <p>
-              In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege. Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.
-            </p>
-            <p
-              className="movie-card__director"
-            >
-              <strong>
-                Director: 
-                Wes Andreson
-              </strong>
-            </p>
-            <p
-              className="movie-card__starring"
-            >
-              <strong>
-                Starring: 
-                Bill Murray, Edward Norton, Jude Law, Willem Dafoe
-                 and other
-              </strong>
-            </p>
           </div>
         </div>
       </div>
@@ -580,6 +510,172 @@ Array [
   <div
     className="page-content"
   >
+    <section
+      className="catalog"
+    >
+      <h2
+        className="catalog__title visually-hidden"
+      >
+        Catalog
+      </h2>
+      <ul
+        className="catalog__genres-list"
+      >
+        <li
+          className="catalog__genres-item catalog__genres-item--active"
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+            onClick={[Function]}
+          >
+            All genres
+          </a>
+        </li>
+        <li
+          className="catalog__genres-item"
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+            onClick={[Function]}
+          >
+            Actions
+          </a>
+        </li>
+        <li
+          className="catalog__genres-item"
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+            onClick={[Function]}
+          >
+            Adventures
+          </a>
+        </li>
+        <li
+          className="catalog__genres-item catalog__genres-item--active"
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+            onClick={[Function]}
+          >
+            All genres
+          </a>
+        </li>
+      </ul>
+      <div
+        className="catalog__movies-list"
+      >
+        <article
+          className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <video
+              controls={false}
+              height="175"
+              loop={true}
+              muted={true}
+              poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              preload="none"
+              width="280"
+            >
+              <source
+                src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <h3
+            className="small-movie-card__title"
+          >
+            <a
+              className="small-movie-card__link"
+              href=""
+            >
+              Fantastic Beasts: The Crimes of Grindelwald
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <video
+              controls={false}
+              height="175"
+              loop={true}
+              muted={true}
+              poster="img/bohemian-rhapsody.jpg"
+              preload="none"
+              width="280"
+            >
+              <source
+                src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <h3
+            className="small-movie-card__title"
+          >
+            <a
+              className="small-movie-card__link"
+              href=""
+            >
+              Bohemian Rhapsody
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <video
+              controls={false}
+              height="175"
+              loop={true}
+              muted={true}
+              poster="img/macbeth.jpg"
+              preload="none"
+              width="280"
+            >
+              <source
+                src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <h3
+            className="small-movie-card__title"
+          >
+            <a
+              className="small-movie-card__link"
+              href=""
+            >
+              Macbeth
+            </a>
+          </h3>
+        </article>
+      </div>
+    </section>
     <footer
       className="page-footer"
     >
@@ -588,7 +684,8 @@ Array [
       >
         <a
           className="logo__link logo__link--light"
-          href="main.html"
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"
@@ -620,104 +717,359 @@ Array [
 `;
 
 exports[`AppComponent Render player 1`] = `
-<div
-  className="player"
-  onMouseMove={[Function]}
->
-  <video
-    autoPlay={true}
-    className="player__video"
-    controls={false}
-    poster="img/player-poster.jpg"
-  >
-    <source
-      src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
-      type="video/mp4"
-    />
-  </video>
-  <button
-    className="player__exit"
-    onClick={[Function]}
-    type="button"
-  >
-    Exit
-  </button>
-  <div
-    className="player__controls"
+Array [
+  <section
+    className="movie-card"
   >
     <div
-      className="player__controls-row"
+      className="movie-card__bg"
+    >
+      <img
+        alt="Fantastic Beasts: The Crimes of Grindelwald"
+        src="img/bg-fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        style={
+          Object {
+            "backgroundColor": "#ffffff",
+          }
+        }
+      />
+    </div>
+    <h1
+      className="visually-hidden"
+    >
+      WTW
+    </h1>
+    <header
+      className="page-header movie-card__head"
     >
       <div
-        className="player__time"
+        className="logo"
       >
-        <progress
-          className="player__progress"
-          max="100"
-          value={0}
-        />
-        <div
-          className="player__toggler"
-          style={
-            Object {
-              "left": "0%",
-            }
-          }
+        <a
+          className="logo__link"
+          href="/"
+          onClick={[Function]}
         >
-          Toggler
+          <span
+            className="logo__letter logo__letter--1"
+          >
+            W
+          </span>
+          <span
+            className="logo__letter logo__letter--2"
+          >
+            T
+          </span>
+          <span
+            className="logo__letter logo__letter--3"
+          >
+            W
+          </span>
+        </a>
+      </div>
+      <div
+        className="user-block"
+      >
+        <div
+          className="user-block__avatar"
+        >
+          <img
+            alt="User avatar"
+            height="63"
+            onClick={[Function]}
+            src="img/avatar.jpg"
+            width="63"
+          />
         </div>
       </div>
-      <div
-        className="player__time-value"
-      >
-        0
-      </div>
-    </div>
+    </header>
     <div
-      className="player__controls-row"
+      className="movie-card__wrap"
     >
-      <button
-        className="player__play"
-        onClick={[Function]}
-        type="button"
-      >
-        <svg
-          height="21"
-          viewBox="0 0 14 21"
-          width="14"
-        >
-          <use
-            xlinkHref="#pause"
-          />
-        </svg>
-        <span>
-          Pause
-        </span>
-      </button>
       <div
-        className="player__name"
+        className="movie-card__info"
       >
-        Fantastic Beasts: The Crimes of Grindelwald
-      </div>
-      <button
-        className="player__full-screen"
-        onClick={[Function]}
-        type="button"
-      >
-        <svg
-          height="27"
-          viewBox="0 0 27 27"
-          width="27"
+        <div
+          className="movie-card__poster"
         >
-          <use
-            xlinkHref="#full-screen"
+          <img
+            alt="Fantastic Beasts: The Crimes of Grindelwald poster"
+            height="327"
+            src="img/fantastic-beasts-the-crimes-of-grindelwald-poster.jpg"
+            width="218"
           />
-        </svg>
-        <span>
-          Full screen
-        </span>
-      </button>
+        </div>
+        <div
+          className="movie-card__desc"
+        >
+          <h2
+            className="movie-card__title"
+          >
+            Fantastic Beasts: The Crimes of Grindelwald
+          </h2>
+          <p
+            className="movie-card__meta"
+          >
+            <span
+              className="movie-card__genre"
+            >
+              Sci-Fi
+            </span>
+            <span
+              className="movie-card__year"
+            >
+              2011
+            </span>
+          </p>
+          <div
+            className="movie-card__buttons"
+          >
+            <a
+              className="btn btn--play movie-card__button"
+              href=""
+              onClick={[Function]}
+            >
+              <svg
+                height="19"
+                viewBox="0 0 19 19"
+                width="19"
+              >
+                <use
+                  xlinkHref="#play-s"
+                />
+              </svg>
+              <span>
+                Play
+              </span>
+            </a>
+            <button
+              className="btn btn--list movie-card__button"
+              onClick={[Function]}
+              type="button"
+            >
+              <svg
+                height="20"
+                viewBox="0 0 19 20"
+                width="19"
+              >
+                <use
+                  xlinkHref="#add"
+                />
+              </svg>
+              <span>
+                My list
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+  </section>,
+  <div
+    className="page-content"
+  >
+    <section
+      className="catalog"
+    >
+      <h2
+        className="catalog__title visually-hidden"
+      >
+        Catalog
+      </h2>
+      <ul
+        className="catalog__genres-list"
+      >
+        <li
+          className="catalog__genres-item catalog__genres-item--active"
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+            onClick={[Function]}
+          >
+            All genres
+          </a>
+        </li>
+        <li
+          className="catalog__genres-item"
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+            onClick={[Function]}
+          >
+            Actions
+          </a>
+        </li>
+        <li
+          className="catalog__genres-item"
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+            onClick={[Function]}
+          >
+            Adventures
+          </a>
+        </li>
+        <li
+          className="catalog__genres-item catalog__genres-item--active"
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+            onClick={[Function]}
+          >
+            All genres
+          </a>
+        </li>
+      </ul>
+      <div
+        className="catalog__movies-list"
+      >
+        <article
+          className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <video
+              controls={false}
+              height="175"
+              loop={true}
+              muted={true}
+              poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              preload="none"
+              width="280"
+            >
+              <source
+                src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <h3
+            className="small-movie-card__title"
+          >
+            <a
+              className="small-movie-card__link"
+              href=""
+            >
+              Fantastic Beasts: The Crimes of Grindelwald
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <video
+              controls={false}
+              height="175"
+              loop={true}
+              muted={true}
+              poster="img/bohemian-rhapsody.jpg"
+              preload="none"
+              width="280"
+            >
+              <source
+                src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <h3
+            className="small-movie-card__title"
+          >
+            <a
+              className="small-movie-card__link"
+              href=""
+            >
+              Bohemian Rhapsody
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <video
+              controls={false}
+              height="175"
+              loop={true}
+              muted={true}
+              poster="img/macbeth.jpg"
+              preload="none"
+              width="280"
+            >
+              <source
+                src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <h3
+            className="small-movie-card__title"
+          >
+            <a
+              className="small-movie-card__link"
+              href=""
+            >
+              Macbeth
+            </a>
+          </h3>
+        </article>
+      </div>
+    </section>
+    <footer
+      className="page-footer"
+    >
+      <div
+        className="logo"
+      >
+        <a
+          className="logo__link logo__link--light"
+          href="/"
+          onClick={[Function]}
+        >
+          <span
+            className="logo__letter logo__letter--1"
+          >
+            W
+          </span>
+          <span
+            className="logo__letter logo__letter--2"
+          >
+            T
+          </span>
+          <span
+            className="logo__letter logo__letter--3"
+          >
+            W
+          </span>
+        </a>
+      </div>
+      <div
+        className="copyright"
+      >
+        <p>
+          © 2019 What to watch Ltd.
+        </p>
+      </div>
+    </footer>
+  </div>,
+]
 `;

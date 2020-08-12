@@ -11,6 +11,11 @@ Array [
       <img
         alt="Fantastic Beasts: The Crimes of Grindelwald"
         src="img/bg-fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        style={
+          Object {
+            "backgroundColor": "#ffffff",
+          }
+        }
       />
     </div>
     <h1
@@ -26,6 +31,8 @@ Array [
       >
         <a
           className="logo__link"
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"
@@ -53,6 +60,7 @@ Array [
           <img
             alt="User avatar"
             height="63"
+            onClick={[Function]}
             src="img/avatar.jpg"
             width="63"
           />
@@ -100,10 +108,10 @@ Array [
           <div
             className="movie-card__buttons"
           >
-            <button
+            <a
               className="btn btn--play movie-card__button"
+              href=""
               onClick={[Function]}
-              type="button"
             >
               <svg
                 height="19"
@@ -117,9 +125,10 @@ Array [
               <span>
                 Play
               </span>
-            </button>
+            </a>
             <button
               className="btn btn--list movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -173,7 +182,7 @@ Array [
             href="#"
             onClick={[Function]}
           >
-            Comedies
+            Actions
           </a>
         </li>
         <li
@@ -184,7 +193,18 @@ Array [
             href="#"
             onClick={[Function]}
           >
-            Crime
+            Adventures
+          </a>
+        </li>
+        <li
+          className="catalog__genres-item catalog__genres-item--active"
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+            onClick={[Function]}
+          >
+            All genres
           </a>
         </li>
       </ul>
@@ -206,6 +226,7 @@ Array [
               loop={true}
               muted={true}
               poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              preload="none"
               width="280"
             >
               <source
@@ -219,6 +240,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
+              href=""
             >
               Fantastic Beasts: The Crimes of Grindelwald
             </a>
@@ -239,6 +261,7 @@ Array [
               loop={true}
               muted={true}
               poster="img/bohemian-rhapsody.jpg"
+              preload="none"
               width="280"
             >
               <source
@@ -252,6 +275,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
+              href=""
             >
               Bohemian Rhapsody
             </a>
@@ -272,6 +296,7 @@ Array [
               loop={true}
               muted={true}
               poster="img/macbeth.jpg"
+              preload="none"
               width="280"
             >
               <source
@@ -285,6 +310,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
+              href=""
             >
               Macbeth
             </a>
@@ -300,6 +326,8 @@ Array [
       >
         <a
           className="logo__link logo__link--light"
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"

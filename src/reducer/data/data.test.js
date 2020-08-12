@@ -149,7 +149,7 @@ describe(`Data request operation`, () => {
     return questionLoader(dispatch, () => {}, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalled();
-        expect(dispatch).toHaveBeenNthCalledWith({
+        expect(dispatch).toHaveBeenCalledWith({
           type: ActionType.LOAD_REVIEWS,
           payload: ReviewsAdapter.parse(comments),
         });
