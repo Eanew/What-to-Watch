@@ -10,7 +10,7 @@ import PrivateRoute from "../private-route/private-route.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/screen/screen.js";
 import {getCurrentScreen, getLastScreen, getCurrentFilm} from "../../reducer/screen/selectors.js";
-import {getPromo, getFilms, getFetchingStatus} from "../../reducer/data/selectors.js";
+import {getPromo, getFilms, getFetchingStatus, getFavorites} from "../../reducer/data/selectors.js";
 import {getUserInfo} from "../../reducer/user/selectors.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
@@ -18,6 +18,7 @@ import {Operation as DataOperation} from "../../reducer/data/data.js";
 import SignIn from "../sign-in/sign-in.jsx";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
+import MyList from "../my-list/my-list.jsx";
 
 import Player from "../player/player.jsx";
 import withFullVideo from "../../hocs/with-full-video/with-full-video.js";
@@ -112,7 +113,21 @@ class App extends React.PureComponent {
   }
 
   _renderMyListPage() {
-    return (``);
+    const {
+      userInfo,
+      favorites,
+      onFilmCardClick,
+      onLogoLinkClick,
+    } = this.props;
+
+    return (
+      <MyList
+        userInfo={userInfo}
+        films={favorites}
+        onFilmCardClick={onFilmCardClick}
+        onLogoLinkClick={onLogoLinkClick}
+      />
+    );
   }
 
   _renderReviewPage() {
@@ -155,6 +170,7 @@ App.propTypes = {
   userInfo: pt.userInfo,
   promo: pt.film,
   films: pt.films,
+  favorites: pt.films,
   screen: pt.screen,
   lastScreen: pt.screen,
   currentFilm: pt.film,
@@ -168,12 +184,14 @@ App.propTypes = {
   onSignInSubmit: pt.func,
   onReviewSubmit: pt.func,
   onAvatarClick: pt.func,
+  onFilmCardClick: pt.func,
 };
 
 const mapStateToProps = (state) => ({
   userInfo: getUserInfo(state),
   promo: getPromo(state),
   films: getFilms(state),
+  favorites: getFavorites(state),
   screen: getCurrentScreen(state),
   lastScreen: getLastScreen(state),
   currentFilm: getCurrentFilm(state),
@@ -220,6 +238,11 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onAvatarClick() {
     dispatch(DataOperation.loadFavorites()).then(() => history.push(AppRoute.MY_LIST));
+  },
+  onFilmCardClick(film) {
+    dispatch(ActionCreator.setMoviePageScreen(film));
+    dispatch(DataOperation.loadReviews(film.id));
+    history.push(AppRoute.MOVIE_PAGE.replace(ID_PATH, film.id));
   },
 });
 
