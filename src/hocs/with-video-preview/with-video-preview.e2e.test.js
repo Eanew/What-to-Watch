@@ -1,6 +1,8 @@
 import React from "react";
 import {configure, mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
+import {Switch, Route, Router} from "react-router-dom";
+import history from "../../history.js";
 
 import {PREVIEW_PLAY_TIMEOUT} from "../../config.js";
 
@@ -19,15 +21,21 @@ describe(`With video preview`, () => {
 
   it(`Should not playing before timeout is passed`, () => {
     const filmCard = mount(
-        <FilmCardWrapped
-          onFilmCardClick={() => {}}
-          film={Object.assign({}, film, {
-            movie: {
-              preview: ``,
-              full: ``,
-            },
-          })}
-        />
+        <Router history={history}>
+          <Switch>
+            <Route exact path="">
+              <FilmCardWrapped
+                onFilmCardClick={() => {}}
+                film={Object.assign({}, film, {
+                  movie: {
+                    preview: ``,
+                    full: ``,
+                  },
+                })}
+              />
+            </Route>
+          </Switch>
+        </Router>
     );
 
     const loadEventMock = jest.spyOn(window.HTMLMediaElement.prototype, `load`).mockImplementation(() => {});
@@ -46,15 +54,21 @@ describe(`With video preview`, () => {
 
   it(`Should start playing after timeout is passed and then start loading on mouseleave`, () => {
     const filmCard = mount(
-        <FilmCardWrapped
-          onFilmCardClick={() => {}}
-          film={Object.assign({}, film, {
-            movie: {
-              preview: ``,
-              full: ``,
-            },
-          })}
-        />
+        <Router history={history}>
+          <Switch>
+            <Route exact path="">
+              <FilmCardWrapped
+                onFilmCardClick={() => {}}
+                film={Object.assign({}, film, {
+                  movie: {
+                    preview: ``,
+                    full: ``,
+                  },
+                })}
+              />
+            </Route>
+          </Switch>
+        </Router>
     );
 
     const loadEventMock = jest.spyOn(window.HTMLMediaElement.prototype, `load`).mockImplementation(() => {});

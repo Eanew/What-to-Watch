@@ -1,7 +1,9 @@
 import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import MoviePage from "./movie-page.jsx";
+import {MoviePage} from "./movie-page.jsx";
+import {Switch, Route, Router} from "react-router-dom";
+import history from "../../history.js";
 
 import {MovieTab} from "../../utils/const.js";
 
@@ -16,22 +18,28 @@ describe(`Should movie page tab link click returns tab name`, () => {
   const preventDefault = jest.fn();
 
   const moviePage = mount(
-      <MoviePage
-        film={film}
-        currentTab={MovieTab.OVERVIEW}
-        userInfo={userInfo}
-        similarFilms={films}
-        reviews={reviews}
-        onTabClick={handleTabClick}
-        renderTab={() => {}}
-        onPlayButtonClick={() => {}}
-        onFilmCardClick={() => {}}
-        onLogoLinkClick={() => {}}
-        onSignInLinkClick={() => {}}
-        onAddReviewClick={() => {}}
-        onMyListButtonClick={() => {}}
-        onAvatarClick={() => {}}
-      />
+      <Router history={history}>
+        <Switch>
+          <Route exact path="">
+            <MoviePage
+              film={film}
+              currentTab={MovieTab.OVERVIEW}
+              userInfo={userInfo}
+              similarFilms={films}
+              reviews={reviews}
+              onTabClick={handleTabClick}
+              renderTab={() => {}}
+              onPlayButtonClick={() => {}}
+              onFilmCardClick={() => {}}
+              onLogoLinkClick={() => {}}
+              onSignInLinkClick={() => {}}
+              onAddReviewClick={() => {}}
+              onMyListButtonClick={() => {}}
+              onAvatarClick={() => {}}
+            />
+          </Route>
+        </Switch>
+      </Router>
   );
 
   const tabsLinks = moviePage.find(`.movie-nav__link`);

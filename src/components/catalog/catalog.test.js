@@ -5,7 +5,7 @@ import {films} from "../../test-mock.js";
 
 import {Genre} from "../../utils/const.js";
 
-import Catalog from "./catalog.jsx";
+import {Catalog} from "./catalog.jsx";
 
 it(`Should CatalogComponent render correctly`, () => {
   const tree = renderer.create(

@@ -114,7 +114,12 @@ describe(`User request operation`, () => {
 
     mockApi
       .onGet(`/login`)
-      .reply(200, {"id": 123});
+      .reply(200, {
+        "id": 123,
+        "email": `test@test.test`,
+        "name": `testTest`,
+        "avatar_url": `/url`,
+      });
 
     return questionLoader(dispatch, () => {}, api)
       .then(() => {
@@ -123,7 +128,10 @@ describe(`User request operation`, () => {
           type: ActionType.REQUIRED_AUTHORIZATION,
           payload: {
             isAuthorized: true,
+            avatar: `https://4.react.pages.academy/url`,
             id: 123,
+            email: `test@test.test`,
+            name: `testTest`,
           },
         });
       });
@@ -133,13 +141,18 @@ describe(`User request operation`, () => {
     const mockApi = new MockAdapter(api);
     const dispatch = jest.fn();
     const questionLoader = Operation.login({
-      email: `test.test@gmail.com`,
+      email: `test@test.test`,
       password: `123#Test$`,
     });
 
     mockApi
       .onPost(`/login`)
-      .reply(200, {"id": 123});
+      .reply(200, {
+        "id": 123,
+        "email": `test@test.test`,
+        "name": `testTest`,
+        "avatar_url": `/url`,
+      });
 
     return questionLoader(dispatch, () => {}, api)
       .then(() => {
@@ -148,7 +161,10 @@ describe(`User request operation`, () => {
           type: ActionType.REQUIRED_AUTHORIZATION,
           payload: {
             isAuthorized: true,
+            avatar: `https://4.react.pages.academy/url`,
             id: 123,
+            email: `test@test.test`,
+            name: `testTest`,
           },
         });
       });

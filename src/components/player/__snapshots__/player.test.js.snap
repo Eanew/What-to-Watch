@@ -1,24 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should PlayerWrappedComponent render corrently 1`] = `
+exports[`Should PlayerComponent render correctly 1`] = `
 <div
   className="player"
   onMouseMove={[Function]}
 >
-  <video
-    autoPlay={true}
-    className="player__video"
-    controls={false}
-    poster="img/bg-fantastic-beasts-the-crimes-of-grindelwald.jpg"
-  >
+  <video>
     <source
-      src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+      src=""
       type="video/mp4"
     />
   </video>
   <a
     className="player__exit"
-    href="/films/Fantastic Beasts: The Crimes of Grindelwald1"
+    href="/films/1"
     onClick={[Function]}
   >
     Exit
@@ -35,13 +30,13 @@ exports[`Should PlayerWrappedComponent render corrently 1`] = `
         <progress
           className="player__progress"
           max="100"
-          value={0}
+          value={43}
         />
         <div
           className="player__toggler"
           style={
             Object {
-              "left": "0%",
+              "left": "43%",
             }
           }
         >
@@ -51,7 +46,7 @@ exports[`Should PlayerWrappedComponent render corrently 1`] = `
       <div
         className="player__time-value"
       >
-        0
+        2:50
       </div>
     </div>
     <div
@@ -63,22 +58,22 @@ exports[`Should PlayerWrappedComponent render corrently 1`] = `
         type="button"
       >
         <svg
-          height="19"
-          viewBox="0 0 19 19"
-          width="19"
+          height="21"
+          viewBox="0 0 14 21"
+          width="14"
         >
           <use
-            xlinkHref="#play-s"
+            xlinkHref="#pause"
           />
         </svg>
         <span>
-          Play
+          Pause
         </span>
       </button>
       <div
         className="player__name"
       >
-        Fantastic Beasts: The Crimes of Grindelwald
+        Aviator
       </div>
       <button
         className="player__full-screen"
