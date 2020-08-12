@@ -25,9 +25,10 @@ const store = createStore(
     composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api)))
 );
 
-store.dispatch(UserOperation.checkAuthorization());
+// store.dispatch(UserOperation.checkAuthorization());
 store.dispatch(DataOperation.loadPromo());
 store.dispatch(DataOperation.loadFilms());
+store.dispatch(DataOperation.loadFavorites());
 
 ReactDOM.render(
     <Provider store={store}>

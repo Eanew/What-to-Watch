@@ -18,7 +18,7 @@ export const getCurrentFilm = createSelector(
     getFilms,
     getCurrentFilmId,
 
-    (films, id) => films.find((film) => film.id === +id)
+    (films, id) => films ? films.find((film) => film.id === +id) : null
 );
 
 export default {

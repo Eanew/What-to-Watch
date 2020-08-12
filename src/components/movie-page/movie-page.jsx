@@ -45,7 +45,13 @@ class MoviePage extends React.PureComponent {
       isFavorite,
     } = film;
 
-    const handleMyListButtonClick = () => onMyListButtonClick(id, isFavorite);
+    const handleMyListButtonClick = () => {
+      if (userInfo.isAuthorized) {
+        onMyListButtonClick(id, isFavorite);
+      } else {
+        history.push(AppRoute.SIGN_IN);
+      }
+    };
 
     return (
       <React.Fragment>
@@ -128,7 +134,7 @@ class MoviePage extends React.PureComponent {
                     className="btn btn--list movie-card__button"
                     type="button"
                   >
-                    {isFavorite ? (
+                    {(isFavorite && userInfo.isAuthorized) ? (
                       <svg viewBox="0 0 18 14" width="18" height="14">
                         <use xlinkHref="#in-list"></use>
                       </svg>
@@ -289,9 +295,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.switchMovieTab(tab));
   },
   onFilmCardClick(film) {
+    history.push(AppRoute.MOVIE_PAGE.replace(ID_PATH, film.id));
     dispatch(ActionCreator.setMoviePageScreen(film));
     dispatch(Operation.loadReviews(film.id));
-    history.push(AppRoute.MOVIE_PAGE.replace(ID_PATH, film.id));
   },
   onLogoLinkClick() {
     dispatch(ActionCreator.setMainPageScreen());

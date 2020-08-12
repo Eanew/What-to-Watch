@@ -1,6 +1,8 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {AppRoute, ID_PATH} from "../../utils/const.js";
+import {AppRoute} from "../../utils/const.js";
+
+import history from "../../history.js";
 
 import pt from "../../prop-types-cover.js";
 
@@ -22,7 +24,13 @@ const Main = (props) => {
     backgroundColor,
   } = promo.image;
 
-  const handleMyListButtonClick = () => onMyListButtonClick(promo.id, promo.isFavorite);
+  const handleMyListButtonClick = () => {
+    if (userInfo.isAuthorized) {
+      onMyListButtonClick(promo.id, promo.isFavorite);
+    } else {
+      history.push(AppRoute.SIGN_IN);
+    }
+  };
 
   return (
     <React.Fragment>
@@ -99,22 +107,22 @@ const Main = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <Link
+                <a
                   onClick={onPlayButtonClick}
                   className="btn btn--play movie-card__button"
-                  to={AppRoute.PLAYER.replace(ID_PATH, promo.id)}
+                  href=""
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
-                </Link>
+                </a>
                 <button
                   onClick={handleMyListButtonClick}
                   className="btn btn--list movie-card__button"
                   type="button"
                 >
-                  {promo.isFavorite ? (
+                  {(promo.isFavorite && userInfo.isAuthorized) ? (
                     <svg viewBox="0 0 18 14" width="18" height="14">
                       <use xlinkHref="#in-list"></use>
                     </svg>

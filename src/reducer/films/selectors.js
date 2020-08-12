@@ -5,7 +5,7 @@ import {Genre} from "../../utils/const.js";
 import {MAX_GENRES_IN_GENRES_LIST, MOVIE_PAGE_FILMS_TO_DISPLAY} from "../../config.js";
 
 import {getFilms} from "../data/selectors.js";
-import {getCurrentFilm} from "../screen/selectors.js";
+import {getCurrentFilm} from "../data/selectors.js";
 
 const NAME_SPACE = NameSpace.FILMS;
 

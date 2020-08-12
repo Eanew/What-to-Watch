@@ -9,8 +9,8 @@ import PrivateRoute from "../private-route/private-route.jsx";
 
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/screen/screen.js";
-import {getCurrentScreen, getLastScreen, getCurrentFilm} from "../../reducer/screen/selectors.js";
-import {getPromo, getFilms, getFetchingStatus, getFavorites} from "../../reducer/data/selectors.js";
+import {getCurrentScreen, getLastScreen} from "../../reducer/screen/selectors.js";
+import {getPromo, getFilms, getFetchingStatus, getFavorites, getCurrentFilm} from "../../reducer/data/selectors.js";
 import {getUserInfo} from "../../reducer/user/selectors.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
@@ -36,6 +36,7 @@ class App extends React.PureComponent {
     this._renderSignInPage = this._renderSignInPage.bind(this);
     this._renderMyListPage = this._renderMyListPage.bind(this);
     this._renderReviewPage = this._renderReviewPage.bind(this);
+    this._handlePlayButtonClick = this._handlePlayButtonClick.bind(this);
     this._handlePlayerExitButtonClick = this._handlePlayerExitButtonClick.bind(this);
     this._handleSignInSubmit = this._handleSignInSubmit.bind(this);
     this._handleReviewSubmit = this._handleReviewSubmit.bind(this);
@@ -47,35 +48,40 @@ class App extends React.PureComponent {
       promo,
       films,
       currentFilm,
-      onPlayButtonClick,
       onSignInLinkClick,
       onMyListButtonClick,
       onAvatarClick,
     } = this.props;
 
-    return (promo && films) && (
+    return (
       <Router history={history}>
         <Switch>
           <Route exact path={AppRoute.MAIN}>
-            <Main
-              userInfo={userInfo}
-              promo={promo}
-              onPlayButtonClick={onPlayButtonClick}
-              onSignInLinkClick={onSignInLinkClick}
-              onMyListButtonClick={onMyListButtonClick}
-              onAvatarClick={onAvatarClick}
-            />
+            {(promo && films) && (
+              <Main
+                userInfo={userInfo}
+                promo={promo}
+                onPlayButtonClick={this._handlePlayButtonClick}
+                onSignInLinkClick={onSignInLinkClick}
+                onMyListButtonClick={onMyListButtonClick}
+                onAvatarClick={onAvatarClick}
+              />
+            )}
           </Route>
 
           <Route exact path={AppRoute.MOVIE_PAGE}>
-            <MoviePage />
+            {currentFilm && (
+              <MoviePage />
+            )}
           </Route>
 
           <Route exact path={AppRoute.PLAYER}>
-            <PlayerWrapped
-              film={currentFilm}
-              onExitButtonClick={this._handlePlayerExitButtonClick}
-            />
+            {currentFilm && (
+              <PlayerWrapped
+                film={currentFilm}
+                onExitButtonClick={this._handlePlayerExitButtonClick}
+              />
+            )}
           </Route>
 
           <PrivateRoute
@@ -98,6 +104,10 @@ class App extends React.PureComponent {
             userInfo={userInfo}
             render={this._renderReviewPage}
           />
+
+          <Route path={AppRoute.MAIN}>
+            <p>404</p>
+          </Route>
         </Switch>
       </Router>
     );
@@ -120,7 +130,7 @@ class App extends React.PureComponent {
       onLogoLinkClick,
     } = this.props;
 
-    return (
+    return favorites && (
       <MyList
         userInfo={userInfo}
         films={favorites}
@@ -140,7 +150,7 @@ class App extends React.PureComponent {
       onAvatarClick,
     } = this.props;
 
-    return (
+    return currentFilm && (
       <ReviewPageWrapped
         userInfo={userInfo}
         film={currentFilm}
@@ -151,6 +161,10 @@ class App extends React.PureComponent {
         onSubmit={this._handleReviewSubmit}
       />
     );
+  }
+
+  _handlePlayButtonClick() {
+    this.props.onPlayButtonClick(this.props.promo.id);
   }
 
   _handlePlayerExitButtonClick() {
@@ -202,7 +216,8 @@ const mapDispatchToProps = (dispatch) => ({
   onLogoLinkClick() {
     dispatch(ActionCreator.setMainPageScreen());
   },
-  onPlayButtonClick() {
+  onPlayButtonClick(filmId) {
+    history.push(AppRoute.PLAYER.replace(ID_PATH, filmId));
     dispatch(ActionCreator.setPlayerScreen());
   },
   onMoviePageClick() {

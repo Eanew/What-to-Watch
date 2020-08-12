@@ -14,7 +14,7 @@ const withFullVideo = (Component) => {
       this._videoRef = React.createRef();
 
       this.state = {
-        isPlaying: true,
+        isPlaying: false,
         isControlsHidden: false,
         duration: null,
         progress: 0,
@@ -47,7 +47,7 @@ const withFullVideo = (Component) => {
 
     render() {
       const {film, onExitButtonClick} = this.props;
-      const {id, filmTitle, movie} = film;
+      const {id, filmTitle, image, movie} = film;
       const {isPlaying, isControlsHidden, duration, progress} = this.state;
 
       return (
@@ -65,7 +65,7 @@ const withFullVideo = (Component) => {
         >
           <video
             className="player__video"
-            poster="img/player-poster.jpg"
+            poster={image.background}
             controls={false}
             autoPlay={true}
             ref={this._videoRef}
