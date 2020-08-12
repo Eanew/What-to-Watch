@@ -13,7 +13,7 @@ const withCommentForm = (Component) => {
       super(props);
 
       this.state = {
-        currentStarValue: `5`,
+        currentStarValue: ``,
         comment: ``,
         isCommentValid: false,
       };
@@ -52,7 +52,8 @@ const withCommentForm = (Component) => {
     }
 
     render() {
-      const isSubmitButtonEnabled = Boolean(this.state.isCommentValid && !this.props.isFetching);
+      const {currentStarValue, isCommentValid} = this.state;
+      const isSubmitButtonEnabled = Boolean(currentStarValue && isCommentValid && !this.props.isFetching);
 
       return (
         <Component

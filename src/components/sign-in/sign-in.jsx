@@ -73,7 +73,11 @@ class SignIn extends React.PureComponent {
               </div>
             </div>
             <div className="sign-in__submit">
-              <button className="sign-in__btn" type="submit">
+              <button
+                className="sign-in__btn"
+                type="submit"
+                disabled={this.props.isFetching}
+              >
                 Sign in
               </button>
             </div>
@@ -142,6 +146,7 @@ class SignIn extends React.PureComponent {
 
 SignIn.propTypes = {
   onLogoLinkClick: pt.func,
+  isFetching: pt.bool,
   onSubmit: pt.func,
 };
 

@@ -11,7 +11,7 @@ import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/screen/screen.js";
 import {getCurrentScreen, getLastScreen} from "../../reducer/screen/selectors.js";
 import {getPromo, getFilms, getFetchingStatus, getFavorites, getCurrentFilm} from "../../reducer/data/selectors.js";
-import {getUserInfo} from "../../reducer/user/selectors.js";
+import {getUserInfo, getUserDataFetchingStatus} from "../../reducer/user/selectors.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
 
@@ -121,6 +121,7 @@ class App extends React.PureComponent {
     return (
       <SignIn
         onLogoLinkClick={this.props.onLogoLinkClick}
+        isFetching={this.propsisUserDataFetching}
         onSubmit={this._handleSignInSubmit}
       />
     );
@@ -150,7 +151,7 @@ class App extends React.PureComponent {
       currentFilm,
       onMoviePageClick,
       onLogoLinkClick,
-      isDataFetching,
+      isReviewFetching,
       onAvatarClick,
     } = this.props;
 
@@ -160,7 +161,7 @@ class App extends React.PureComponent {
         film={currentFilm}
         onMoviePageClick={onMoviePageClick}
         onLogoLinkClick={onLogoLinkClick}
-        isFetching={isDataFetching}
+        isFetching={isReviewFetching}
         onAvatarClick={onAvatarClick}
         onSubmit={this._handleReviewSubmit}
       />
@@ -192,7 +193,8 @@ App.propTypes = {
   screen: pt.screen,
   lastScreen: pt.screen,
   currentFilm: pt.film,
-  isDataFetching: pt.bool,
+  isReviewFetching: pt.bool,
+  isUserDataFetching: pt.bool,
   onLogoLinkClick: pt.func,
   onPlayButtonClick: pt.func,
   onMoviePageClick: pt.func,
@@ -213,7 +215,8 @@ const mapStateToProps = (state) => ({
   screen: getCurrentScreen(state),
   lastScreen: getLastScreen(state),
   currentFilm: getCurrentFilm(state),
-  isDataFetching: getFetchingStatus(state),
+  isReviewFetching: getFetchingStatus(state),
+  isUserDataFetching: getUserDataFetchingStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

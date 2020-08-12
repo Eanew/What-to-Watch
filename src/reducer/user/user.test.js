@@ -10,6 +10,8 @@ describe(`User reducer`, () => {
       userInfo: {
         isAuthorized: false,
       },
+
+      isFetching: false,
     });
   });
 
@@ -123,8 +125,8 @@ describe(`User request operation`, () => {
 
     return questionLoader(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
-        expect(dispatch).toHaveBeenNthCalledWith(1, {
+        expect(dispatch).toHaveBeenCalled();
+        expect(dispatch).toHaveBeenCalledWith({
           type: ActionType.REQUIRED_AUTHORIZATION,
           payload: {
             isAuthorized: true,
@@ -156,8 +158,8 @@ describe(`User request operation`, () => {
 
     return questionLoader(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
-        expect(dispatch).toHaveBeenNthCalledWith(1, {
+        expect(dispatch).toHaveBeenCalled();
+        expect(dispatch).toHaveBeenCalledWith({
           type: ActionType.REQUIRED_AUTHORIZATION,
           payload: {
             isAuthorized: true,
