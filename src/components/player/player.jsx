@@ -1,4 +1,6 @@
 import React from "react";
+import {Link} from "react-router-dom";
+import {AppRoute, ID_PATH} from "../../utils/const.js";
 
 import pt from "../../prop-types-cover.js";
 
@@ -7,6 +9,7 @@ import {toPercent, toTimeString} from "../../utils/common.js";
 
 const Player = (props) => {
   const {
+    id,
     filmTitle,
     isPlaying,
     isControlsHidden,
@@ -30,13 +33,13 @@ const Player = (props) => {
 
       {children}
 
-      <button
+      <Link
         onClick={onExitButtonClick}
         className={`player__exit${isControlsHidden ? VISUALLY_HIDDEN_CLASS : ``}`}
-        type="button"
+        to={AppRoute.MOVIE_PAGE.replace(ID_PATH, id)}
       >
         Exit
-      </button>
+      </Link>
 
       <div className={`player__controls${isControlsHidden ? VISUALLY_HIDDEN_CLASS : ``}`}>
         <div className="player__controls-row">
@@ -102,6 +105,7 @@ const Player = (props) => {
 };
 
 Player.propTypes = {
+  id: pt.id,
   filmTitle: pt.string,
   isPlaying: pt.bool,
   isControlsHidden: pt.bool,

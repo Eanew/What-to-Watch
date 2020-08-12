@@ -18,15 +18,9 @@ const withCommentForm = (Component) => {
         isCommentValid: false,
       };
 
-      this._handleLogoClick = this._handleLogoClick.bind(this);
       this._handleStarsChange = this._handleStarsChange.bind(this);
       this._handleCommentInput = this._handleCommentInput.bind(this);
       this._handleSubmit = this._handleSubmit.bind(this);
-    }
-
-    _handleLogoClick(evt) {
-      evt.preventDefault();
-      this.props.onLogoLinkClick();
     }
 
     _handleStarsChange(evt) {
@@ -65,7 +59,6 @@ const withCommentForm = (Component) => {
           {...this.props}
           starsCount={STARS_COUNT}
           isSubmitButtonEnabled={isSubmitButtonEnabled}
-          onLogoLinkClick={this._handleLogoClick}
           onStarsChange={this._handleStarsChange}
           onCommentInput={this._handleCommentInput}
           onSubmit={this._handleSubmit}
@@ -76,7 +69,6 @@ const withCommentForm = (Component) => {
 
   WithCommentForm.propTypes = {
     isFetching: pt.bool,
-    onLogoLinkClick: pt.func,
     onSubmit: pt.func,
   };
 

@@ -1,5 +1,8 @@
 import React from "react";
 
+import {AppRoute, ID_PATH} from "../../utils/const.js";
+import history from "../../history.js";
+
 import {connect} from "react-redux";
 import {ActionCreator as ScreenActionCreator} from "../../reducer/screen/screen.js";
 import {ActionCreator as FilmsActionCreator} from "../../reducer/films/films.js";
@@ -72,6 +75,7 @@ const mapDispatchToProps = (dispatch) => ({
   onFilmCardClick(film) {
     dispatch(ScreenActionCreator.setMoviePageScreen(film));
     dispatch(Operation.loadReviews(film.id));
+    history.push(AppRoute.MOVIE_PAGE.replace(ID_PATH, film.id));
   },
   onShowMoreButtonClick() {
     dispatch(FilmsActionCreator.showMoreFilms());

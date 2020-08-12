@@ -27,7 +27,10 @@ const FilmCard = (props) => {
       </div>
 
       <h3 className="small-movie-card__title">
-        <a className="small-movie-card__link">
+        <a
+          className="small-movie-card__link"
+          href=""
+        >
           {film.filmTitle}
         </a>
       </h3>

@@ -1,16 +1,17 @@
 import React from "react";
+import {Link} from "react-router-dom";
+import {AppRoute, ID_PATH, MovieTab} from "../../utils/const.js";
+import history from "../../history.js";
 
 import pt from "../../prop-types-cover.js";
 
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/screen/screen.js";
-import {getCurrentFilm, getCurrentTab} from "../../reducer/screen/selectors.js";
+import {getCurrentTab} from "../../reducer/screen/selectors.js";
 import {getFilmsLikeCurrentFilm} from "../../reducer/films/selectors.js";
 import {getUserInfo} from "../../reducer/user/selectors.js";
-import {getReviews} from "../../reducer/data/selectors.js";
+import {getCurrentFilm, getReviews} from "../../reducer/data/selectors.js";
 import {Operation} from "../../reducer/data/data.js";
-
-import {MovieTab} from "../../utils/const.js";
 
 import TabsNavigation from "../tabs-navigation/tabs-navigation.jsx";
 import Overview from "../overview/overview.jsx";
@@ -31,24 +32,20 @@ class MoviePage extends React.PureComponent {
       onLogoLinkClick,
       onSignInLinkClick,
       onAddReviewClick,
+      onMyListButtonClick,
+      onAvatarClick,
     } = this.props;
 
     const {
+      id,
       filmTitle,
       release,
       genre,
       image,
+      isFavorite,
     } = film;
 
-    const handleSignInLinkClick = (evt) => {
-      evt.preventDefault();
-      onSignInLinkClick();
-    };
-
-    const handleAddReviewClick = (evt) => {
-      evt.preventDefault();
-      onAddReviewClick();
-    };
+    const handleMyListButtonClick = () => onMyListButtonClick(id, isFavorite);
 
     return (
       <React.Fragment>
@@ -66,15 +63,15 @@ class MoviePage extends React.PureComponent {
 
             <header className="page-header movie-card__head">
               <div className="logo">
-                <a
+                <Link
                   onClick={onLogoLinkClick}
-                  href="#"
                   className="logo__link"
+                  to={AppRoute.MAIN}
                 >
                   <span className="logo__letter logo__letter--1">W</span>
                   <span className="logo__letter logo__letter--2">T</span>
                   <span className="logo__letter logo__letter--3">W</span>
-                </a>
+                </Link>
               </div>
 
               <div className="user-block">
@@ -82,19 +79,20 @@ class MoviePage extends React.PureComponent {
                   ? (
                     <div className="user-block__avatar">
                       <img
+                        onClick={onAvatarClick}
                         src={userInfo.avatar}
                         alt="User avatar"
                         width="63" height="63"
                       />
                     </div>
                   ) : (
-                    <a
-                      onClick={handleSignInLinkClick}
-                      href="#"
+                    <Link
+                      onClick={onSignInLinkClick}
                       className="user-block__link"
+                      to={AppRoute.SIGN_IN}
                     >
                       Sign in
-                    </a>
+                    </Link>
                   )
                 }
               </div>
@@ -115,30 +113,40 @@ class MoviePage extends React.PureComponent {
                 </p>
 
                 <div className="movie-card__buttons">
-                  <button
+                  <Link
                     onClick={onPlayButtonClick}
                     className="btn btn--play movie-card__button"
-                    type="button"
+                    to={AppRoute.PLAYER.replace(ID_PATH, id)}
                   >
                     <svg viewBox="0 0 19 19" width="19" height="19">
                       <use xlinkHref="#play-s"></use>
                     </svg>
                     <span>Play</span>
-                  </button>
-                  <button className="btn btn--list movie-card__button" type="button">
-                    <svg viewBox="0 0 19 20" width="19" height="20">
-                      <use xlinkHref="#add"></use>
-                    </svg>
+                  </Link>
+                  <button
+                    onClick={handleMyListButtonClick}
+                    className="btn btn--list movie-card__button"
+                    type="button"
+                  >
+                    {isFavorite ? (
+                      <svg viewBox="0 0 18 14" width="18" height="14">
+                        <use xlinkHref="#in-list"></use>
+                      </svg>
+                    ) : (
+                      <svg viewBox="0 0 19 20" width="19" height="20">
+                        <use xlinkHref="#add"></use>
+                      </svg>
+                    )}
                     <span>My list</span>
                   </button>
                   {userInfo.isAuthorized && (
-                    <a
-                      onClick={handleAddReviewClick}
-                      href="add-review.html"
+                    <Link
+                      onClick={onAddReviewClick}
                       className="btn movie-card__button"
+                      to={AppRoute.REVIEW.replace(ID_PATH, id)}
                     >
                       Add review
-                    </a>
+                    </Link>
                   )}
                 </div>
               </div>
@@ -183,15 +191,15 @@ class MoviePage extends React.PureComponent {
 
           <footer className="page-footer">
             <div className="logo">
-              <a
+              <Link
                 onClick={onLogoLinkClick}
-                href="#"
                 className="logo__link logo__link--light"
+                to={AppRoute.MAIN}
               >
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </Link>
             </div>
 
             <div className="copyright">
@@ -261,6 +269,8 @@ MoviePage.propTypes = {
   onLogoLinkClick: pt.func,
   onSignInLinkClick: pt.func,
   onAddReviewClick: pt.func,
+  onMyListButtonClick: pt.func,
+  onAvatarClick: pt.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -281,6 +291,7 @@ const mapDispatchToProps = (dispatch) => ({
   onFilmCardClick(film) {
     dispatch(ActionCreator.setMoviePageScreen(film));
     dispatch(Operation.loadReviews(film.id));
+    history.push(AppRoute.MOVIE_PAGE.replace(ID_PATH, film.id));
   },
   onLogoLinkClick() {
     dispatch(ActionCreator.setMainPageScreen());
@@ -290,6 +301,12 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onAddReviewClick() {
     dispatch(ActionCreator.setReviewPageScreen());
+  },
+  onMyListButtonClick(filmId, isFavorite) {
+    dispatch(Operation.switchIsFavorite(filmId, isFavorite));
+  },
+  onAvatarClick() {
+    dispatch(Operation.loadFavorites()).then(() => history.push(AppRoute.MY_LIST));
   },
 });
 

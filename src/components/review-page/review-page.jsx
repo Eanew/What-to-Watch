@@ -1,4 +1,6 @@
 import React from "react";
+import {Link} from "react-router-dom";
+import {AppRoute, ID_PATH} from "../../utils/const.js";
 
 import pt from "../../prop-types-cover.js";
 
@@ -13,17 +15,14 @@ const ReviewPage = (props) => {
     onStarsChange,
     onCommentInput,
     onSubmit,
+    onAvatarClick,
   } = props;
 
   const {
+    id,
     filmTitle,
     image,
   } = film;
-
-  const handleMoviePageClick = (evt) => {
-    evt.preventDefault();
-    onMoviePageClick();
-  };
 
   return (
     <section className="movie-card movie-card--full">
@@ -40,27 +39,27 @@ const ReviewPage = (props) => {
 
         <header className="page-header">
           <div className="logo">
-            <a
+            <Link
               onClick={onLogoLinkClick}
-              href="main.html"
               className="logo__link"
+              to={AppRoute.MAIN}
             >
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a
-                  onClick={handleMoviePageClick}
-                  href="movie-page.html"
+                <Link
+                  onClick={onMoviePageClick}
+                  to={AppRoute.MOVIE_PAGE.replace(ID_PATH, id)}
                   className="breadcrumbs__link"
                 >
                   {filmTitle}
-                </a>
+                </Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -71,6 +70,7 @@ const ReviewPage = (props) => {
           <div className="user-block">
             <div className="user-block__avatar">
               <img
+                onClick={onAvatarClick}
                 src={userInfo.avatar}
                 alt="User avatar"
                 width="63" height="63"
@@ -154,6 +154,7 @@ ReviewPage.propTypes = {
   onStarsChange: pt.func,
   onCommentInput: pt.func,
   onSubmit: pt.func,
+  onAvatarClick: pt.func,
 };
 
 export default ReviewPage;

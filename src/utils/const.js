@@ -1,20 +1,22 @@
 export const VISUALLY_HIDDEN_CLASS = ` visually-hidden`;
 
+export const ID_PATH = `:id`;
+
 export const AppRoute = {
   MAIN: `/`,
+  MOVIE_PAGE: `/films/${ID_PATH}`,
+  PLAYER: `/player/${ID_PATH}`,
   SIGN_IN: `/login`,
   MY_LIST: `/mylist`,
-  MOVIE_PAGE: `/films/:id`,
-  REVIEW: `/films/:id/review`,
-  PLAYER: `/player/:id`,
+  REVIEW: `/films/${ID_PATH}/review`,
 };
 
 export const Screen = {
   MAIN: `Main`,
-  SIGN_IN: `Sign in`,
-  MY_LIST: `My list`,
   MOVIE_PAGE: `Movie page`,
   PLAYER: `Player`,
+  SIGN_IN: `Sign in`,
+  MY_LIST: `My list`,
   REVIEW: `Review`,
 };
 

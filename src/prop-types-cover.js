@@ -13,14 +13,14 @@ export const children = pt.oneOfType([
   node
 ]).isRequired;
 
+export const id = pt.oneOfType([
+  string,
+  number
+]);
+
 export const userInfo = pt.shape({
+  id,
   isAuthorized: bool,
-
-  id: pt.oneOfType([
-    string,
-    number
-  ]),
-
   name: pt.string,
   email: pt.string,
   avatar: pt.string,
@@ -53,11 +53,7 @@ export const movie = pt.shape({
 export const starring = pt.arrayOf(pt.string).isRequired;
 
 export const film = pt.shape({
-  id: pt.oneOfType([
-    string,
-    number
-  ]).isRequired,
-
+  id,
   filmTitle: string,
   release: number,
   runtime: number,
@@ -75,16 +71,8 @@ export const film = pt.shape({
 export const films = pt.arrayOf(film);
 
 export const review = pt.shape({
-  id: pt.oneOfType([
-    string,
-    number
-  ]).isRequired,
-
-  userId: pt.oneOfType([
-    string,
-    number
-  ]).isRequired,
-
+  id,
+  userId: id,
   userName: string,
   rating: number,
   comment: string,
@@ -108,6 +96,7 @@ export default {
   genres,
   currentTab,
 
+  id,
   rating,
   image,
   movie,

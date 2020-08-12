@@ -19,6 +19,7 @@ const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_FAVORITES: `LOAD_FAVORITES`,
   LOAD_REVIEWS: `LOAD_REVIEWS`,
+  SWITCH_FAVORITE_STATUS: `SWITCH_FAVORITE_STATUS`,
 };
 
 const ActionCreator = {
@@ -52,6 +53,11 @@ const ActionCreator = {
   loadReviews: (reviews) => ({
     type: ActionType.LOAD_REVIEWS,
     payload: reviews,
+  }),
+
+  switchIsFavorite: (film) => ({
+    type: ActionType.SWITCH_FAVORITE_STATUS,
+    payload: film,
   }),
 };
 
@@ -131,6 +137,21 @@ const Operation = {
         throw error;
       });
   },
+
+  switchIsFavorite: (filmId, isFavorite) => (dispatch, getState, api) => {
+    dispatch(ActionCreator.loadRequest());
+
+    return api.post(`/favorite/${filmId}/${isFavorite ? `0` : `1`}`)
+      .then((response) => {
+        const film = FilmAdapter.parse(response.data);
+        dispatch(ActionCreator.switchIsFavorite(film));
+        dispatch(ActionCreator.loadSuccess());
+      })
+      .catch((error) => {
+        dispatch(ActionCreator.loadError());
+        throw error;
+      });
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -168,6 +189,16 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_REVIEWS:
       return extend(state, {
         reviews: action.payload,
+      });
+
+    case ActionType.SWITCH_FAVORITE_STATUS:
+      const filmIndex = state.films.findIndex((film) => film.id === action.payload.id);
+      const promo = state.promo.id === action.payload.id ? action.payload : state.promo;
+      const films = [...state.films.slice(0, filmIndex), action.payload, ...state.films.slice(filmIndex + 1)];
+
+      return extend(state, {
+        promo,
+        films,
       });
 
     default:

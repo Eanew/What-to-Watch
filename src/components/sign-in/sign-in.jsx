@@ -1,4 +1,6 @@
 import React from "react";
+import {Link} from "react-router-dom";
+import {AppRoute} from "../../utils/const.js";
 
 import pt from "../../prop-types-cover.js";
 
@@ -24,15 +26,15 @@ class SignIn extends React.PureComponent {
       <div className="user-page">
         <header className="page-header user-page__head">
           <div className="logo">
-            <a
+            <Link
               onClick={this.props.onLogoLinkClick}
-              href="main.html"
               className="logo__link"
+              to={AppRoute.MAIN}
             >
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <h1 className="page-title user-page__title">Sign in</h1>
@@ -80,15 +82,15 @@ class SignIn extends React.PureComponent {
 
         <footer className="page-footer">
           <div className="logo">
-            <a
+            <Link
               onClick={this.props.onLogoLinkClick}
-              href="main.html"
               className="logo__link logo__link--light"
+              to={AppRoute.MAIN}
             >
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <div className="copyright">

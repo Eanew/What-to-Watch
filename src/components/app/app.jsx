@@ -1,9 +1,11 @@
 import React from "react";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {Switch, Route, Router} from "react-router-dom";
+import history from "../../history.js";
 
 import pt from "../../prop-types-cover.js";
 
-import {Screen} from "../../utils/const.js";
+import {AppRoute, ID_PATH, Screen} from "../../utils/const.js";
+import PrivateRoute from "../private-route/private-route.jsx";
 
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/screen/screen.js";
@@ -27,98 +29,125 @@ const PlayerWrapped = withFullVideo(Player);
 const ReviewPageWrapped = withCommentForm(ReviewPage);
 
 class App extends React.PureComponent {
-  render() {
-    const handleSubmit = (authData) => this.props.onSignInSubmit(authData, this.props.lastScreen);
+  constructor(props) {
+    super(props);
 
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            {this._renderApp()}
-          </Route>
-          <Route exact path="/sign-in">
-            <SignIn
-              onLogoLinkClick={this.props.onLogoLinkClick}
-              onSubmit={handleSubmit}
-            />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    );
+    this._renderSignInPage = this._renderSignInPage.bind(this);
+    this._renderMyListPage = this._renderMyListPage.bind(this);
+    this._renderReviewPage = this._renderReviewPage.bind(this);
+    this._handlePlayerExitButtonClick = this._handlePlayerExitButtonClick.bind(this);
+    this._handleSignInSubmit = this._handleSignInSubmit.bind(this);
+    this._handleReviewSubmit = this._handleReviewSubmit.bind(this);
   }
 
-  _renderApp() {
+  render() {
     const {
       userInfo,
       promo,
       films,
-      screen,
-      lastScreen,
       currentFilm,
-      isDataFetching,
-      onLogoLinkClick,
       onPlayButtonClick,
-      onMoviePageClick,
-      onExitButtonClick,
       onSignInLinkClick,
-      onSignInSubmit,
-      onReviewSubmit,
+      onMyListButtonClick,
+      onAvatarClick,
     } = this.props;
 
-    switch (screen) {
-      case Screen.MAIN:
-        return (promo && films) && (
-          <Main
+    return (promo && films) && (
+      <Router history={history}>
+        <Switch>
+          <Route exact path={AppRoute.MAIN}>
+            <Main
+              userInfo={userInfo}
+              promo={promo}
+              onPlayButtonClick={onPlayButtonClick}
+              onSignInLinkClick={onSignInLinkClick}
+              onMyListButtonClick={onMyListButtonClick}
+              onAvatarClick={onAvatarClick}
+            />
+          </Route>
+
+          <Route exact path={AppRoute.MOVIE_PAGE}>
+            <MoviePage />
+          </Route>
+
+          <Route exact path={AppRoute.PLAYER}>
+            <PlayerWrapped
+              film={currentFilm}
+              onExitButtonClick={this._handlePlayerExitButtonClick}
+            />
+          </Route>
+
+          <PrivateRoute
+            exact
+            path={AppRoute.SIGN_IN}
             userInfo={userInfo}
-            promo={promo}
-            onPlayButtonClick={onPlayButtonClick}
-            onMyListButtonClick={() => {}}
-            onSignInLinkClick={onSignInLinkClick}
+            render={this._renderSignInPage}
           />
-        );
 
-      case Screen.SIGN_IN:
-        const handleSubmit = (authData) => onSignInSubmit(authData, lastScreen);
-
-        return (
-          <SignIn
-            onLogoLinkClick={onLogoLinkClick}
-            onSubmit={handleSubmit}
-          />
-        );
-
-      case Screen.MOVIE_PAGE:
-        return (
-          <MoviePage />
-        );
-
-      case Screen.PLAYER:
-        const handleExitButtonClick = () => onExitButtonClick(lastScreen);
-
-        return (
-          <PlayerWrapped
-            film={currentFilm}
-            onExitButtonClick={handleExitButtonClick}
-          />
-        );
-
-      case Screen.REVIEW:
-        const handleReviewSubmit = (review) => onReviewSubmit(review, currentFilm.id);
-
-        return (
-          <ReviewPageWrapped
+          <PrivateRoute
+            exact
+            path={AppRoute.MY_LIST}
             userInfo={userInfo}
-            film={currentFilm}
-            onMoviePageClick={onMoviePageClick}
-            onLogoLinkClick={onLogoLinkClick}
-            isFetching={isDataFetching}
-            onSubmit={handleReviewSubmit}
+            render={this._renderMyListPage}
           />
-        );
 
-      default:
-        return null;
-    }
+          <PrivateRoute
+            exact
+            path={AppRoute.REVIEW}
+            userInfo={userInfo}
+            render={this._renderReviewPage}
+          />
+        </Switch>
+      </Router>
+    );
+  }
+
+  _renderSignInPage() {
+    return (
+      <SignIn
+        onLogoLinkClick={this.props.onLogoLinkClick}
+        onSubmit={this._handleSignInSubmit}
+      />
+    );
+  }
+
+  _renderMyListPage() {
+    return (``);
+  }
+
+  _renderReviewPage() {
+    const {
+      userInfo,
+      currentFilm,
+      onMoviePageClick,
+      onLogoLinkClick,
+      isDataFetching,
+      onAvatarClick,
+    } = this.props;
+
+    return (
+      <ReviewPageWrapped
+        userInfo={userInfo}
+        film={currentFilm}
+        onMoviePageClick={onMoviePageClick}
+        onLogoLinkClick={onLogoLinkClick}
+        isFetching={isDataFetching}
+        onAvatarClick={onAvatarClick}
+        onSubmit={this._handleReviewSubmit}
+      />
+    );
+  }
+
+  _handlePlayerExitButtonClick() {
+    this.props.onExitButtonClick(this.props.lastScreen);
+  }
+
+  _handleSignInSubmit(authData) {
+    this.props.onSignInSubmit(authData, this.props.lastScreen, this.props.currentFilm);
+  }
+
+  _handleReviewSubmit(review) {
+    this.props.onReviewSubmit(review, this.props.currentFilm.id);
   }
 }
 
@@ -135,8 +164,10 @@ App.propTypes = {
   onMoviePageClick: pt.func,
   onExitButtonClick: pt.func,
   onSignInLinkClick: pt.func,
+  onMyListButtonClick: pt.func,
   onSignInSubmit: pt.func,
   onReviewSubmit: pt.func,
+  onAvatarClick: pt.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -167,14 +198,28 @@ const mapDispatchToProps = (dispatch) => ({
   onSignInLinkClick() {
     dispatch(ActionCreator.setSignInScreen());
   },
-  onSignInSubmit(authData, lastScreen) {
-    dispatch(UserOperation.login(authData)).then(() => dispatch(lastScreen === Screen.MOVIE_PAGE
-      ? ActionCreator.setMoviePageScreen()
-      : ActionCreator.setMainPageScreen()));
+  onSignInSubmit(authData, lastScreen, filmId) {
+    dispatch(UserOperation.login(authData)).then(() => {
+      if (lastScreen === Screen.MOVIE_PAGE) {
+        dispatch(ActionCreator.setMoviePageScreen());
+        history.push(AppRoute.MOVIE_PAGE.replace(ID_PATH, filmId));
+      } else {
+        dispatch(ActionCreator.setMainPageScreen());
+        history.push(AppRoute.MAIN);
+      }
+    });
   },
   onReviewSubmit(review, filmId) {
-    dispatch(DataOperation.postReview(review, filmId))
-      .then(() => dispatch(ActionCreator.setMoviePageScreen()));
+    dispatch(DataOperation.postReview(review, filmId)).then(() => {
+      dispatch(ActionCreator.setMoviePageScreen());
+      history.push(AppRoute.MOVIE_PAGE.replace(ID_PATH, filmId));
+    });
+  },
+  onMyListButtonClick(filmId, isFavorite) {
+    dispatch(DataOperation.switchIsFavorite(filmId, isFavorite));
+  },
+  onAvatarClick() {
+    dispatch(DataOperation.loadFavorites()).then(() => history.push(AppRoute.MY_LIST));
   },
 });
 

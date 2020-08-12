@@ -9,9 +9,14 @@ import {getUserInfo} from "../../reducer/user/selectors.js";
 const PrivateRoute = (props) => {
   const {render, path, exact, userInfo} = props;
 
-  const renderRoute = () => userInfo.isAuthorized
+  const isLoginPath = (path === AppRoute.SIGN_IN);
+
+  const requirement = isLoginPath ? !userInfo.isAuthorized : userInfo.isAuthorized;
+  const redirect = isLoginPath ? AppRoute.MAIN : AppRoute.SIGN_IN;
+
+  const renderRoute = () => requirement
     ? render()
-    : <Redirect to={AppRoute.SIGN_IN} />;
+    : <Redirect to={redirect} />;
 
   return (
     <Route

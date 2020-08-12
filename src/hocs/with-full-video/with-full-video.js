@@ -47,11 +47,12 @@ const withFullVideo = (Component) => {
 
     render() {
       const {film, onExitButtonClick} = this.props;
-      const {filmTitle, movie} = film;
+      const {id, filmTitle, movie} = film;
       const {isPlaying, isControlsHidden, duration, progress} = this.state;
 
       return (
         <Component
+          id={id}
           filmTitle={filmTitle}
           isPlaying={isPlaying}
           isControlsHidden={isControlsHidden}

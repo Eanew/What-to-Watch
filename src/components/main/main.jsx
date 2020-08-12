@@ -1,4 +1,6 @@
 import React from "react";
+import {Link} from "react-router-dom";
+import {AppRoute, ID_PATH} from "../../utils/const.js";
 
 import pt from "../../prop-types-cover.js";
 
@@ -11,6 +13,7 @@ const Main = (props) => {
     onPlayButtonClick,
     onMyListButtonClick,
     onSignInLinkClick,
+    onAvatarClick,
   } = props;
 
   const {
@@ -19,10 +22,7 @@ const Main = (props) => {
     backgroundColor,
   } = promo.image;
 
-  const handleSignInLinkClick = (evt) => {
-    evt.preventDefault();
-    onSignInLinkClick();
-  };
+  const handleMyListButtonClick = () => onMyListButtonClick(promo.id, promo.isFavorite);
 
   return (
     <React.Fragment>
@@ -39,14 +39,14 @@ const Main = (props) => {
 
         <header className="page-header movie-card__head">
           <div className="logo">
-            <a
-              href="#"
+            <Link
               className="logo__link"
+              to={AppRoute.MAIN}
             >
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <div className="user-block">
@@ -54,19 +54,20 @@ const Main = (props) => {
               ? (
                 <div className="user-block__avatar">
                   <img
+                    onClick={onAvatarClick}
                     src={userInfo.avatar}
                     alt="User avatar"
                     width="63" height="63"
                   />
                 </div>
               ) : (
-                <a
-                  onClick={handleSignInLinkClick}
-                  href="#"
+                <Link
+                  onClick={onSignInLinkClick}
                   className="user-block__link"
+                  to={AppRoute.SIGN_IN}
                 >
                   Sign in
-                </a>
+                </Link>
               )
             }
           </div>
@@ -98,24 +99,30 @@ const Main = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button
+                <Link
                   onClick={onPlayButtonClick}
                   className="btn btn--play movie-card__button"
-                  type="button"
+                  to={AppRoute.PLAYER.replace(ID_PATH, promo.id)}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
-                </button>
+                </Link>
                 <button
-                  onClick={onMyListButtonClick}
+                  onClick={handleMyListButtonClick}
                   className="btn btn--list movie-card__button"
                   type="button"
                 >
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
+                  {promo.isFavorite ? (
+                    <svg viewBox="0 0 18 14" width="18" height="14">
+                      <use xlinkHref="#in-list"></use>
+                    </svg>
+                  ) : (
+                    <svg viewBox="0 0 19 20" width="19" height="20">
+                      <use xlinkHref="#add"></use>
+                    </svg>
+                  )}
                   <span>My list</span>
                 </button>
               </div>
@@ -130,14 +137,14 @@ const Main = (props) => {
 
         <footer className="page-footer">
           <div className="logo">
-            <a
-              href="#"
+            <Link
               className="logo__link logo__link--light"
+              to={AppRoute.MAIN}
             >
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <div className="copyright">
@@ -155,6 +162,7 @@ Main.propTypes = {
   onPlayButtonClick: pt.func,
   onMyListButtonClick: pt.func,
   onSignInLinkClick: pt.func,
+  onAvatarClick: pt.func,
 };
 
 export default Main;
