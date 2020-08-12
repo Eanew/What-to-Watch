@@ -12,6 +12,7 @@ const withVideoPreview = (Component) => {
       this._videoRef = React.createRef();
 
       this.state = {
+        isHaveBeenLaunched: false,
         isTimeoutPassed: false,
       };
 
@@ -34,6 +35,7 @@ const withVideoPreview = (Component) => {
           <video
             width="280"
             height="175"
+            preload="none"
             poster={image.preview}
             controls={false}
             muted={true}
@@ -51,15 +53,19 @@ const withVideoPreview = (Component) => {
 
     componentDidUpdate() {
       const video = this._videoRef.current;
+      const {isHaveBeenLaunched, isTimeoutPassed} = this.state;
 
-      if (this.state.isTimeoutPassed) {
+      if (isTimeoutPassed) {
         video.play();
-      } else {
+      } else if (isHaveBeenLaunched) {
         video.load();
       }
     }
 
     _handleMouseEnter() {
+      this.setState({
+        isHaveBeenLaunched: true,
+      });
       this._playTimeoutId = window.setTimeout(() => {
         this.setState({
           isTimeoutPassed: true,
