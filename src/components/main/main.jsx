@@ -63,7 +63,8 @@ const Main = (props) => {
                 <div className="user-block__avatar">
                   <img
                     onClick={onAvatarClick}
-                    src={userInfo.avatar}
+                    // src={userInfo.avatar} // сервер перестал отдавать аватарки
+                    src="./img/avatar.jpg"
                     alt="User avatar"
                     width="63" height="63"
                   />

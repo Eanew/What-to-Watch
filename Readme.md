@@ -1,5 +1,11 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
+## Описание
+
+Учебный проект на React + Redux. ТЗ [здесь](https://up.htmlacademy.ru/react/4/project/what-to-watch#specification)
+
+---
+
 * Студент: [Александр Петров](https://up.htmlacademy.ru/react/4/user/345769).
 * Наставник: [Михаил Пушков](https://htmlacademy.ru/profile/id638545).
 
