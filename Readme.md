@@ -1,13 +1,19 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
-## Описание
-
-Учебный проект на React + Redux. ТЗ [здесь](https://up.htmlacademy.ru/react/4/project/what-to-watch#specification)
-
----
-
 * Студент: [Александр Петров](https://up.htmlacademy.ru/react/4/user/345769).
 * Наставник: [Михаил Пушков](https://htmlacademy.ru/profile/id638545).
+
+## Описание
+
+Учебный проект, онлайн-кинотеатр на React + Redux.
+
+<img width="769" alt="Preview" src="https://up.htmlacademy.ru/assets/intensives/react/4/projects/what-to-watch/image.jpg">
+
+### Функциональность
+
+* Фильтрация, сортировка фильмов, просмотр превью-ролика при наведении на карточку
+* Открытие странички с плеером подробной информацией о фильме
+* Регистрация на сайте, возможность добавлять фильмы в избранное, оставлять комментарии
 
 ---
 
