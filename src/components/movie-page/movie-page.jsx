@@ -20,6 +20,29 @@ import Reviews from "../reviews/reviews.jsx";
 import Films from "../films/films.jsx";
 
 class MoviePage extends React.PureComponent {
+  componentDidMount() {
+    const {
+      film,
+      saveLastFilm,
+      loadReviews,
+    } = this.props;
+    saveLastFilm(film.id);
+    loadReviews(film.id);
+  }
+
+  componentDidUpdate(prevProps) {
+    const {
+      film,
+      saveLastFilm,
+      loadReviews,
+    } = this.props;
+
+    if (this.props.film.id !== prevProps.film.id) {
+      saveLastFilm(film.id);
+      loadReviews(film.id);
+    }
+  }
+
   render() {
     const {
       userInfo,
@@ -278,6 +301,8 @@ MoviePage.propTypes = {
   onAddReviewClick: pt.func,
   onMyListButtonClick: pt.func,
   onAvatarClick: pt.func,
+  loadReviews: pt.func,
+  saveLastFilm: pt.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -298,7 +323,6 @@ const mapDispatchToProps = (dispatch) => ({
   onFilmCardClick(film) {
     history.push(AppRoute.MOVIE_PAGE.replace(ID_PATH, film.id));
     dispatch(ActionCreator.setMoviePageScreen(film));
-    dispatch(Operation.loadReviews(film.id));
   },
   onLogoLinkClick() {
     dispatch(ActionCreator.setMainPageScreen());
@@ -307,6 +331,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.setSignInScreen());
   },
   onAddReviewClick() {
+    dispatch(ActionCreator.switchMovieTab(MovieTab.REVIEWS));
     dispatch(ActionCreator.setReviewPageScreen());
   },
   onMyListButtonClick(filmId, isFavorite) {
@@ -314,6 +339,12 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onAvatarClick() {
     dispatch(Operation.loadFavorites()).then(() => history.push(AppRoute.MY_LIST));
+  },
+  loadReviews(filmId) {
+    dispatch(Operation.loadReviews(filmId));
+  },
+  saveLastFilm(filmId) {
+    dispatch(ActionCreator.saveLastFilm(filmId));
   },
 });
 

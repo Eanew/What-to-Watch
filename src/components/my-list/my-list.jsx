@@ -34,7 +34,8 @@ const MyList = (props) => {
         <div className="user-block">
           <div className="user-block__avatar">
             <img
-              src={userInfo.avatar}
+              // src={userInfo.avatar} // сервер перестал отдавать аватарки
+              src="/img/avatar.jpg"
               alt="User avatar"
               width="63" height="63"
             />

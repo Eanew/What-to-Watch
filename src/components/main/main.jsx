@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {AppRoute} from "../../utils/const.js";
+import {AppRoute, ID_PATH} from "../../utils/const.js";
 
 import history from "../../history.js";
 
@@ -108,16 +108,16 @@ const Main = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <a
+                <Link
                   onClick={onPlayButtonClick}
                   className="btn btn--play movie-card__button"
-                  href=""
+                  to={AppRoute.PLAYER.replace(ID_PATH, promo.id)}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
-                </a>
+                </Link>
                 <button
                   onClick={handleMyListButtonClick}
                   className="btn btn--list movie-card__button"

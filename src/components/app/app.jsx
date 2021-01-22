@@ -9,7 +9,7 @@ import PrivateRoute from "../private-route/private-route.jsx";
 
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/screen/screen.js";
-import {getCurrentScreen, getLastScreen} from "../../reducer/screen/selectors.js";
+import {getCurrentScreen, getLastFilmId, getLastScreen} from "../../reducer/screen/selectors.js";
 import {getPromo, getFilms, getFetchingStatus, getFavorites, getCurrentFilm} from "../../reducer/data/selectors.js";
 import {getUserInfo, getUserDataFetchingStatus} from "../../reducer/user/selectors.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
@@ -121,7 +121,7 @@ class App extends React.PureComponent {
     return (
       <SignIn
         onLogoLinkClick={this.props.onLogoLinkClick}
-        isFetching={this.propsisUserDataFetching}
+        isFetching={this.props.isUserDataFetching}
         onSubmit={this._handleSignInSubmit}
       />
     );
@@ -177,7 +177,7 @@ class App extends React.PureComponent {
   }
 
   _handleSignInSubmit(authData) {
-    this.props.onSignInSubmit(authData, this.props.lastScreen, this.props.currentFilm);
+    this.props.onSignInSubmit(authData, this.props.lastScreen, this.props.lastFilm);
   }
 
   _handleReviewSubmit(review) {
@@ -192,6 +192,7 @@ App.propTypes = {
   favorites: pt.films,
   screen: pt.screen,
   lastScreen: pt.screen,
+  lastFilm: pt.string,
   currentFilm: pt.film,
   isReviewFetching: pt.bool,
   isUserDataFetching: pt.bool,
@@ -214,6 +215,7 @@ const mapStateToProps = (state) => ({
   favorites: getFavorites(state),
   screen: getCurrentScreen(state),
   lastScreen: getLastScreen(state),
+  lastFilm: getLastFilmId(state),
   currentFilm: getCurrentFilm(state),
   isReviewFetching: getFetchingStatus(state),
   isUserDataFetching: getUserDataFetchingStatus(state),
@@ -224,7 +226,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.setMainPageScreen());
   },
   onPlayButtonClick(filmId) {
-    history.push(AppRoute.PLAYER.replace(ID_PATH, filmId));
+    history.push(AppRoute.MOVIE_PAGE.replace(ID_PATH, filmId));
     dispatch(ActionCreator.setPlayerScreen());
   },
   onMoviePageClick() {
@@ -241,8 +243,8 @@ const mapDispatchToProps = (dispatch) => ({
   onSignInSubmit(authData, lastScreen, filmId) {
     dispatch(UserOperation.login(authData)).then(() => {
       if (lastScreen === Screen.MOVIE_PAGE) {
-        dispatch(ActionCreator.setMoviePageScreen());
         history.push(AppRoute.MOVIE_PAGE.replace(ID_PATH, filmId));
+        dispatch(ActionCreator.setMoviePageScreen());
       } else {
         dispatch(ActionCreator.setMainPageScreen());
         history.push(AppRoute.MAIN);

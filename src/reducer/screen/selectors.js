@@ -7,6 +7,7 @@ const NAME_SPACE = NameSpace.SCREEN;
 
 export const getCurrentScreen = (state) => state[NAME_SPACE].screen;
 export const getLastScreen = (state) => state[NAME_SPACE].lastScreen;
+export const getLastFilmId = (state) => state[NAME_SPACE].lastFilm;
 export const getCurrentTab = (state) => state[NAME_SPACE].movieTab;
 
 export const getNewMovieTab = createSelector(
@@ -27,6 +28,7 @@ export const getNewMovieTab = createSelector(
 export default {
   getCurrentScreen,
   getLastScreen,
+  getLastFilmId,
   getCurrentTab,
   getNewMovieTab,
 };

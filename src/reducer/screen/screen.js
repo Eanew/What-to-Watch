@@ -4,6 +4,7 @@ import {extend} from "../../utils/common.js";
 const initialState = {
   screen: Screen.MAIN,
   lastScreen: Screen.MAIN,
+  lastFilm: null,
   movieTab: MovieTab.OVERVIEW,
 };
 
@@ -14,6 +15,7 @@ const ActionType = {
   SET_PLAYER_SCREEN: `SET_PLAYER_SCREEN`,
   SET_REVIEW_PAGE_SCREEN: `SET_REVIEW_PAGE_SCREEN`,
   SWITCH_MOVIE_TAB: `SWITCH_MOVIE_TAB`,
+  SAVE_LAST_FILM: `SAVE_LAST_FILM`,
 };
 
 const ActionCreator = {
@@ -40,6 +42,11 @@ const ActionCreator = {
   switchMovieTab: (tab) => ({
     type: ActionType.SWITCH_MOVIE_TAB,
     payload: tab,
+  }),
+
+  saveLastFilm: (id) => ({
+    type: ActionType.SAVE_LAST_FILM,
+    payload: id,
   }),
 };
 
@@ -79,6 +86,11 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         movieTab: action.payload,
       });
+
+    case ActionType.SAVE_LAST_FILM:
+      return extend(state, {
+        lastFilm: action.payload,
+      })
 
     default:
       return state;
