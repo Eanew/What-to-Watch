@@ -1,11 +1,6 @@
-# Личный проект «Что посмотреть»
+# What to Watch
 
-* Студент: [Александр Петров](https://up.htmlacademy.ru/react/4/user/345769).
-* Наставник: [Михаил Пушков](https://htmlacademy.ru/profile/id638545).
-
-## Описание
-
-Учебный проект, онлайн-кинотеатр на React + Redux
+Онлайн-кинотеатр на связке React + Redux
 
 <img width="769" alt="Preview" src="https://up.htmlacademy.ru/assets/intensives/react/4/projects/what-to-watch/image.jpg">
 
