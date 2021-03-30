@@ -2,7 +2,15 @@
 
 Онлайн-кинотеатр на связке React + Redux
 
-<img width="769" alt="Preview" src="https://up.htmlacademy.ru/assets/intensives/react/4/projects/what-to-watch/image.jpg">
+---
+
+<img width="769" alt="Main page preview" src="./project-preview/index.png">
+<img width="769" alt="Movie page preview" src="./project-preview/film.png">
+<img width="769" alt="Review page preview" src="./project-preview/review.png">
+<img width="769" alt="Sign in preview" src="./project-preview/sign-in.png">
+<img width="769" alt="Player preview" src="./project-preview/player.png">
+
+---
 
 ### Функциональность
 
