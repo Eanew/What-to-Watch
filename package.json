@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "Личный проект «Что посмотреть» от HTML Academy",
-  "homepage": "https://eanew.github.io/what-to-watch",
+  "homepage": "https://eanew.github.io/What-to-Watch",
   "scripts": {
     "eslint": "eslint --ext .jsx --ext .js src/",
     "test.jest": "jest",
